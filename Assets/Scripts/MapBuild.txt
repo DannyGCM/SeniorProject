@@ -1,0 +1,7 @@
+// Img Name convention: (BuildingCode/PathName)(index)
+// tooltip(optional) | IMGNAME | BUTTONY1 | NEXTIMGNAME1 | BUTTONY2 | NEXTIMGNAME2 | BUTTONY3 | NEXTIMGNAME3
+
+"Carol and Marcus Weinstein Computer Science Center",csc0,90,csc1,0,csc2,270,csc3
+,csc2,180,csc0
+,csc1,270,csc0
+,csc3,90,csc0
