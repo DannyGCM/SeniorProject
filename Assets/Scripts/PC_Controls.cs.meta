@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: b4fa4ee77a983524a83400952c4d1f57
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mouseH: {instanceID: 0}
+  - mouseV: {instanceID: 0}
+  - moveFront: {instanceID: 0}
+  - moveBack: {instanceID: 0}
+  - moveLeft: {instanceID: 0}
+  - moveRight: {instanceID: 0}
+  - panUp: {instanceID: 0}
+  - panDown: {instanceID: 0}
+  - cameraTransform: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

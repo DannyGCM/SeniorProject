@@ -1,0 +1,166 @@
+{
+    "name": "MouseControls",
+    "maps": [
+        {
+            "name": "PC_Controls",
+            "id": "b9ebea67-4e01-4986-8288-a292e97803d5",
+            "actions": [
+                {
+                    "name": "MouseH",
+                    "type": "Value",
+                    "id": "0e36b110-1b13-4452-aaf4-fed54934d065",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MouseV",
+                    "type": "Value",
+                    "id": "37e8ccf1-f205-497b-81d6-2f49c6c467b8",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MoveFront",
+                    "type": "PassThrough",
+                    "id": "aadbb08c-d314-4c9f-9280-e717ac43ca8e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MoveBack",
+                    "type": "PassThrough",
+                    "id": "7db14b27-a1c8-4767-9a33-f04b87d91cd5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MoveLeft",
+                    "type": "PassThrough",
+                    "id": "a5fcc144-340d-4d11-bb8c-33d012a700d1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MoveRight",
+                    "type": "PassThrough",
+                    "id": "75818b9e-039a-45d0-98a3-f72f8194f3b9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PanUp",
+                    "type": "PassThrough",
+                    "id": "5e047d33-7873-4f90-830f-54ac242201dd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PanDown",
+                    "type": "PassThrough",
+                    "id": "6448ba72-66d4-4b38-a2ef-3b031a2d5ecf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "08a7c432-1acf-46c5-91d1-a106d9d9f356",
+                    "path": "<Mouse>/delta/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseH",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "965a09b0-26c8-4e98-b33b-36b17d065dca",
+                    "path": "<Mouse>/delta/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseV",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "55a23229-f6d5-4947-9bab-ee057a540a91",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveFront",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f0fc5c14-1029-4b72-8bd1-db3f9d20ae08",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7b0bf11-f2df-4df6-933c-914e37720d05",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "79bcf2b8-ad4e-49d8-8f48-ce8c629906ab",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dcceeb45-8fc8-49da-80e6-59b302c4c6d7",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PanUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d96b6f4-8247-4a0c-9b92-4b90c53a4164",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PanDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
