@@ -34,7 +34,7 @@ Material:
     m_Ints: []
     m_Floats:
     - DeepColor_1: 0
-    - FoamAmount: 52.7
+    - FoamAmount: 2.08
     - FoamCutOff: 2
     - FoamDetail: -3.65
     - FoamScale: 33.5
@@ -56,14 +56,14 @@ Material:
     - LightScale: 75
     - LightSpeed: 0.5
     - LightSpread: 2
-    - RefractionDetail: 4.65
-    - RefractionScale: 5.4
+    - RefractionDetail: 3.63
+    - RefractionScale: 0.216
     - RefractionSpeed: 0.1
-    - RefractionStrength: 0.03
-    - WaterDepth: 8
+    - RefractionStrength: 0.01
+    - WaterDepth: 0.32
     m_Colors:
     - DeepColor: {r: 0.34117648, g: 0.13333334, b: 0.5254902, a: 0}
-    - FoamColor: {r: 0.5330188, g: 0.9814268, b: 1, a: 0.6862745}
+    - FoamColor: {r: 0.5330188, g: 0.9814268, b: 1, a: 0.6392157}
     - HeavyColor: {r: 0.16862746, g: 0.8196079, b: 0.8313726, a: 1}
     - LightColor: {r: 1, g: 0.15686275, b: 0.16646504, a: 0.77254903}
     - LightFoamColor: {r: 0, g: 1, b: 0.1108499, a: 0.7843137}

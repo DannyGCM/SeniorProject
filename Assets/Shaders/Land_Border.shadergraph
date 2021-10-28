@@ -190,8 +190,8 @@
     "m_StageCapability": 2,
     "m_Value": {
         "x": 0.0,
-        "y": 0.0223391056060791,
-        "z": 1.0
+        "y": 0.3294117748737335,
+        "z": 2.0
     },
     "m_DefaultValue": {
         "x": 0.0,
@@ -285,8 +285,8 @@
     "m_ShaderOutputName": "BaseColor",
     "m_StageCapability": 2,
     "m_Value": {
-        "x": 0.08082294464111328,
-        "y": 0.0,
+        "x": 0.2588235139846802,
+        "y": 0.4951607286930084,
         "z": 1.0
     },
     "m_DefaultValue": {
