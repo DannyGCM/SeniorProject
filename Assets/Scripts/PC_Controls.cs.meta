@@ -4,14 +4,14 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - mouseH: {instanceID: 0}
-  - mouseV: {instanceID: 0}
-  - moveFront: {instanceID: 0}
-  - moveBack: {instanceID: 0}
-  - moveLeft: {instanceID: 0}
-  - moveRight: {instanceID: 0}
-  - panUp: {instanceID: 0}
-  - panDown: {instanceID: 0}
+  - mouseH: {fileID: 2403867069564782799, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
+  - mouseV: {fileID: -3071425772759088275, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
+  - moveFront: {fileID: 836855626066939986, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
+  - moveBack: {fileID: 6574555401561245090, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
+  - moveLeft: {fileID: -7303958942353741217, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
+  - moveRight: {fileID: 9068833868893813346, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
+  - panUp: {fileID: 2334796540584592506, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
+  - panDown: {fileID: -8793127019169392451, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
   - cameraTransform: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
