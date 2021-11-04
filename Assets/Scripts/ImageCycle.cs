@@ -17,7 +17,7 @@ public class ImageCycle : MonoBehaviour
 
     public Transform rotationPlane;
 
-    public Transform rotationPlaneCloneContainer;
+    public Transform rotationPlaneContainer;
 
     private string fileContents;
 
@@ -26,7 +26,7 @@ public class ImageCycle : MonoBehaviour
 
     string fileName = "MapBuild.txt";
 
-    public Object[] texSphere;
+    private Object[] texSphere;
 
 
     private int rotPlaneIteration = 0;
@@ -112,9 +112,9 @@ public class ImageCycle : MonoBehaviour
 
     private void ClearButtons()
     {
-        for (int i = 0; i < rotationPlaneCloneContainer.childCount; i++)
+        for (int i = 0; i < rotationPlaneContainer.childCount; i++)
         {
-            Destroy(rotationPlaneCloneContainer.GetChild(i).gameObject);
+            Destroy(rotationPlaneContainer.GetChild(i).gameObject);
         }
     }
 
@@ -132,10 +132,12 @@ public class ImageCycle : MonoBehaviour
             // Create instance of our rotationPlane prefab
             Transform rotationPlaneClone = Instantiate(rotationPlane);
 
+            // Set this instance's parent to be in a container for organization
+            rotationPlaneClone.parent = rotationPlaneContainer;
+            // Set position of rotation plane to be bound to parent
+            rotationPlaneClone.position =  rotationPlaneContainer.position;
             // With this instance, rotate it to degree specified from txt file
             rotationPlaneClone.transform.Rotate(0, rotationy, 0);
-            // Set this instance's parent to be in a container for organization
-            rotationPlaneClone.parent = rotationPlaneCloneContainer;
             // Set this instance's name to be 'rotationPlane[integer]'.
             rotationPlaneClone.name = rotationPlane.name + (trueind + rotPlaneIteration); // rotPlaneIteration is used to ensure that no old names can be reused once a button is deleted. This is primarily used for debugging
 
