@@ -41,11 +41,23 @@ public class BuildingInteraction : MonoBehaviour
     void Start()
     {
         expandPower = -expandRate;
-
         fadePower = -fadeRate;
 
-        // Define variables
-        Camera = CameraContainer.GetChild(0).GetChild(0).GetChild(0);
+        // Selects current rig
+        bool isVR = onAndroid();
+
+        // Removes either PC or VR controls
+        CameraContainer.GetChild(1).gameObject.SetActive(isVR);
+        CameraContainer.GetChild(0).gameObject.SetActive(!isVR);
+
+        if (!isVR)
+        {
+            Camera = CameraContainer.GetChild(0).GetChild(0).GetChild(0);
+        }
+        else {
+            Camera = CameraContainer.GetChild(0).GetChild(0).GetChild(0).GetChild(0);
+        }
+
         Building = BuildingContainer.GetChild(0);
         BuildingModel = Building.GetChild(0);
         ImageBubble = Building.GetChild(1);
@@ -54,6 +66,17 @@ public class BuildingInteraction : MonoBehaviour
 
         grabbed = false;
     }
+
+    // Determines if the current platform is Android or not
+    private bool onAndroid() {
+        if (Application.platform == RuntimePlatform.Android) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+ 
 
     // Update is called once per frame
     void Update()
