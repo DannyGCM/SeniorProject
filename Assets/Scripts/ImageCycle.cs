@@ -16,7 +16,7 @@ public class ImageCycle : MonoBehaviour
 
     public Transform rotationPlaneContainer;
 
-    public string resourcesDirectory = "Textures/Sky";
+    public string resourcesSkysphereImageDirectory = "Textures/Sky";
 
     public TextAsset mapAsset;
 
@@ -40,7 +40,7 @@ public class ImageCycle : MonoBehaviour
         rend = skySphere.GetComponent<Renderer>();
 
         // Load all the skysphere textures
-        texSphere = Resources.LoadAll(resourcesDirectory, typeof(Texture2D));
+        texSphere = Resources.LoadAll(resourcesSkysphereImageDirectory, typeof(Texture2D));
         int foundImgInd = FindImgIndex(spawnImage, texSphere);
         rend.material.SetTexture("_MainTex", (Texture2D)texSphere[foundImgInd]);
 
@@ -183,6 +183,24 @@ public class ImageCycle : MonoBehaviour
        
         // Set nextImg to be the new origin image and spawn the buttons found from the line associated with the origin image
         SpawnButtons(FindImageInTxt(nextImg));
+    }
+
+    public void BuildSkysphere(Transform ImageBubble)
+    {
+
+        Renderer ImageBubbleRenderer= ImageBubble.GetComponent<Renderer>();
+
+        Texture img = ImageBubbleRenderer.material.GetTexture("_MainTex");
+
+        string imgName = img.name.Trim();
+
+        rend.material.SetTexture("_MainTex", img);
+
+        // Get rid of old buttons
+        ClearButtons();
+
+        // Set nextImg to be the new origin image and spawn the buttons found from the line associated with the origin image
+        SpawnButtons(FindImageInTxt(imgName));
     }
 
     // Update is called once per frame

@@ -20,6 +20,8 @@ public class BuildingInteraction : MonoBehaviour
 
     Renderer ImageBubbleRenderer;
 
+    public bool testing;
+
     public double expandRate = 4;
 
     public double maxDist = 0.65;
@@ -36,6 +38,8 @@ public class BuildingInteraction : MonoBehaviour
 
     public bool grabbed;
 
+    public GameObject _Manager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -43,22 +47,27 @@ public class BuildingInteraction : MonoBehaviour
         expandPower = -expandRate;
         fadePower = -fadeRate;
 
-        /*// Selects current rig
+        // Selects current rig
         bool isVR = onAndroid();
 
-        // Removes either PC or VR controls
-        CameraContainer.GetChild(1).gameObject.SetActive(isVR);
-        CameraContainer.GetChild(0).gameObject.SetActive(!isVR);
+        if (!testing)
+        {
+            // Removes either PC or VR controls
+            CameraContainer.GetChild(1).gameObject.SetActive(isVR);
+            CameraContainer.GetChild(0).gameObject.SetActive(!isVR);
+        }
+        
 
-        if (!isVR)
+        // Ensure only the activated camera is selected to be Camera
+        if (CameraContainer.GetChild(1).gameObject.activeSelf)
+        {
+            Camera = CameraContainer.GetChild(1).GetChild(0).GetChild(0);
+        }
+        else
         {
             Camera = CameraContainer.GetChild(0).GetChild(0).GetChild(0);
         }
-        else {
-            Camera = CameraContainer.GetChild(0).GetChild(0).GetChild(0);
-        }*/
-
-        Camera = CameraContainer.GetChild(0).GetChild(0).GetChild(0);
+        
 
         Building = BuildingContainer.GetChild(0);
         BuildingModel = Building.GetChild(0);
@@ -67,11 +76,12 @@ public class BuildingInteraction : MonoBehaviour
         ImageBubbleRenderer = ImageBubble.GetComponent<Renderer>();
 
         grabbed = false;
+  
     }
 
     // Determines if the current platform is Android or not
     private bool onAndroid() {
-        Debug.Log("yeet");
+      
         if (Application.platform == RuntimePlatform.Android) {
             return true;
         }
@@ -111,7 +121,7 @@ public class BuildingInteraction : MonoBehaviour
         if (dist < minDist)
         {
             // Place material on skysphere
-
+            _Manager.GetComponent<ImageCycle>().BuildSkysphere(ImageBubble);
             // Trigger transition
             Debug.Log("released at min");
         }
