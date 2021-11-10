@@ -43,7 +43,7 @@ public class BuildingInteraction : MonoBehaviour
         expandPower = -expandRate;
         fadePower = -fadeRate;
 
-        // Selects current rig
+        /*// Selects current rig
         bool isVR = onAndroid();
 
         // Removes either PC or VR controls
@@ -56,7 +56,9 @@ public class BuildingInteraction : MonoBehaviour
         }
         else {
             Camera = CameraContainer.GetChild(0).GetChild(0).GetChild(0);
-        }
+        }*/
+
+        Camera = CameraContainer.GetChild(0).GetChild(0).GetChild(0);
 
         Building = BuildingContainer.GetChild(0);
         BuildingModel = Building.GetChild(0);

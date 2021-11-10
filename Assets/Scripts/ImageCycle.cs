@@ -12,26 +12,20 @@ public class ImageCycle : MonoBehaviour
 
     public Transform skySphere;
 
-    //public InputActionReference lTrigger;
-    //public InputActionReference space;
-
     public Transform rotationPlane;
 
     public Transform rotationPlaneContainer;
 
     public string resourcesDirectory = "Textures/Sky";
 
-    private string fileContents;
+    public TextAsset mapAsset;
 
-    StreamReader sr;
     string[] lines;
-
-    string fileName = "MapBuild.txt";
 
     private Object[] texSphere;
 
 
-    private int rotPlaneIteration = 0;
+    int rotPlaneIteration = 0;
 
     // Starting spawn skybox name
     public string spawnImage = "csc0";
@@ -40,38 +34,20 @@ public class ImageCycle : MonoBehaviour
     public void Start()
     {
         // Read txt file to build our button map
-        lines = fileReader(Application.dataPath + "/scripts/" + fileName);
+        lines = mapAsset.text.Split("\n"[0]);
         
         // Get the renderer component of Transform we want
         rend = skySphere.GetComponent<Renderer>();
 
-        //lTrigger.action.performed += TriggerPressed;
-        //space.action.performed += TriggerPressed;
-
-        // Load all the 
+        // Load all the skysphere textures
         texSphere = Resources.LoadAll(resourcesDirectory, typeof(Texture2D));
         int foundImgInd = FindImgIndex(spawnImage, texSphere);
         rend.material.SetTexture("_MainTex", (Texture2D)texSphere[foundImgInd]);
 
-        // Assemble 
-
+        // Assemble buttons
         SpawnButtons(FindImageInTxt(spawnImage));
 
-
     }
-
-    // WORK ON THIS ITEM NEXT. The next goal is tooltips. We get tooltips by looking at future images. It's annoying to see those images when reading strings, we should make them arrays.
-    private string[] fileReader(string path)
-    {
-        sr = new StreamReader(path);
-        fileContents = sr.ReadToEnd();
-        sr.Close();
-
-        lines = fileContents.Split("\n"[0]);
-
-        return lines;
-    }
-
 
     // Returns array of strings representing the line found in text file
     private string[] FindImageInTxt(string imgName)

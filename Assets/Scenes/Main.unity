@@ -552,10 +552,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skySphere: {fileID: 1836898939}
-  rotationPlane: {fileID: 7227882602471796387, guid: 1755a880c5cc21c409a389435c3be80a, type: 3}
+  rotationPlane: {fileID: 584419951592796846, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
   rotationPlaneContainer: {fileID: 385897538}
   resourcesDirectory: Textures/Sky
-  spawnImage: csc0
+  mapAsset: {fileID: 4900000, guid: 04ecbbe08b78e774191c66367dafe089, type: 3}
+  spawnImage: csc1
 --- !u!114 &608097679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2533,6 +2534,63 @@ Transform:
   m_Father: {fileID: 1114632703}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1916785024
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 584419951592796846, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 584419951592796846, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 584419951592796846, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 584419951592796846, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 584419951592796846, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 584419951592796846, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 584419951592796846, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 584419951592796846, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 584419951592796846, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 584419951592796846, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 584419951592796846, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 584419951592796847, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
+      propertyPath: m_Name
+      value: RotationPlane
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
 --- !u!1 &1932610949
 GameObject:
   m_ObjectHideFlags: 0
@@ -2631,7 +2689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1974242047
 MonoBehaviour:
   m_ObjectHideFlags: 0
