@@ -103,6 +103,11 @@ public class BuildingInteraction : MonoBehaviour
         
     }
 
+    public void Test()
+    {
+        Debug.Log("Test");
+    }
+
     public void Released()
     {
         if (dist < minDist)

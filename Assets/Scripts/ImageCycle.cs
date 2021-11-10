@@ -19,6 +19,8 @@ public class ImageCycle : MonoBehaviour
 
     public Transform rotationPlaneContainer;
 
+    public string SkySphereImageDirectory;
+
     private string fileContents;
 
     StreamReader sr;
@@ -47,7 +49,7 @@ public class ImageCycle : MonoBehaviour
         //space.action.performed += TriggerPressed;
 
         // Load all the 
-        texSphere = Resources.LoadAll("Images", typeof(Texture2D));
+        texSphere = Resources.LoadAll(SkySphereImageDirectory, typeof(Texture2D));
         int foundImgInd = FindImgIndex(spawn, texSphere);
         rend.material.SetTexture("_MainTex", (Texture2D)texSphere[foundImgInd]);
 
