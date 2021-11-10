@@ -55,7 +55,7 @@ public class BuildingInteraction : MonoBehaviour
             Camera = CameraContainer.GetChild(0).GetChild(0).GetChild(0);
         }
         else {
-            Camera = CameraContainer.GetChild(0).GetChild(0).GetChild(0).GetChild(0);
+            Camera = CameraContainer.GetChild(0).GetChild(0).GetChild(0);
         }
 
         Building = BuildingContainer.GetChild(0);
@@ -69,6 +69,7 @@ public class BuildingInteraction : MonoBehaviour
 
     // Determines if the current platform is Android or not
     private bool onAndroid() {
+        Debug.Log("yeet");
         if (Application.platform == RuntimePlatform.Android) {
             return true;
         }
@@ -101,11 +102,6 @@ public class BuildingInteraction : MonoBehaviour
             ImageBubble.localScale = new Vector3(1,1,1);
         }
         
-    }
-
-    public void Test()
-    {
-        Debug.Log("Test");
     }
 
     public void Released()

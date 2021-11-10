@@ -19,7 +19,7 @@ public class ImageCycle : MonoBehaviour
 
     public Transform rotationPlaneContainer;
 
-    public string SkySphereImageDirectory;
+    public string resourcesDirectory = "Textures/Sky";
 
     private string fileContents;
 
@@ -34,7 +34,7 @@ public class ImageCycle : MonoBehaviour
     private int rotPlaneIteration = 0;
 
     // Starting spawn skybox name
-    private string spawn = "csc0";
+    public string spawnImage = "csc0";
 
     // Start is called before the first frame update
     public void Start()
@@ -49,13 +49,13 @@ public class ImageCycle : MonoBehaviour
         //space.action.performed += TriggerPressed;
 
         // Load all the 
-        texSphere = Resources.LoadAll(SkySphereImageDirectory, typeof(Texture2D));
-        int foundImgInd = FindImgIndex(spawn, texSphere);
+        texSphere = Resources.LoadAll(resourcesDirectory, typeof(Texture2D));
+        int foundImgInd = FindImgIndex(spawnImage, texSphere);
         rend.material.SetTexture("_MainTex", (Texture2D)texSphere[foundImgInd]);
 
         // Assemble 
 
-        SpawnButtons(FindImageInTxt(spawn));
+        SpawnButtons(FindImageInTxt(spawnImage));
 
 
     }
