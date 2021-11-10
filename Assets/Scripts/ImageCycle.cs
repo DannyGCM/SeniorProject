@@ -24,7 +24,6 @@ public class ImageCycle : MonoBehaviour
 
     private Object[] texSphere;
 
-
     int rotPlaneIteration = 0;
 
     // Starting spawn skybox name
@@ -201,6 +200,7 @@ public class ImageCycle : MonoBehaviour
 
         // Set nextImg to be the new origin image and spawn the buttons found from the line associated with the origin image
         SpawnButtons(FindImageInTxt(imgName));
+
     }
 
     // Update is called once per frame

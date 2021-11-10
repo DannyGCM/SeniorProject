@@ -40,10 +40,17 @@ public class BuildingInteraction : MonoBehaviour
 
     public GameObject _Manager;
 
+    public Rigidbody cameraMove;
+
+    public Transform homeSphere;
+
+    public Transform tourSphere;
+
 
     // Start is called before the first frame update
     void Start()
     {
+
         expandPower = -expandRate;
         fadePower = -fadeRate;
 
@@ -72,6 +79,7 @@ public class BuildingInteraction : MonoBehaviour
         Building = BuildingContainer.GetChild(0);
         BuildingModel = Building.GetChild(0);
         ImageBubble = Building.GetChild(1);
+        
 
         ImageBubbleRenderer = ImageBubble.GetComponent<Renderer>();
 
@@ -121,9 +129,10 @@ public class BuildingInteraction : MonoBehaviour
         if (dist < minDist)
         {
             // Place material on skysphere
+            Debug.Log(ImageBubble);
             _Manager.GetComponent<ImageCycle>().BuildSkysphere(ImageBubble);
             // Trigger transition
-            Debug.Log("released at min");
+            cameraMove.position = tourSphere.position;
         }
 
 
