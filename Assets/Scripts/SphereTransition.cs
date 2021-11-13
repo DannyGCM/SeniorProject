@@ -11,9 +11,9 @@ public class SphereTransition : MonoBehaviour
 
     public Rigidbody cameraMove;
 
-    public Transform homeSphere;
+    public Transform homeEnvironment;
 
-    public Transform tourSphere;
+    public Transform tourEnvironment;
 
     public float transitionSpeed = 10;
 
@@ -29,9 +29,9 @@ public class SphereTransition : MonoBehaviour
 
     Transform BuildingModel;
 
-    Transform ImageBubble;
+    Transform tourSkysphere;
 
-    Renderer ImageBubbleRenderer;
+    Renderer tourSkysphereRenderer;
 
     public bool testing;
 
@@ -53,46 +53,43 @@ public class SphereTransition : MonoBehaviour
 
     public GameObject _Manager;
 
-    
+    Animator anim;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         homeButton.action.performed += HomeClicked;
 
-        expandPower = -expandRate;
         fadePower = -fadeRate;
 
         // Selects current rig
         bool isVR = onAndroid();
 
+        // If we are testing, allow for override of device detected
         if (!testing)
         {
-            // Removes either PC or VR controls
+            // Sets a camera to be active based on the device detected
             CameraContainer.GetChild(1).gameObject.SetActive(isVR);
             CameraContainer.GetChild(0).gameObject.SetActive(!isVR);
         }
 
+        // Set camera to be whichever is detected as active
+        Camera = FindActiveCamera(CameraContainer);
 
-        // Ensure only the activated camera is selected to be Camera
-        if (CameraContainer.GetChild(1).gameObject.activeSelf)
-        {
-            Camera = CameraContainer.GetChild(1).GetChild(0).GetChild(0);
-        }
-        else
-        {
-            Camera = CameraContainer.GetChild(0).GetChild(0).GetChild(0);
-        }
-
-
+        // Get buildingcontainer children
+        // Add loop to add an array of buildings
         Building = BuildingContainer.GetChild(0);
-        BuildingModel = Building.GetChild(0);
-        ImageBubble = Building.GetChild(1);
-     
+        BuildingModel = Building.GetChild(0).GetChild(0);
+        tourSkysphere = tourEnvironment.GetChild(0).GetChild(0);
 
-        ImageBubbleRenderer = ImageBubble.GetComponent<Renderer>();
+        // Initialize renderer component of the skysphere
+        tourSkysphereRenderer = tourSkysphere.GetComponent<Renderer>();
 
         grabbed = false;
+
+        anim = BuildingModel.GetComponent<Animator>();
     }
     void HomeClicked(InputAction.CallbackContext obj)
     {
@@ -106,10 +103,8 @@ public class SphereTransition : MonoBehaviour
         {
             cameraMove.velocity = new Vector3(0, 0, 0);
         }
-
-
-        
     }
+
     // Determines if the current platform is Android or not
     private bool onAndroid()
     {
@@ -123,44 +118,68 @@ public class SphereTransition : MonoBehaviour
             return false;
         }
     }
+
+    private Transform FindActiveCamera(Transform cameraContainer)
+    {
+        Transform c;
+        // Check which camera is active
+        if (cameraContainer.GetChild(1).gameObject.activeSelf)
+        {
+            c = cameraContainer.GetChild(1).GetChild(0).GetChild(0);
+        }
+        else
+        {
+            c = cameraContainer.GetChild(0).GetChild(0).GetChild(0);
+        }
+
+        return c;
+    }
     // Update is called once per frame
     void Update()
     {
-
+        // Set dist variable
         dist = Vector3.Distance(BuildingModel.position, Camera.position);
+
+        // 
 
         if (dist < maxDist)
         {
 
-            float scaleVar = (float)(Math.Pow(dist, expandPower) - Math.Pow(maxDist, expandPower));
-
-            ImageBubble.localScale = new Vector3(scaleVar + 1, scaleVar + 1, scaleVar + 1);
-
             // Adjust transparencies
             double fadeVar = (Math.Pow(dist, fadePower) - Math.Pow(maxDist, fadePower));
-            ImageBubbleRenderer.material.color = new Color(1, 1, 1, (float)(fadeVar));
+            tourSkysphereRenderer.material.color = new Color(1, 1, 1, (float)(fadeVar));
 
         }
         else
         {
-            ImageBubbleRenderer.material.color = new Color(1, 1, 1, 0);
-            ImageBubble.localScale = new Vector3(1, 1, 1);
+            tourSkysphereRenderer.material.color = new Color(1, 1, 1, 0);
+            //tourSkysphere.localScale = new Vector3(1, 1, 1);
         }
 
        
     }
 
-    public void Released()
+    public void GrabbableReleased()
     {
+
         if (dist < minDist)
         {
-            
-            // Place material on skysphere
-            _Manager.GetComponent<ImageCycle>().BuildSkysphere(ImageBubble);
-            // Trigger transition
-            cameraMove.position = tourSphere.position;
+            // Lock transparency to 1
+            tourSkysphereRenderer.material.color = new Color(1, 1, 1, 1);
+            _Manager.GetComponent<ImageCycle>().BuildSkysphere(tourSkysphere);
         }
+        anim.SetBool("InHand", false);
 
+    }
+    public void GrabbableGrabbed()
+    {
+        // Play animation
+        
+        //Animator animator = BuildingModel.GetComponent<Animator>();
 
+        
+        anim.SetBool("InHand", true);
+        // Place material on skysphere
+        _Manager.GetComponent<ImageCycle>().BuildSkysphere(tourSkysphere);  
     }
 }
