@@ -130,7 +130,7 @@ public class BuildingInteraction : MonoBehaviour
         {
             // Place material on skysphere
             Debug.Log(ImageBubble);
-            _Manager.GetComponent<ImageCycle>().BuildSkysphere(ImageBubble);
+            //_Manager.GetComponent<ImageCycle>().BuildSkysphere(ImageBubble, imgName);
             // Trigger transition
             cameraMove.position = tourSphere.position;
         }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.XR.Interaction.Toolkit;
+using Unity.VisualScripting;
+
 
 public class SphereTransition : MonoBehaviour
 {
@@ -49,11 +52,13 @@ public class SphereTransition : MonoBehaviour
 
     double dist;
 
-    public bool grabbed;
+    public bool inTour;
 
     public GameObject _Manager;
 
     Animator anim;
+
+    public ScriptableObject temp;
 
 
 
@@ -87,9 +92,13 @@ public class SphereTransition : MonoBehaviour
         // Initialize renderer component of the skysphere
         tourSkysphereRenderer = tourSkysphere.GetComponent<Renderer>();
 
-        grabbed = false;
+        inTour = false;
 
         anim = BuildingModel.GetComponent<Animator>();
+
+        // Insert listeners for grab and release of every building
+        InsertGrabListeners(BuildingContainer);
+
     }
     void HomeClicked(InputAction.CallbackContext obj)
     {
@@ -141,45 +150,69 @@ public class SphereTransition : MonoBehaviour
         dist = Vector3.Distance(BuildingModel.position, Camera.position);
 
         // 
-
-        if (dist < maxDist)
+        if (inTour == false)
         {
+            if (dist < maxDist)
+            {
 
-            // Adjust transparencies
-            double fadeVar = (Math.Pow(dist, fadePower) - Math.Pow(maxDist, fadePower));
-            tourSkysphereRenderer.material.color = new Color(1, 1, 1, (float)(fadeVar));
+                // Adjust transparencies
+                double fadeVar = (Math.Pow(dist, fadePower) - Math.Pow(maxDist, fadePower));
+                tourSkysphereRenderer.material.color = new Color(1, 1, 1, (float)(fadeVar));
 
+            }
+            else
+            {
+                tourSkysphereRenderer.material.color = new Color(1, 1, 1, 0);
+                //tourSkysphere.localScale = new Vector3(1, 1, 1);
+            }
         }
-        else
-        {
-            tourSkysphereRenderer.material.color = new Color(1, 1, 1, 0);
-            //tourSkysphere.localScale = new Vector3(1, 1, 1);
-        }
+        
 
        
     }
 
-    public void GrabbableReleased()
+    // This adds listeners to every building so that we know what image to put on the sphere
+    private void InsertGrabListeners(Transform buildingContainer)
+    {
+        XRGrabInteractable grab;
+        string imageName;
+        
+        // Add event listeners to all grabbables in the canvas
+        for (int i = 0; i < buildingContainer.childCount; i++)
+        {
+
+            grab = buildingContainer.GetChild(i).GetChild(0).GetComponent<XRGrabInteractable>();
+            imageName = (string)Variables.Object(buildingContainer.GetChild(i).GetChild(0).GetChild(0).GetChild(0).gameObject).Get("imageName");
+
+            grab.selectEntered.AddListener(delegate { GrabbableGrabbed(imageName); });
+            grab.selectExited.AddListener(delegate { GrabbableReleased(imageName); });
+
+        }
+
+    }
+
+    public void GrabbableReleased(string imgName)
     {
 
         if (dist < minDist)
         {
             // Lock transparency to 1
             tourSkysphereRenderer.material.color = new Color(1, 1, 1, 1);
-            _Manager.GetComponent<ImageCycle>().BuildSkysphere(tourSkysphere);
+            
+            _Manager.GetComponent<ImageCycle>().SpawnButtons(_Manager.GetComponent<ImageCycle>().FindImageInTxt(imgName));
         }
         anim.SetBool("InHand", false);
 
+        inTour = true;
     }
-    public void GrabbableGrabbed()
+    public void GrabbableGrabbed(string imgName)
     {
-        // Play animation
-        
-        //Animator animator = BuildingModel.GetComponent<Animator>();
 
-        
         anim.SetBool("InHand", true);
         // Place material on skysphere
-        _Manager.GetComponent<ImageCycle>().BuildSkysphere(tourSkysphere);  
+        Debug.Log(imgName);
+        _Manager.GetComponent<ImageCycle>().BuildSkysphere(tourSkysphere, imgName);
+
     }
+    
 }

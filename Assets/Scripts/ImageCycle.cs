@@ -26,9 +26,6 @@ public class ImageCycle : MonoBehaviour
 
     int rotPlaneIteration = 0;
 
-    // Starting spawn skybox name
-    public string spawnImage = "csc0";
-
     // Start is called before the first frame update
     public void Start()
     {
@@ -40,16 +37,19 @@ public class ImageCycle : MonoBehaviour
 
         // Load all the skysphere textures
         texSphere = Resources.LoadAll(resourcesSkysphereImageDirectory, typeof(Texture2D));
-        int foundImgInd = FindImgIndex(spawnImage, texSphere);
-        rend.material.SetTexture("_MainTex", (Texture2D)texSphere[foundImgInd]);
 
-        // Assemble buttons
-        SpawnButtons(FindImageInTxt(spawnImage));
+        // Look for image index
+        int foundImgInd = FindImgIndex("csc0", texSphere);
+        // Load found image to TourSphere
+        rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[foundImgInd]);
+        // Assemble buttons to TourEnvironment
+        SpawnButtons(FindImageInTxt("csc0"));
+
 
     }
 
     // Returns array of strings representing the line found in text file
-    private string[] FindImageInTxt(string imgName)
+    public string[] FindImageInTxt(string imgName)
     {
         
         for (int i = 0; i < lines.Length; i++)
@@ -95,7 +95,7 @@ public class ImageCycle : MonoBehaviour
         }
     }
 
-    private void SpawnButtons(string[] line)
+    public void SpawnButtons(string[] line)
     {
         Button[] buttons = new Button[(line.Length - 2) / 2];
         int trueind = 0;
@@ -118,7 +118,7 @@ public class ImageCycle : MonoBehaviour
             // Set this instance's name to be 'rotationPlane[integer]'.
             rotationPlaneClone.name = rotationPlane.name + (trueind + rotPlaneIteration); // rotPlaneIteration is used to ensure that no old names can be reused once a button is deleted. This is primarily used for debugging
 
-            buttons[trueind] = rotationPlaneClone.GetChild(0).GetChild(0).GetComponent<Button>();
+            buttons[trueind] = rotationPlaneClone.GetChild(0).GetChild(0).GetChild(0).GetComponent<Button>();
             
         }
         // Add event listeners to all buttons in the canvas
@@ -129,7 +129,6 @@ public class ImageCycle : MonoBehaviour
             
             buttons[i].onClick.AddListener(delegate { ButtonClicked(identifier); });
 
-            
         }
         rotPlaneIteration += (line.Length - 2) / 2;
     }
@@ -157,7 +156,7 @@ public class ImageCycle : MonoBehaviour
         Transform rotationPlane = button.transform.parent.parent.transform;
 
         // Get name of image that is currently applied to our material
-        string imgName = rend.material.GetTexture("_MainTex").name;
+        string imgName = rend.material.GetTexture("_BaseMap").name;
 
         // Eliminate whitespace from imgName
         imgName = imgName.Trim();
@@ -173,35 +172,29 @@ public class ImageCycle : MonoBehaviour
 
         // Look through our Images file within project and find an image name that matches our nextImg string
         int foundImgInd = FindImgIndex(nextImg, texSphere);
+        
 
         // Get rid of old buttons
         ClearButtons();
 
         // Place the image that we found in our files onto our material
-        rend.material.SetTexture("_MainTex", (Texture2D)texSphere[foundImgInd]);
+        rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[foundImgInd]);
        
         // Set nextImg to be the new origin image and spawn the buttons found from the line associated with the origin image
         SpawnButtons(FindImageInTxt(nextImg));
     }
 
-    public void BuildSkysphere(Transform ImageBubble)
+    public void BuildSkysphere(Transform ImageBubble, string imgName)
     {
 
-        Renderer ImageBubbleRenderer= ImageBubble.GetComponent<Renderer>();
+        Renderer ImageBubbleRenderer = ImageBubble.GetComponent<Renderer>();
 
-        Texture img = ImageBubbleRenderer.material.GetTexture("_MainTex");
+        Texture img = ImageBubbleRenderer.material.GetTexture("_BaseMap");
 
-        string imgName = img.name.Trim();
-
-        rend.material.SetTexture("_MainTex", img);
-
-        // Get rid of old buttons
-        ClearButtons();
-
-        // Set nextImg to be the new origin image and spawn the buttons found from the line associated with the origin image
-        SpawnButtons(FindImageInTxt(imgName));
+        rend.material.SetTexture("_BaseMap", img);
 
     }
+    
 
     // Update is called once per frame
     void Update()
