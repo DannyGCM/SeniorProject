@@ -42,9 +42,7 @@ public class ImageCycle : MonoBehaviour
         int foundImgInd = FindImgIndex("csc0", texSphere);
         // Load found image to TourSphere
         rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[foundImgInd]);
-        // Assemble buttons to TourEnvironment
-        SpawnButtons(FindImageInTxt("csc0"));
-
+        
 
     }
 
@@ -87,7 +85,7 @@ public class ImageCycle : MonoBehaviour
     }
 
 
-    private void ClearButtons()
+    public void ClearButtons()
     {
         for (int i = 0; i < rotationPlaneContainer.childCount; i++)
         {

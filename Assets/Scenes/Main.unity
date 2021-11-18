@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1003451815}
-  m_IndirectSpecularColor: {r: 0.45032597, g: 0.5003504, b: 0.57529867, a: 1}
+  m_IndirectSpecularColor: {r: 0.45032674, g: 0.5003512, b: 0.5752999, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -652,7 +652,6 @@ Transform:
   m_Children:
   - {fileID: 415610815}
   - {fileID: 543450652463731196}
-  - {fileID: 1771480042}
   m_Father: {fileID: 795629454}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1586,6 +1585,7 @@ GameObject:
   - component: {fileID: 979657320}
   - component: {fileID: 979657316}
   - component: {fileID: 979657314}
+  - component: {fileID: 979657317}
   m_Layer: 0
   m_Name: BuildingPhysics
   m_TagString: Untagged
@@ -1664,7 +1664,7 @@ MonoBehaviour:
       m_Calls: []
   m_AttachTransform: {fileID: 0}
   m_AttachEaseInTime: 2
-  m_MovementType: 1
+  m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -1729,6 +1729,57 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1087747587602517406, guid: a4e2dad1e8cef3742a8aa74235e0a9ee, type: 3}
+--- !u!171741748 &979657317
+ArticulationBody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979657313}
+  m_Enabled: 1
+  m_Mass: 1
+  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
+  m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_AnchorPosition: {x: 0, y: 0, z: 0}
+  m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_ComputeParentAnchor: 1
+  m_ArticulationJointType: 0
+  m_LinearX: 2
+  m_LinearY: 2
+  m_LinearZ: 2
+  m_SwingY: 2
+  m_SwingZ: 2
+  m_Twist: 2
+  m_XDrive:
+    lowerLimit: 0
+    upperLimit: 0
+    stiffness: 0
+    damping: 0
+    forceLimit: 3.4028235e+38
+    target: 0
+    targetVelocity: 0
+  m_YDrive:
+    lowerLimit: 0
+    upperLimit: 0
+    stiffness: 0
+    damping: 0
+    forceLimit: 3.4028235e+38
+    target: 0
+    targetVelocity: 0
+  m_ZDrive:
+    lowerLimit: 0
+    upperLimit: 0
+    stiffness: 0
+    damping: 0
+    forceLimit: 3.4028235e+38
+    target: 0
+    targetVelocity: 0
+  m_LinearDamping: 0.05
+  m_AngularDamping: 0.05
+  m_JointFriction: 0.05
+  m_Immovable: 0
+  m_UseGravity: 1
+  m_CollisionDetectionMode: 0
 --- !u!33 &979657318
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1762,14 +1813,14 @@ SpringJoint:
   m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: -0.5, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.19525, y: -0.29562497, z: 3.2755}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
-  m_Spring: 1000
+  m_Spring: 1
   m_Damper: 0.01
   m_MinDistance: 0
-  m_MaxDistance: 0
-  m_Tolerance: 0.025
+  m_MaxDistance: 200000
+  m_Tolerance: 100
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 1
@@ -1862,13 +1913,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003451814}
-  m_LocalRotation: {x: 0.32102582, y: 0.0015702762, z: -0.0005322729, w: 0.947069}
-  m_LocalPosition: {x: 2, y: 7, z: -11.125}
+  m_LocalRotation: {x: 0.31980464, y: 0.08254265, z: -0.027979294, w: 0.9434664}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 778097297}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 37.45, y: 0.19, z: 0}
+  m_LocalEulerAnglesHint: {x: 37.45, y: 10, z: 0}
 --- !u!1001 &1014833791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2847,8 +2898,8 @@ Transform:
   m_Children:
   - {fileID: 1974242048}
   - {fileID: 1114632703}
-  m_Father: {fileID: 471270799}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1836898938
 PrefabInstance:

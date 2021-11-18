@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using System;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.VisualScripting;
-
+using System.Threading.Tasks;
 
 public class SphereTransition : MonoBehaviour
 {
@@ -60,6 +60,8 @@ public class SphereTransition : MonoBehaviour
 
     public ScriptableObject temp;
 
+    bool beenInTour = false;
+
 
 
     // Start is called before the first frame update
@@ -102,16 +104,23 @@ public class SphereTransition : MonoBehaviour
     }
     void HomeClicked(InputAction.CallbackContext obj)
     {
-        // Transition is initiated
-        if (cameraMove.velocity.y == 0)
-        {
-            cameraMove.velocity = new Vector3(0, transitionSpeed, 0);
+        // If home clicked when in tour, go home
+        if (inTour == true) {
+            inTour = false;
+            homeEnvironment.GetChild(1).gameObject.SetActive(true);
+            _Manager.GetComponent<ImageCycle>().ClearButtons();
         }
-        // Transition is paused
         else
         {
-            cameraMove.velocity = new Vector3(0, 0, 0);
+            if (beenInTour != false)
+            {
+                inTour = true;
+                DisableHome(tourSkysphereRenderer.material.GetTexture("_BaseMap").name);
+            }
+            
+
         }
+       
     }
 
     // Determines if the current platform is Android or not
@@ -154,7 +163,6 @@ public class SphereTransition : MonoBehaviour
         {
             if (dist < maxDist)
             {
-
                 // Adjust transparencies
                 double fadeVar = (Math.Pow(dist, fadePower) - Math.Pow(maxDist, fadePower));
                 tourSkysphereRenderer.material.color = new Color(1, 1, 1, (float)(fadeVar));
@@ -193,24 +201,35 @@ public class SphereTransition : MonoBehaviour
 
     public void GrabbableReleased(string imgName)
     {
-
-        if (dist < minDist)
+        if (imgName == "")
         {
-            // Lock transparency to 1
-            tourSkysphereRenderer.material.color = new Color(1, 1, 1, 1);
-            
-            _Manager.GetComponent<ImageCycle>().SpawnButtons(_Manager.GetComponent<ImageCycle>().FindImageInTxt(imgName));
+            imgName = tourSkysphereRenderer.material.GetTexture("_BaseMap").name;
         }
         anim.SetBool("InHand", false);
+        if (dist < minDist)
+        {
+            DisableHome(imgName);
+            beenInTour = true;
+        } 
+    }
+    public async Task DisableHome(string imgName)
+    {
+        // Lock transparency to 1
+        tourSkysphereRenderer.material.color = new Color(1, 1, 1, 1);
 
+        _Manager.GetComponent<ImageCycle>().SpawnButtons(_Manager.GetComponent<ImageCycle>().FindImageInTxt(imgName));
         inTour = true;
+        // Do camera fadeout animation
+
+        await Task.Delay(1);
+        // Disable map
+        homeEnvironment.GetChild(1).gameObject.SetActive(false);
     }
     public void GrabbableGrabbed(string imgName)
     {
 
         anim.SetBool("InHand", true);
         // Place material on skysphere
-        Debug.Log(imgName);
         _Manager.GetComponent<ImageCycle>().BuildSkysphere(tourSkysphere, imgName);
 
     }
