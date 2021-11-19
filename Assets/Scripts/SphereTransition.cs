@@ -18,10 +18,6 @@ public class SphereTransition : MonoBehaviour
 
     public Transform tourEnvironment;
 
-    public float transitionSpeed = 10;
-
-    public float teleportDelay = 3;
-
     public Transform BuildingContainer;
 
     public Transform CameraContainer;
@@ -38,17 +34,7 @@ public class SphereTransition : MonoBehaviour
 
     public bool testing;
 
-    public double expandRate = 4;
-
-    public double maxDist = 0.65;
-
-    public double minDist = 0.4;
-
-    public double fadeRate = 2;
-
-    double expandPower;
-
-    double fadePower;
+    public double maxDist = 0.45;
 
     double dist;
 
@@ -56,9 +42,9 @@ public class SphereTransition : MonoBehaviour
 
     public GameObject _Manager;
 
-    Animator anim;
+    Animator BuildingVisualsAnimator;
 
-    public ScriptableObject temp;
+    Animator SphereChangeAnimator;
 
     bool beenInTour = false;
 
@@ -69,7 +55,6 @@ public class SphereTransition : MonoBehaviour
     {
         homeButton.action.performed += HomeClicked;
 
-        fadePower = -fadeRate;
 
         // Selects current rig
         bool isVR = onAndroid();
@@ -95,11 +80,16 @@ public class SphereTransition : MonoBehaviour
         tourSkysphereRenderer = tourSkysphere.GetComponent<Renderer>();
 
         inTour = false;
+        
+        BuildingVisualsAnimator = BuildingModel.GetComponent<Animator>();
 
-        anim = BuildingModel.GetComponent<Animator>();
+        SphereChangeAnimator = tourSkysphere.GetComponent<Animator>();
 
         // Insert listeners for grab and release of every building
         InsertGrabListeners(BuildingContainer);
+
+        
+
 
     }
     void HomeClicked(InputAction.CallbackContext obj)
@@ -157,26 +147,22 @@ public class SphereTransition : MonoBehaviour
     {
         // Set dist variable
         dist = Vector3.Distance(BuildingModel.position, Camera.position);
-
+        
         // 
         if (inTour == false)
         {
             if (dist < maxDist)
             {
-                // Adjust transparencies
-                double fadeVar = (Math.Pow(dist, fadePower) - Math.Pow(maxDist, fadePower));
-                tourSkysphereRenderer.material.color = new Color(1, 1, 1, (float)(fadeVar));
-
+                SphereChangeAnimator.SetBool("BuildingNear", true);
             }
             else
             {
-                tourSkysphereRenderer.material.color = new Color(1, 1, 1, 0);
-                //tourSkysphere.localScale = new Vector3(1, 1, 1);
+                SphereChangeAnimator.SetBool("BuildingNear", false);
             }
         }
-        
 
-       
+
+
     }
 
     // This adds listeners to every building so that we know what image to put on the sphere
@@ -198,6 +184,7 @@ public class SphereTransition : MonoBehaviour
         }
 
     }
+   
 
     public void GrabbableReleased(string imgName)
     {
@@ -205,12 +192,14 @@ public class SphereTransition : MonoBehaviour
         {
             imgName = tourSkysphereRenderer.material.GetTexture("_BaseMap").name;
         }
-        anim.SetBool("InHand", false);
-        if (dist < minDist)
+        BuildingVisualsAnimator.SetBool("InHand", false);
+        
+        if (dist < maxDist)
         {
             DisableHome(imgName);
             beenInTour = true;
-        } 
+        }
+        
     }
     public async Task DisableHome(string imgName)
     {
@@ -219,7 +208,7 @@ public class SphereTransition : MonoBehaviour
 
         _Manager.GetComponent<ImageCycle>().SpawnButtons(_Manager.GetComponent<ImageCycle>().FindImageInTxt(imgName));
         inTour = true;
-        // Do camera fadeout animation
+        // Do camera fadeout BuildingVisualsAnimatoration
 
         await Task.Delay(1);
         // Disable map
@@ -227,8 +216,8 @@ public class SphereTransition : MonoBehaviour
     }
     public void GrabbableGrabbed(string imgName)
     {
-
-        anim.SetBool("InHand", true);
+        
+        BuildingVisualsAnimator.SetBool("InHand", true);
         // Place material on skysphere
         _Manager.GetComponent<ImageCycle>().BuildSkysphere(tourSkysphere, imgName);
 

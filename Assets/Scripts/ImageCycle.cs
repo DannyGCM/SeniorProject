@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
+using Unity.VisualScripting;
+using System.Threading.Tasks;
 
 public class ImageCycle : MonoBehaviour
 {
@@ -26,9 +29,11 @@ public class ImageCycle : MonoBehaviour
 
     int rotPlaneIteration = 0;
 
+
     // Start is called before the first frame update
     public void Start()
     {
+
         // Read txt file to build our button map
         lines = mapAsset.text.Split("\n"[0]);
         
@@ -42,8 +47,8 @@ public class ImageCycle : MonoBehaviour
         int foundImgInd = FindImgIndex("csc0", texSphere);
         // Load found image to TourSphere
         rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[foundImgInd]);
-        
 
+        
     }
 
     // Returns array of strings representing the line found in text file
@@ -95,7 +100,7 @@ public class ImageCycle : MonoBehaviour
 
     public void SpawnButtons(string[] line)
     {
-        Button[] buttons = new Button[(line.Length - 2) / 2];
+        XRSimpleInteractable[] interactables = new XRSimpleInteractable[(line.Length - 2) / 2];
         int trueind = 0;
         
         // Button positions begin at index 2
@@ -116,18 +121,23 @@ public class ImageCycle : MonoBehaviour
             // Set this instance's name to be 'rotationPlane[integer]'.
             rotationPlaneClone.name = rotationPlane.name + (trueind + rotPlaneIteration); // rotPlaneIteration is used to ensure that no old names can be reused once a button is deleted. This is primarily used for debugging
 
-            buttons[trueind] = rotationPlaneClone.GetChild(0).GetChild(0).GetChild(0).GetComponent<Button>();
-            
+            interactables[trueind] = rotationPlaneClone.GetChild(0).GetComponent<XRSimpleInteractable>();
+            Debug.Log(i + "t");
         }
         // Add event listeners to all buttons in the canvas
-        for (int i = 0; i < buttons.Length; i++)
+        for (int i = 0; i < trueind; i++)
         {
-            
-            Button identifier = buttons[i];
-            
-            buttons[i].onClick.AddListener(delegate { ButtonClicked(identifier); });
+
+
+            Debug.Log(i);
+            interactables[i].selectEntered.AddListener(delegate { ButtonClicked(interactables[i]); });
+       
+            Animator ArrowAnimator = interactables[i].gameObject.GetComponent<Animator>();
+            interactables[i].hoverEntered.AddListener(delegate { RunArrow(ArrowAnimator, true); } );
+            interactables[i].hoverExited.AddListener(delegate { RunArrow(ArrowAnimator, false); });
 
         }
+
         rotPlaneIteration += (line.Length - 2) / 2;
     }
 
@@ -148,8 +158,9 @@ public class ImageCycle : MonoBehaviour
     }
 
     // Called when a listener function is triggered by a button being clicked. Functions similar to OnClick()
-    public void ButtonClicked(Button button)
+    public void ButtonClicked(XRSimpleInteractable button)
     {
+        Debug.Log("clicked");
         // Get the parent rotation plane of the button that was pressed
         Transform rotationPlane = button.transform.parent.parent.transform;
 
@@ -180,6 +191,7 @@ public class ImageCycle : MonoBehaviour
        
         // Set nextImg to be the new origin image and spawn the buttons found from the line associated with the origin image
         SpawnButtons(FindImageInTxt(nextImg));
+
     }
 
     public void BuildSkysphere(Transform ImageBubble, string imgName)
@@ -192,7 +204,12 @@ public class ImageCycle : MonoBehaviour
         rend.material.SetTexture("_BaseMap", img);
 
     }
-    
+
+    void RunArrow(Animator ani, bool animating)
+    {
+        ani.SetBool("Hover", animating);
+    }
+
 
     // Update is called once per frame
     void Update()

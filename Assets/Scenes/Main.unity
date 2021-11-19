@@ -786,8 +786,7 @@ MonoBehaviour:
   CameraContainer: {fileID: 1771480042}
   testing: 1
   expandRate: 4
-  maxDist: 0.65
-  minDist: 0.4
+  maxDist: 0.45
   fadeRate: 2
   inTour: 0
   _Manager: {fileID: 608097676}
@@ -877,6 +876,30 @@ Transform:
   m_Father: {fileID: 1114632703}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &714754740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8982680532959774172, guid: a0fa0692acb68ad41999dfa6d65848f9, type: 3}
+  m_PrefabInstance: {fileID: 1836898938}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &714754743
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714754740}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5af2af7e777d52a4fa9588a96e2c7d3c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &737879749
 GameObject:
   m_ObjectHideFlags: 0
