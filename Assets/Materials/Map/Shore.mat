@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Land_Border
+  m_Name: Shore
   m_Shader: {fileID: -6465566751694194690, guid: 23e7d7ed11bbccf46aaed0e09e15e027, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
