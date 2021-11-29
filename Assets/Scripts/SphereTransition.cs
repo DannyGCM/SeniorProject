@@ -47,11 +47,12 @@ public class SphereTransition : MonoBehaviour
     Animator SphereChangeAnimator;
 
     bool beenInTour = false;
+    public bool started = false;
 
 
 
     // Start is called before the first frame update
-    void Start()
+    public void NewStart()
     {
         homeButton.action.performed += HomeClicked;
 
@@ -86,10 +87,10 @@ public class SphereTransition : MonoBehaviour
         SphereChangeAnimator = tourSkysphere.GetComponent<Animator>();
 
         // Insert listeners for grab and release of every building
-        InsertGrabListeners(BuildingContainer);
+        //InsertGrabListeners(BuildingContainer);
 
-        
 
+        started = true;
 
     }
     void HomeClicked(InputAction.CallbackContext obj)
@@ -145,54 +146,52 @@ public class SphereTransition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Set dist variable
-        dist = Vector3.Distance(BuildingModel.position, Camera.position);
-        
-        // 
-        if (inTour == false)
-        {
-            if (dist < maxDist)
+        if (started == true) {
+            // Set dist variable
+            dist = Vector3.Distance(BuildingModel.position, Camera.position);
+
+            // 
+            if (inTour == false)
             {
-                SphereChangeAnimator.SetBool("BuildingNear", true);
-            }
-            else
-            {
-                SphereChangeAnimator.SetBool("BuildingNear", false);
+                if (dist < maxDist)
+                {
+                    SphereChangeAnimator.SetBool("BuildingNear", true);
+                }
+                else
+                {
+                    SphereChangeAnimator.SetBool("BuildingNear", false);
+                }
             }
         }
-
-
-
     }
 
     // This adds listeners to every building so that we know what image to put on the sphere
-    private void InsertGrabListeners(Transform buildingContainer)
+    public void InsertGrabListener(Transform b)
     {
         XRGrabInteractable grab;
         string imageName;
+
+        grab = b.GetChild(0).GetComponent<XRGrabInteractable>();
+            
+        imageName = (string)Variables.Object(b.GetChild(0).GetChild(0).GetChild(0).gameObject).Get("imageName");
+
+        Transform buildingVis = b.GetChild(0).GetChild(0);
+
+        grab.selectEntered.AddListener(delegate { GrabbableGrabbed(imageName, buildingVis); });
+        grab.selectExited.AddListener(delegate { GrabbableReleased(imageName, buildingVis); });
+
         
-        // Add event listeners to all grabbables in the canvas
-        for (int i = 0; i < buildingContainer.childCount; i++)
-        {
-
-            grab = buildingContainer.GetChild(i).GetChild(0).GetComponent<XRGrabInteractable>();
-            imageName = (string)Variables.Object(buildingContainer.GetChild(i).GetChild(0).GetChild(0).GetChild(0).gameObject).Get("imageName");
-
-            grab.selectEntered.AddListener(delegate { GrabbableGrabbed(imageName); });
-            grab.selectExited.AddListener(delegate { GrabbableReleased(imageName); });
-
-        }
 
     }
    
 
-    public void GrabbableReleased(string imgName)
+    public void GrabbableReleased(string imgName, Transform buildingVisuals)
     {
         if (imgName == "")
         {
             imgName = tourSkysphereRenderer.material.GetTexture("_BaseMap").name;
         }
-        BuildingVisualsAnimator.SetBool("InHand", false);
+        buildingVisuals.GetComponent<Animator>().SetBool("InHand", false);
         
         if (dist < maxDist)
         {
@@ -214,10 +213,11 @@ public class SphereTransition : MonoBehaviour
         // Disable map
         homeEnvironment.GetChild(1).gameObject.SetActive(false);
     }
-    public void GrabbableGrabbed(string imgName)
+    public void GrabbableGrabbed(string imgName, Transform buildingVisuals)
     {
+        BuildingModel = buildingVisuals.Find("Model");
+        buildingVisuals.GetComponent<Animator>().SetBool("InHand", true);
         
-        BuildingVisualsAnimator.SetBool("InHand", true);
         // Place material on skysphere
         _Manager.GetComponent<ImageCycle>().BuildSkysphere(tourSkysphere, imgName);
 

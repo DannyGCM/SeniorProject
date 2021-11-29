@@ -43,10 +43,10 @@ public class ImageCycle : MonoBehaviour
         // Load all the skysphere textures
         texSphere = Resources.LoadAll(resourcesSkysphereImageDirectory, typeof(Texture2D));
 
-        // Look for image index
+        /*// Look for image index
         int foundImgInd = FindImgIndex("csc0", texSphere);
         // Load found image to TourSphere
-        rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[foundImgInd]);
+        rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[foundImgInd]);*/
 
         
     }
