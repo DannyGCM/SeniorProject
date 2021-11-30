@@ -12,6 +12,8 @@ public class SphereTransition : MonoBehaviour
 
     public InputActionReference homeButton;
 
+    public InputActionReference gripButton;
+
     public Rigidbody cameraMove;
 
     public Transform homeEnvironment;
@@ -49,12 +51,13 @@ public class SphereTransition : MonoBehaviour
     bool beenInTour = false;
     public bool started = false;
 
-
+    public bool grip = false;
 
     // Start is called before the first frame update
     public void NewStart()
     {
         homeButton.action.performed += HomeClicked;
+        
 
 
         // Selects current rig
@@ -180,16 +183,15 @@ public class SphereTransition : MonoBehaviour
 
         Transform buildingVis = b.GetChild(0).GetChild(0);
 
-        grab.selectEntered.AddListener(delegate { GrabbableGrabbed(imageName, buildingVis); });
-        grab.selectExited.AddListener(delegate { GrabbableReleased(imageName, buildingVis); });
-
-        
+        grab.selectEntered.AddListener(delegate { GrabbableGrabbed(imageName, buildingVis); } );
+        grab.selectExited.AddListener(delegate { GrabbableReleased(imageName, buildingVis); } );
 
     }
    
 
     public void GrabbableReleased(string imgName, Transform buildingVisuals)
     {
+        
         if (imgName == "")
         {
             imgName = tourSkysphereRenderer.material.GetTexture("_BaseMap").name;
@@ -213,17 +215,20 @@ public class SphereTransition : MonoBehaviour
         inTour = true;
         // Do camera fadeout BuildingVisualsAnimatoration
         //SphereChangeAnimator.SetBool("BuildingNear", true);
-        await Task.Delay(10);
+        await Task.Delay(1000);
         // Disable map
         homeEnvironment.GetChild(1).gameObject.SetActive(false);
     }
     public void GrabbableGrabbed(string imgName, Transform buildingVisuals)
     {
-        BuildingModel = buildingVisuals.Find("Model");
-        buildingVisuals.GetComponent<Animator>().SetBool("InHand", true);
         
-        // Place material on skysphere
-        _Manager.GetComponent<ImageCycle>().BuildSkysphere(tourSkysphere, imgName);
+            BuildingModel = buildingVisuals.Find("Model");
+            buildingVisuals.GetComponent<Animator>().SetBool("InHand", true);
+
+            // Place material on skysphere
+            _Manager.GetComponent<ImageCycle>().BuildSkysphere(tourSkysphere, imgName);
+
+        
 
     }
     

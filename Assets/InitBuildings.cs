@@ -66,8 +66,9 @@ public class InitBuildings : MonoBehaviour
     {
         Destroy(building.GetComponent<MeshFilter>());
         Destroy(building.GetComponent<MeshRenderer>());
-        buildingClone.localScale = new Vector3(1,1,1);
-        buildingClone.localPosition = new Vector3(0,0,0);
+        buildingClone.localScale = new Vector3(1, 1, 1);
+        buildingClone.localPosition = new Vector3(0, 0, 0);
+        buildingClone.localRotation = Quaternion.Euler(0,0,0);
     }
     void ChangeMeshCollider(Transform buildingPhysics, Transform model)
     {
@@ -77,9 +78,10 @@ public class InitBuildings : MonoBehaviour
     }
     void ConfigurePhysics(Transform buildingPhysics)
     {
-        
+
         buildingPhysics.localPosition = new Vector3(0, 0, 0);
         buildingPhysics.localScale = new Vector3(1, 1, 1);
+        buildingPhysics.localRotation = Quaternion.Euler(0, 0, 0);
         buildingPhysics.gameObject.layer = 8;
         buildingPhysics.AddComponent<XRGrabInteractable>();
         buildingPhysics.GetComponent<XRGrabInteractable>().trackRotation = false;
@@ -87,7 +89,7 @@ public class InitBuildings : MonoBehaviour
         buildingPhysics.AddComponent<ArticulationBody>();
         buildingPhysics.GetComponent<ArticulationBody>().useGravity = false;
         buildingPhysics.GetComponent<ArticulationBody>().immovable = true;
-        buildingPhysics.localRotation = new Quaternion(0, 0, 0, 0);
+        
 
     }
 
