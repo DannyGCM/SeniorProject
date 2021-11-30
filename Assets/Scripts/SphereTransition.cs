@@ -103,8 +103,9 @@ public class SphereTransition : MonoBehaviour
         }
         else
         {
-            if (beenInTour != false)
+            if (beenInTour == true)
             {
+                SphereChangeAnimator.SetBool("BuildingNear", true);
                 inTour = true;
                 DisableHome(tourSkysphereRenderer.material.GetTexture("_BaseMap").name);
             }
@@ -153,6 +154,7 @@ public class SphereTransition : MonoBehaviour
             // 
             if (inTour == false)
             {
+
                 if (dist < maxDist)
                 {
                     SphereChangeAnimator.SetBool("BuildingNear", true);
@@ -162,6 +164,7 @@ public class SphereTransition : MonoBehaviour
                     SphereChangeAnimator.SetBool("BuildingNear", false);
                 }
             }
+            
         }
     }
 
@@ -202,14 +205,15 @@ public class SphereTransition : MonoBehaviour
     }
     public async Task DisableHome(string imgName)
     {
+        
         // Lock transparency to 1
         tourSkysphereRenderer.material.color = new Color(1, 1, 1, 1);
 
         _Manager.GetComponent<ImageCycle>().SpawnButtons(_Manager.GetComponent<ImageCycle>().FindImageInTxt(imgName));
         inTour = true;
         // Do camera fadeout BuildingVisualsAnimatoration
-
-        await Task.Delay(1);
+        //SphereChangeAnimator.SetBool("BuildingNear", true);
+        await Task.Delay(10);
         // Disable map
         homeEnvironment.GetChild(1).gameObject.SetActive(false);
     }

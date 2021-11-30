@@ -50,9 +50,6 @@ public class InitBuildings : MonoBehaviour
             for (int i = 0; i < building.childCount; i++)
                 Migrate(interactableClone, building.GetChild(i), buildingClone);
 
-
-        
-
     }
     void Migrate(Transform interactableClone, Transform building, Transform buildingClone)
     {
@@ -77,9 +74,6 @@ public class InitBuildings : MonoBehaviour
         buildingPhysics.gameObject.AddComponent<MeshCollider>();
         buildingPhysics.GetComponent<MeshCollider>().convex = true;
         buildingPhysics.GetComponent<MeshCollider>().sharedMesh = model.GetComponent<MeshFilter>().sharedMesh;
-                
-        
-        
     }
     void ConfigurePhysics(Transform buildingPhysics)
     {
@@ -88,6 +82,7 @@ public class InitBuildings : MonoBehaviour
         buildingPhysics.localScale = new Vector3(1, 1, 1);
         buildingPhysics.gameObject.layer = 8;
         buildingPhysics.AddComponent<XRGrabInteractable>();
+        buildingPhysics.GetComponent<XRGrabInteractable>().trackRotation = false;
         buildingPhysics.AddComponent<SpringJoint>();
         buildingPhysics.AddComponent<ArticulationBody>();
         buildingPhysics.GetComponent<ArticulationBody>().useGravity = false;
