@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD:Assets/Resources/Textures/Sky/anglemap.png.meta
 guid: ec527015dd20f694f9ae8ee6bcf3de0f
-=======
-guid: 4e0090f75b8a6a841b9878b8202bb2ba
->>>>>>> origin/Temp:Assets/Resources/Textures/Map/BaseballTexture.png.meta
-=======
-guid: ec527015dd20f694f9ae8ee6bcf3de0f
->>>>>>> origin/Temp
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

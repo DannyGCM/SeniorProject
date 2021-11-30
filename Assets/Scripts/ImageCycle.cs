@@ -43,17 +43,10 @@ public class ImageCycle : MonoBehaviour
         // Load all the skysphere textures
         texSphere = Resources.LoadAll(resourcesSkysphereImageDirectory, typeof(Texture2D));
 
-<<<<<<< HEAD
         /*// Look for image index
         int foundImgInd = FindImgIndex("csc0", texSphere);
         // Load found image to TourSphere
         rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[foundImgInd]);*/
-=======
-        // Look for image index
-        int foundImgInd = FindImgIndex("csc0", texSphere);
-        // Load found image to TourSphere
-        rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[foundImgInd]);
->>>>>>> origin/Temp
 
         
     }
@@ -129,7 +122,6 @@ public class ImageCycle : MonoBehaviour
             rotationPlaneClone.name = rotationPlane.name + (trueind + rotPlaneIteration); // rotPlaneIteration is used to ensure that no old names can be reused once a button is deleted. This is primarily used for debugging
 
             interactables[trueind] = rotationPlaneClone.GetChild(0).GetComponent<XRSimpleInteractable>();
-<<<<<<< HEAD
             
         }
         // Add event listeners to all buttons in the canvas
@@ -139,17 +131,6 @@ public class ImageCycle : MonoBehaviour
 
             XRSimpleInteractable identifier = interactables[i];
             interactables[i].selectEntered.AddListener(delegate { ButtonClicked(identifier); });
-=======
-            Debug.Log(i + "t");
-        }
-        // Add event listeners to all buttons in the canvas
-        for (int i = 0; i < trueind; i++)
-        {
-
-
-            Debug.Log(i);
-            interactables[i].selectEntered.AddListener(delegate { ButtonClicked(interactables[i]); });
->>>>>>> origin/Temp
        
             Animator ArrowAnimator = interactables[i].gameObject.GetComponent<Animator>();
             interactables[i].hoverEntered.AddListener(delegate { RunArrow(ArrowAnimator, true); } );
@@ -179,15 +160,9 @@ public class ImageCycle : MonoBehaviour
     // Called when a listener function is triggered by a button being clicked. Functions similar to OnClick()
     public void ButtonClicked(XRSimpleInteractable button)
     {
-<<<<<<< HEAD
  
         // Get the parent rotation plane of the button that was pressed
         Transform rotationPlane = button.transform.parent.transform;
-=======
-        Debug.Log("clicked");
-        // Get the parent rotation plane of the button that was pressed
-        Transform rotationPlane = button.transform.parent.parent.transform;
->>>>>>> origin/Temp
 
         // Get name of image that is currently applied to our material
         string imgName = rend.material.GetTexture("_BaseMap").name;
@@ -207,10 +182,6 @@ public class ImageCycle : MonoBehaviour
         // Look through our Images file within project and find an image name that matches our nextImg string
         int foundImgInd = FindImgIndex(nextImg, texSphere);
         
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Temp
         // Get rid of old buttons
         ClearButtons();
 
@@ -227,23 +198,13 @@ public class ImageCycle : MonoBehaviour
 
         Renderer ImageBubbleRenderer = ImageBubble.GetComponent<Renderer>();
 
-<<<<<<< HEAD
         rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[FindImgIndex(imgName, texSphere)]);
-=======
-        Texture img = ImageBubbleRenderer.material.GetTexture("_BaseMap");
-
-        rend.material.SetTexture("_BaseMap", img);
->>>>>>> origin/Temp
 
     }
 
     void RunArrow(Animator ani, bool animating)
     {
-<<<<<<< HEAD
         if (ani) ani.SetBool("Hover", animating);
-=======
-        ani.SetBool("Hover", animating);
->>>>>>> origin/Temp
     }
 
 

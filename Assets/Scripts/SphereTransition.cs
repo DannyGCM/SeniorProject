@@ -12,11 +12,8 @@ public class SphereTransition : MonoBehaviour
 
     public InputActionReference homeButton;
 
-<<<<<<< HEAD
     public InputActionReference gripButton;
 
-=======
->>>>>>> origin/Temp
     public Rigidbody cameraMove;
 
     public Transform homeEnvironment;
@@ -50,7 +47,6 @@ public class SphereTransition : MonoBehaviour
     Animator BuildingVisualsAnimator;
 
     Animator SphereChangeAnimator;
-<<<<<<< HEAD
     Animator ArrowAppearAnimator;
 
     bool beenInTour = false;
@@ -63,17 +59,6 @@ public class SphereTransition : MonoBehaviour
     {
         homeButton.action.performed += HomeClicked;
         
-=======
-
-    bool beenInTour = false;
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        homeButton.action.performed += HomeClicked;
->>>>>>> origin/Temp
 
 
         // Selects current rig
@@ -106,17 +91,10 @@ public class SphereTransition : MonoBehaviour
         SphereChangeAnimator = tourSkysphere.GetComponent<Animator>();
 
         // Insert listeners for grab and release of every building
-<<<<<<< HEAD
         //InsertGrabListeners(BuildingContainer);
 
 
         started = true;
-=======
-        InsertGrabListeners(BuildingContainer);
-
-        
-
->>>>>>> origin/Temp
 
     }
     void HomeClicked(InputAction.CallbackContext obj)
@@ -129,26 +107,17 @@ public class SphereTransition : MonoBehaviour
         }
         else
         {
-<<<<<<< HEAD
             if (beenInTour == true)
             {
                 SphereChangeAnimator.SetBool("BuildingNear", true);
-=======
-            if (beenInTour != false)
-            {
->>>>>>> origin/Temp
                 inTour = true;
                 DisableHome(tourSkysphereRenderer.material.GetTexture("_BaseMap").name);
             }
             
 
         }
-<<<<<<< HEAD
         
 
-=======
-       
->>>>>>> origin/Temp
     }
 
     // Determines if the current platform is Android or not
@@ -183,7 +152,6 @@ public class SphereTransition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
         if (started == true) {
             // Set dist variable
             dist = Vector3.Distance(BuildingModel.position, Camera.position);
@@ -221,66 +189,18 @@ public class SphereTransition : MonoBehaviour
 
         grab.selectEntered.AddListener(delegate { GrabbableGrabbed(imageName, buildingVis); } );
         grab.selectExited.AddListener(delegate { GrabbableReleased(imageName, buildingVis); } );
-=======
-        // Set dist variable
-        dist = Vector3.Distance(BuildingModel.position, Camera.position);
-        
-        // 
-        if (inTour == false)
-        {
-            if (dist < maxDist)
-            {
-                SphereChangeAnimator.SetBool("BuildingNear", true);
-            }
-            else
-            {
-                SphereChangeAnimator.SetBool("BuildingNear", false);
-            }
-        }
-
-
-
-    }
-
-    // This adds listeners to every building so that we know what image to put on the sphere
-    private void InsertGrabListeners(Transform buildingContainer)
-    {
-        XRGrabInteractable grab;
-        string imageName;
-        
-        // Add event listeners to all grabbables in the canvas
-        for (int i = 0; i < buildingContainer.childCount; i++)
-        {
-
-            grab = buildingContainer.GetChild(i).GetChild(0).GetComponent<XRGrabInteractable>();
-            imageName = (string)Variables.Object(buildingContainer.GetChild(i).GetChild(0).GetChild(0).GetChild(0).gameObject).Get("imageName");
-
-            grab.selectEntered.AddListener(delegate { GrabbableGrabbed(imageName); });
-            grab.selectExited.AddListener(delegate { GrabbableReleased(imageName); });
-
-        }
->>>>>>> origin/Temp
 
     }
    
 
-<<<<<<< HEAD
     public void GrabbableReleased(string imgName, Transform buildingVisuals)
     {
         
-=======
-    public void GrabbableReleased(string imgName)
-    {
->>>>>>> origin/Temp
         if (imgName == "")
         {
             imgName = tourSkysphereRenderer.material.GetTexture("_BaseMap").name;
         }
-<<<<<<< HEAD
         buildingVisuals.GetComponent<Animator>().SetBool("InHand", false);
-=======
-        BuildingVisualsAnimator.SetBool("InHand", false);
->>>>>>> origin/Temp
         
         if (dist < maxDist)
         {
@@ -291,17 +211,13 @@ public class SphereTransition : MonoBehaviour
     }
     public async Task DisableHome(string imgName)
     {
-<<<<<<< HEAD
         
-=======
->>>>>>> origin/Temp
         // Lock transparency to 1
         tourSkysphereRenderer.material.color = new Color(1, 1, 1, 1);
 
         _Manager.GetComponent<ImageCycle>().SpawnButtons(_Manager.GetComponent<ImageCycle>().FindImageInTxt(imgName));
         inTour = true;
         // Do camera fadeout BuildingVisualsAnimatoration
-<<<<<<< HEAD
         //SphereChangeAnimator.SetBool("BuildingNear", true);
         await Task.Delay(1000);
         // Disable map
@@ -317,19 +233,6 @@ public class SphereTransition : MonoBehaviour
             _Manager.GetComponent<ImageCycle>().BuildSkysphere(tourSkysphere, imgName);
 
         
-=======
-
-        await Task.Delay(1);
-        // Disable map
-        homeEnvironment.GetChild(1).gameObject.SetActive(false);
-    }
-    public void GrabbableGrabbed(string imgName)
-    {
-        
-        BuildingVisualsAnimator.SetBool("InHand", true);
-        // Place material on skysphere
-        _Manager.GetComponent<ImageCycle>().BuildSkysphere(tourSkysphere, imgName);
->>>>>>> origin/Temp
 
     }
     
