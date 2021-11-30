@@ -196,7 +196,7 @@ public class ImageCycle : MonoBehaviour
     public void BuildSkysphere(Transform ImageBubble, string imgName)
     {
 
-        Renderer ImageBubbleRenderer = ImageBubble.GetComponent<Renderer>();
+        //Renderer ImageBubbleRenderer = ImageBubble.GetComponent<Renderer>();
 
         rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[FindImgIndex(imgName, texSphere)]);
 
