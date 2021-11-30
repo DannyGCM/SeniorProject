@@ -47,6 +47,7 @@ public class SphereTransition : MonoBehaviour
     Animator BuildingVisualsAnimator;
 
     Animator SphereChangeAnimator;
+    Animator ArrowAppearAnimator;
 
     bool beenInTour = false;
     public bool started = false;
@@ -115,7 +116,8 @@ public class SphereTransition : MonoBehaviour
             
 
         }
-       
+        
+
     }
 
     // Determines if the current platform is Android or not
@@ -168,6 +170,8 @@ public class SphereTransition : MonoBehaviour
                 }
             }
             
+            
+
         }
     }
 
