@@ -64,8 +64,12 @@ public class ImageCycle : MonoBehaviour
             if (line.Length > 1)
             {
                 
-                if (line[1].Trim() == imgName.Trim())
+                if (line[0].Trim() == imgName.Trim())
+                {
+                    
                     return line;
+                }
+                    
             }
                 
         }
@@ -86,6 +90,7 @@ public class ImageCycle : MonoBehaviour
                 return i;
             }
         }
+        Debug.LogError("No Image found with name: " + imgName);
         return -1;
     }
 
@@ -100,13 +105,13 @@ public class ImageCycle : MonoBehaviour
 
     public void SpawnButtons(string[] line)
     {
-        XRSimpleInteractable[] interactables = new XRSimpleInteractable[(line.Length - 2) / 2];
+        XRSimpleInteractable[] interactables = new XRSimpleInteractable[(line.Length - 1) / 2];
         int trueind = 0;
         
         // Button positions begin at index 2
-        for (int i = 2; i < line.Length; i = i+2)
+        for (int i = 1; i < line.Length; i = i+2)
         {
-            trueind = (i - 2) / 2;
+            trueind = (i - 1) / 2;
             int rotationy = int.Parse(line[i]);
 
             // Create instance of our rotationPlane prefab
@@ -144,7 +149,7 @@ public class ImageCycle : MonoBehaviour
     // Takes an input rotation (presumably of the button pressed) and tries to find that rotation in the txt file
     private string FindButtonClicked(string[] line, Quaternion rotation)
     {
-        for (int i = 2; i < line.Length; i += 2)
+        for (int i = 1; i < line.Length; i += 2)
         {
            
             // Convert our text file angle to quaternion and compare
@@ -166,7 +171,7 @@ public class ImageCycle : MonoBehaviour
 
         // Get name of image that is currently applied to our material
         string imgName = rend.material.GetTexture("_BaseMap").name;
-
+        Debug.Log("yay0");
         // Eliminate whitespace from imgName
         imgName = imgName.Trim();
 
@@ -175,13 +180,13 @@ public class ImageCycle : MonoBehaviour
 
         // From the line found, find an angle in the text that matches the one of the button that was clicked and return the image associated
         string nextImg = FindButtonClicked(line, rotationPlane.rotation);
-
+        Debug.Log(nextImg);
         // Eliminate whitespace from the string nextImg
         nextImg = nextImg.Trim();
 
         // Look through our Images file within project and find an image name that matches our nextImg string
         int foundImgInd = FindImgIndex(nextImg, texSphere);
-        
+        Debug.Log("yay2");
         // Get rid of old buttons
         ClearButtons();
 

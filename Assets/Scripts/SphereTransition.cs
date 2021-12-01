@@ -204,6 +204,7 @@ public class SphereTransition : MonoBehaviour
         
         if (dist < maxDist)
         {
+            //Debug.Log(imgName);
             DisableHome(imgName);
             beenInTour = true;
         }
@@ -211,7 +212,7 @@ public class SphereTransition : MonoBehaviour
     }
     public async Task DisableHome(string imgName)
     {
-        
+        Debug.Log(imgName);
         // Lock transparency to 1
         tourSkysphereRenderer.material.color = new Color(1, 1, 1, 1);
 
@@ -220,8 +221,9 @@ public class SphereTransition : MonoBehaviour
         // Do camera fadeout BuildingVisualsAnimatoration
         //SphereChangeAnimator.SetBool("BuildingNear", true);
         await Task.Delay(1000);
+        
         // Disable map
-        homeEnvironment.GetChild(1).gameObject.SetActive(false);
+        homeEnvironment.Find("Map").gameObject.SetActive(false);
     }
     public void GrabbableGrabbed(string imgName, Transform buildingVisuals)
     {

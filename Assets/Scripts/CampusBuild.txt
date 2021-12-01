@@ -1,0 +1,10 @@
+// Img Name convention: (BuildingCode/PathName)(index)
+// | IMGNAME | BUTTONY1 | NEXTIMGNAME1 | BUTTONY2 | NEXTIMGNAME2 | BUTTONY3 | NEXTIMGNAME3
+
+N_ORD_1, 135, N_ORD_2, 230, NW_LIB_parking
+N_ORD_2, 185, N_ORD_1, 0, N_ORD_6, 170, N_ORD_3
+N_ORD_3, 165, N_ORD_2, 80, N_ORD_4
+N_ORD_4, 65, N_ORD_3, 330, N_ORD_5, 157.5, N_Softball
+N_ORD_5, 85, N_ORD_4, 235, N_ORD_6
+N_ORD_6, 20, N_ORD_5, 112, N_ORD_7, 292.5, N_ORD_2, 180, N_ROSE_2
+N_ORD_7, 315, N_ORD_6, 230, N_ROSE_1, 135, N_Ord_to_Buck, 202.5, N_Ord_Pass_1
