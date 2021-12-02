@@ -23,7 +23,12 @@ public class ImageCycle : MonoBehaviour
 
     public TextAsset mapAsset;
 
-    string[] lines;
+    public int mapAssetImageIndex = 0;
+
+    public int mapAssetButtonsStartIndex = 1;
+
+    // Contains all text from mapAsset
+    string[][] lines;
 
     private Object[] texSphere;
 
@@ -33,51 +38,54 @@ public class ImageCycle : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-
         // Read txt file to build our button map
-        lines = mapAsset.text.Split("\n"[0]);
-        
+        lines = BuildLinesFromText(mapAsset.text);
+
         // Get the renderer component of Transform we want
         rend = skySphere.GetComponent<Renderer>();
 
         // Load all the skysphere textures
         texSphere = Resources.LoadAll(resourcesSkysphereImageDirectory, typeof(Texture2D));
-
-        /*// Look for image index
-        int foundImgInd = FindImgIndex("csc0", texSphere);
-        // Load found image to TourSphere
-        rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[foundImgInd]);*/
-
-        
+    }
+    // Removes all whitespace from lines
+    string[][] BuildLinesFromText(string text)
+    {
+        string[] rows = text.Split("\n"[0]);
+        string[][] final = new string[rows.Length][];
+        for (int i = 0; i < rows.Length; i++)
+        {
+            rows[i] = rows[i].Replace(" ", string.Empty);
+            var temp = rows[i].Trim().Split(","[0]);
+            if (temp[0] == "") temp[0] = "/";
+            final[i] = temp;
+        }
+        /*for (int i = 0; i < final.Length; i++)
+        {
+            for (int j = 0; j < final[i].Length; j++)
+            {
+                Debug.Log(final[i][j]);
+            }
+        }*/
+        return final;
     }
 
     // Returns array of strings representing the line found in text file
-    public string[] FindImageInTxt(string imgName)
+    // Function cleaned
+    public string[] FindImageInTxt(string imgToFind)
     {
-        
         for (int i = 0; i < lines.Length; i++)
-        {
-            // Split up our lines into useable information
-            string[] line = lines[i].Split(","[0]);
-            
-            // Find line that matches our current location
-            if (line.Length > 1)
+        { 
+            if (lines[i][mapAssetImageIndex].Trim() == imgToFind.Trim())
             {
-                
-                if (line[0].Trim() == imgName.Trim())
-                {
-                    
-                    return line;
-                }
-                    
+                return lines[i]; // return line that contains information to build new environment
             }
-                
         }
-
-        Debug.Log("Null sent");
+        Debug.LogError("No entry found in file: " + mapAsset.name + " searching by name: " + imgToFind);
         return null;
     }
    
+    // Returns index of the picture image that is found in our files
+    // Function cleaned
     private int FindImgIndex(string imgName, Object[] texSphere)
     {
         imgName = imgName.Trim();
@@ -86,33 +94,32 @@ public class ImageCycle : MonoBehaviour
             string texName = texSphere[i].name.Trim();
             
             if (imgName == texName)
-            {
                 return i;
-            }
         }
-        Debug.LogError("No Image found with name: " + imgName);
+        Debug.LogError("No texture found in files with name: " + imgName);
         return -1;
     }
 
-
+    // Deletes all of the buttons in the environment
+    // Function cleaned
     public void ClearButtons()
     {
         for (int i = 0; i < rotationPlaneContainer.childCount; i++)
-        {
             Destroy(rotationPlaneContainer.GetChild(i).gameObject);
-        }
     }
 
-    public void SpawnButtons(string[] line)
+    // Takes in string arrays from mapAsset that contains angles/imgnames and spawns the buttons associated with the angles.
+    // Function cleaned
+    void SpawnButtons(string[] buttonsLine)
     {
-        XRSimpleInteractable[] interactables = new XRSimpleInteractable[(line.Length - 1) / 2];
-        int trueind = 0;
-        
-        // Button positions begin at index 2
-        for (int i = 1; i < line.Length; i = i+2)
+        int numberOfButtons = buttonsLine.Length / 2;
+        XRSimpleInteractable[] interactables = new XRSimpleInteractable[numberOfButtons];
+
+        // Extract angles
+        for (int i = 0; i < numberOfButtons; i++)
         {
-            trueind = (i - 1) / 2;
-            int rotationy = int.Parse(line[i]);
+            // Get the angle at even indexes of line and assign it to roty
+            float rotationy = float.Parse(buttonsLine[i*2]);
 
             // Create instance of our rotationPlane prefab
             Transform rotationPlaneClone = Instantiate(rotationPlane);
@@ -124,87 +131,106 @@ public class ImageCycle : MonoBehaviour
             // With this instance, rotate it to degree specified from txt file
             rotationPlaneClone.transform.Rotate(0, rotationy, 0);
             // Set this instance's name to be 'rotationPlane[integer]'.
-            rotationPlaneClone.name = rotationPlane.name + (trueind + rotPlaneIteration); // rotPlaneIteration is used to ensure that no old names can be reused once a button is deleted. This is primarily used for debugging
+            rotationPlaneClone.name = rotationPlane.name + (i + rotPlaneIteration); // rotPlaneIteration is used to ensure that no old names can be reused once a button is deleted. This is primarily used for debugging
 
-            interactables[trueind] = rotationPlaneClone.GetChild(0).GetComponent<XRSimpleInteractable>();
+            // Set this index of the interactables array to the rotation plane's XRinteractable host gameobject
+            interactables[i] = rotationPlaneClone.Find("Interaction").GetComponent<XRSimpleInteractable>();
             
         }
         // Add event listeners to all buttons in the canvas
-        for (int i = 0; i <= trueind; i++)
+        for (int i = 0; i < numberOfButtons; i++)
         {
-
-
             XRSimpleInteractable identifier = interactables[i];
             interactables[i].selectEntered.AddListener(delegate { ButtonClicked(identifier); });
        
             Animator ArrowAnimator = interactables[i].gameObject.GetComponent<Animator>();
             interactables[i].hoverEntered.AddListener(delegate { RunArrow(ArrowAnimator, true); } );
             interactables[i].hoverExited.AddListener(delegate { RunArrow(ArrowAnimator, false); });
-
         }
-
-        rotPlaneIteration += (line.Length - 2) / 2;
+        rotPlaneIteration += numberOfButtons;
     }
 
-    // Takes an input rotation (presumably of the button pressed) and tries to find that rotation in the txt file
-    private string FindButtonClicked(string[] line, Quaternion rotation)
+    // Takes an input rotation (presumably of the button pressed) and tries to find that rotation in the line provided
+    // Function cleaned
+    private string FindButtonClicked(string[] buttonsLine, Quaternion rotation)
     {
-        for (int i = 1; i < line.Length; i += 2)
+        for (int i = 0; i < buttonsLine.Length; i += 2)
         {
-           
             // Convert our text file angle to quaternion and compare
-            if (rotation == Quaternion.Euler(0, int.Parse(line[i]), 0))
-            {
+            if (rotation == Quaternion.Euler(0, float.Parse(buttonsLine[i]), 0))
                 // Return the imgname that follows the rotation angle
-                return line[i + 1];
-            }
+                return buttonsLine[i+1];
         }
+        Debug.LogError("Could not find the angle: Quaternion(" + rotation.x + "," + rotation.y + "," + rotation.z + "," + rotation.w + ") in the line provided.");
         return null;
+    }
+
+    public string[] StringArraySlice(string[] list, int fromIndex, int toIndex)
+    {
+        int lengthOfSlicedList = toIndex - fromIndex;
+        string[] slicedList = new string[lengthOfSlicedList];
+        for (int i = 0; i < lengthOfSlicedList; i++)
+        {
+            slicedList[i] = list[fromIndex + i];
+        }
+            
+
+        return slicedList;
     }
 
     // Called when a listener function is triggered by a button being clicked. Functions similar to OnClick()
     public void ButtonClicked(XRSimpleInteractable button)
     {
- 
         // Get the parent rotation plane of the button that was pressed
         Transform rotationPlane = button.transform.parent.transform;
 
         // Get name of image that is currently applied to our material
         string imgName = rend.material.GetTexture("_BaseMap").name;
-        Debug.Log("yay0");
+        
         // Eliminate whitespace from imgName
         imgName = imgName.Trim();
 
-        // Find the line in the text file that has this imgName as the origin (An origin is the image space you are currently in, non-origins are images you can click to)
+        // Find the line in the text file that has this imgName as the host image we are currently in
         string[] line = FindImageInTxt(imgName);
 
         // From the line found, find an angle in the text that matches the one of the button that was clicked and return the image associated
-        string nextImg = FindButtonClicked(line, rotationPlane.rotation);
-        Debug.Log(nextImg);
+        string[] buttonsLine = StringArraySlice(line, mapAssetButtonsStartIndex, line.Length); // Buttonsline only contains the button information
+        string nextImg = FindButtonClicked(buttonsLine, rotationPlane.rotation);
+        
         // Eliminate whitespace from the string nextImg
         nextImg = nextImg.Trim();
 
-        // Look through our Images file within project and find an image name that matches our nextImg string
-        int foundImgInd = FindImgIndex(nextImg, texSphere);
-        Debug.Log("yay2");
-        // Get rid of old buttons
-        ClearButtons();
-
-        // Place the image that we found in our files onto our material
-        rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[foundImgInd]);
-       
-        // Set nextImg to be the new origin image and spawn the buttons found from the line associated with the origin image
-        SpawnButtons(FindImageInTxt(nextImg));
-
+        // Load the skysphere buttons and texture
+        LoadSkysphere(nextImg);
     }
 
-    public void BuildSkysphere(Transform ImageBubble, string imgName)
+    public void LoadSkysphere(string imgName)
     {
+        imgName = imgName.Trim();
+        ClearButtons();
+        FindAndSpawnButtons(imgName);
+        FindAndSetTextureOfSkySphere(imgName);
+    }
 
-        //Renderer ImageBubbleRenderer = ImageBubble.GetComponent<Renderer>();
+    public void FindAndSpawnButtons(string imgName)
+    {
+        imgName = imgName.Trim();
 
-        rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[FindImgIndex(imgName, texSphere)]);
+        string[] line = FindImageInTxt(imgName);
 
+        string[] buttonsLine = StringArraySlice(line, mapAssetButtonsStartIndex, line.Length);
+
+        SpawnButtons(buttonsLine);
+    }
+
+
+    public void FindAndSetTextureOfSkySphere(string imgName)
+    {
+        imgName = imgName.Trim();
+        // Find the index of the image in file
+        int imgIndex = FindImgIndex(imgName, texSphere);
+        // Set skysphere to texture found with index
+        rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[imgIndex]);
     }
 
     void RunArrow(Animator ani, bool animating)

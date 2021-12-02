@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 1522580346552867628}
   - component: {fileID: 5356432700225047869}
   m_Layer: 0
-  m_Name: Clickable
+  m_Name: Interaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
