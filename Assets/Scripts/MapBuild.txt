@@ -1,7 +1,120 @@
 // Img Name convention: (BuildingCode/PathName)(index)
 // tooltip(optional) | IMGNAME | BUTTONY1 | NEXTIMGNAME1 | BUTTONY2 | NEXTIMGNAME2 | BUTTONY3 | NEXTIMGNAME3
 
-"Carol and Marcus Weinstein Computer Science Center",csc0,90,csc1,0,csc2,270,csc3
-,csc2,180,csc0
-,csc1,270,csc0
-,csc3,90,csc0
+NE_Dell_Parking, 90, NE_Dell_Volley, 157.5, NE_Tennis_Road, 247.5, NE_Happy_Place
+NE_Dell_Volley, 45, NE_Dell_Parking, 225, S_CAF_DELL
+NE_Happy_Place, 22.5, NE_Dell_Parking, 180, NE_IM, 112.5, NE_Tennis_Pavilion, 292.5, SE_CS_ADMNS_2, 270, SE_CS_parking_2
+NE_HOL, 292.5, NE_Tennis_Road, 120, N_HOL
+NE_IM, 0, NE_Tennis_Courts, 335, NE_Tennis_Pavilion, 180, SE_CS_BB_parking_2, 225, NE_Happy_Place, 171.5, SE_CS_parking_2
+NE_Tennis_Bleachers, 215, NE_Tennis_Courts, 300, NE_Tennis_Pavilion
+NE_Tennis_Courts, 270, NE_Tennis_Pavilion, 295, NE_Tennis_Bleachers
+NE_Tennis_Fences, 135, NE_Tennis_Pavilion, 315, NE_Tennis_Road
+NE_Tennis_Pavilion, 135, NE_IM, 45, NE_Tennis_Courts, 370, NE_Tennis_Bleachers, 260, NE_Tennis_Fences
+NE_Tennis_Road, 300, NE_Dell_Parking, 22.5, NE_HOL, 215, NE_Tennis_Fences
+N_Basketball, 90, N_FH, 40, N_Softball, 80, N_Soccer
+N_Buck, 340, N_Buck_to_JR, 157.5, NW_Mem, 220, N_Ord_to_Buck, 125, SW_PS_3
+N_Buck_to_JR, 247.5, N_Plaza, 67.5, S_SPIVEY_JR, 340, N_FH, 160, N_Buck
+N_FH, 180, N_Basketball, 35, N_Buck_to_JR, 225, N_FH_to_Band, 315, S_SPIVEY_CITRUS, 270, N_FH_2, 250, S_Green
+N_FH_2, 157.5, N_FH, 180, N_Basketball, 270, N_FH_to_Band, 25, S_SPIVEY_CITRUS, 315, S_GREEN_CITRUS, 135, S_Green
+N_FH_to_Band, 65, N_CAF_RINK, 135, S_Green, 225, N_FH, 215, N_FH_2
+N_Ord_Pass_1, 35, N_Ord_to_Buck, 0, N_ROSE_1, 305, NW_Rogers, 120, NW_AP_to_Buck, 215, NW_Water_1
+N_Ord_to_Buck, 270, NW_AP_to_Buck, 30, N_ORD_7, 180, N_Buck, 90, N_Plaza, 230, NW_Mem
+N_Plaza, 315, N_Softball, 95, N_Buck_to_JR, 270, N_ORD_4, 180, N_ORD_7
+N_Soccer, 112.5, N_Softball, 350, N_SAFE, 80, N_Basketball
+N_Softball, 300, N_Soccer, 22.5, N_Basketball, 90, N_Plaza, 135, N_ORD_4
+N_CAF_RINK, 157.5, N_SAFE, 80, N_FH_to_Band, 247.5, N_RINK, 350, S_CAF_WALK
+N_HOL, 320, NE_HOL, 255, N_VBALL, 180, N_SAFE, 67.5, S_CAF_DELL
+N_ORD_1, 135, N_ORD_2, 230, NW_LIB_parking
+N_ORD_2, 185, N_ORD_1, 0, N_ORD_6, 170, N_ORD_3
+N_ORD_3, 165, N_ORD_2, 80, N_ORD_4
+N_ORD_4, 65, N_ORD_3, 330, N_ORD_5, 157.5, N_Softball
+N_ORD_5, 85, N_ORD_4, 235, N_ORD_6
+N_ORD_6, 20, N_ORD_5, 112, N_ORD_7, 292.5, N_ORD_2, 180, N_ROSE_2
+N_ORD_7, 315, N_ORD_6, 230, N_ROSE_1, 135, N_Ord_to_Buck, 202.5, N_Ord_Pass_1
+N_RINK, 350, N_CAF_RINK, 159, S_CAF_DELL
+N_ROSE_1, 280, N_ROSE_2, 45, N_ORD_7, 157.5, N_Ord_Pass_1
+N_ROSE_2, 292.5, N_ROSE_1, 67.5, NW_Rogers
+N_SAFE, 202.5, N_CAF_RINK, 112.5, N_HOL, 292.5, N_Soccer
+N_VBALL, 270, N_HOL
+NW_CHATLOS, 350, NW_SIMMONS, 75, NW_Pres_Off_Pass, 170, NW_NURSE
+NW_LIB_SIGN, 292.5, NW_SIMMONS, 190, NW_LIB_parking
+NW_LIB_parking, 215, NW_LIB_SIGN, 35, N_ORD_1, 112.5, NW_Roux
+NW_NURSE, 5, NW_CHATLOS, 185, SW_BRAN_parking, 135, SW_Hollis
+NW_SIMMONS, 292.5, NW_CHATLOS, 110, NW_LIB_SIGN
+NW_AP_to_Buck, 295, SW_AP_Pass_1, 55, N_Ord_Pass_1, 112.5, N_Ord_to_Buck, 155, NW_Mem, 235, SW_PS_2
+NW_Mem, 365, AP_to_Buck, 157.5, N_Buck
+NW_Pres_Off_Pass, 360, NW_CHATLOS, 240, NW_Water_3, 270, NW_Reg_Off
+NW_Reg_Off, 250, NW_Pres_Off_Pass, 365, NW_Reg_R
+NW_Reg_R, 290, SW_Hollis, 360, NW_Reg_Off, 105, NW_Water_1
+NW_Rogers, 330, N_Ord_Pass_1, 292.5, N_ROSE_2, 67.5, NW_Rogers_Tutus, 90, NW_SnakePit
+NW_Rogers_Tutus, 337.5, NW_Rogers, 90, NW_Water_2, 135, NW_Tutus
+NW_Roux, 270, NW_Water_2, 225, NW_Tutus
+NW_SnakePit, 145, NW_Rogers
+NW_Tutus, 337.5, NW_Roux, 235, NW_Water_2
+NW_Water_1, 0, N_Ord_Pass_1, 115, NW_Reg_R, 260, NW_Water_2, 270, NW_Rogers_Tutus
+NW_Water_2, 55, NW_Water_1, 270, NW_Tutus, 135, NW_Water_3, 190, NW_Roux, 315, NW_Rogers_Tutus
+NW_Water_3, 270, NW_Water_1, 90, NW_Pres_Off_Pass, 45, NW_CHATLOS, 180, NW_Roux, 202.5, NW_Water_2
+SW_BRAN_1, 190, SW_BRAN_2, 157.5, SW_Auditorium_lobby, 45, SW_POLK_BRAN, 270, SW_AP_Pass_1
+SW_BRAN_2, 25, SW_BRAN_1, 67.5, SW_Auditorium_lobby, 300, SW_Hollis, 225, SW_DANCE_1, 180, SW_THEA
+SW_BRAN_parking, 355, SW_DANCE_1, 175, NW_NURSE
+SW_CHRIST_1, 100, SW_DANCE_1, 280, SW_CHRIST_WATER
+SW_CHRIST_WATER, 20, SW_CHRIST_1, 90, SW_Pres_House
+SW_DANCE_1, 25, SW_CHRIST_1, 320, SW_BRAN_2, 225, SW_BRAN_parking
+SW_POLK_1, 157.5, SW_POLK_2, 247.5, SW_PS_3
+SW_POLK_2, 67.5, SW_POLK_1, 247.5, SW_POLK_BRAN, 337.5, SW_PS_1
+SW_POLK_BRAN, 45, SW_POLK_2, 330, SW_AP_Pass_1, 240, SW_BRAN_1
+SW_THEA, 225, SW_BRAN_2
+SW_AP, 100, SW_AP_Pass_1
+SW_AP_Pass_1, 22.5, SW_POLK_BRAN, 140, SW_Hollis, 270, NW_AP_to_Buck, 330, SW_AP_Pass_2
+SW_AP_Pass_2, 90, SW_PS_1, 250, SW_AP_Pass_1
+SW_Auditorium_lobby, 315, SW_POLK_1, 220, SW_POLK_2
+SW_Christoverson, 290, SW_CHRIST_1
+SW_Hollis, 225, NW_NURSE, 110, SW_BRAN_2
+SW_PS_1, 247.5, SW_AP_Pass_2, 50, SW_POLK_2, 325, SW_PS_3, 170, SW_POLK_BRAN
+SW_PS_2, 22.5, SW_PS_3, 230, NW_AP_to_Buck
+SW_PS_3, 10, SW_POLK_1, 95, SW_PS_1, 185, SW_PS_2
+SW_Pres_House, 20, SW_CHRIST_WATER, 190, S_Nic_Wes
+S_CAF_DELL, 40, NE_Dell_Volley, 290, N_HOL, 120, S_Caf_Street, 220, S_CAF_WALK
+S_CAF_MAIL, 270, S_Caf_Street, 67.5, S_POOL_1, 157.5, S_CAF_UNDER
+S_CAF_UNDER, 145, N_CAF_RINK, 50, S_GREEN_CITRUS, 350, S_WELL_DOCK, 325, S_CAF_MAIL, 230, S_Caf, 260, S_Mocmart
+S_CAF_WALK, 225, N_RINK, 125, S_Caf, 22, S_CAF_DELL
+S_CITRUS_WESLEY, 22.5, S_WESLEY_DECK, 315, S_CAF_UNDER, 230, S_GREEN_CITRUS
+S_DOCK, 315, S_WELL_DOCK, 247.5, S_Nic_Wes
+S_GREEN_CITRUS, 90, S_CAF_UNDER, 0, S_Green, 185, S_CITRUS_WESLEY, 270, S_SPIVEY_CITRUS
+S_JR_MED, 292.5, S_JR_POLK, 112.5, S_SPIVEY_EDGE, 202.5, S_MED
+S_JR_POLK, 325, N_Buck, 67.5, S_JR_MED, 150, SW_POLK_1, 247.5, SW_PS_3
+S_MED, 305, S_JR_MED
+S_POOL_1, 245, S_CAF_MAIL, 30, S_POOL_2
+S_POOL_2, 135, S_POOL_WELL, 270, S_POOL_1
+S_POOL_DECK, 70, S_POOL_WELL
+S_POOL_WELL, 315, S_POOL_2, 75, S_Wellness_2, 115, S_WELL_DOCK, 247.5, S_POOL_DECK
+S_SPIVEY_CITRUS, 247.5, S_Citrus_Lab, 135, N_FH, 0, S_SPIVEY_EDGE, 180, S_Green, 225, S_GREEN_CITRUS
+S_SPIVEY_EDGE, 157.5, S_JR_MED, 190, S_SPIVEY_JR, 315, S_SPIVEY_CITRUS
+S_SPIVEY_JR, 225, S_SPIVEY_EDGE, 67.5, N_Buck_to_JR
+S_WELL_DOCK, 0, S_CAF_UNDER, 45, S_POOL_WELL, 180, S_DOCK, 225, S_Nic_Wes
+S_WESLEY_DECK, 180, S_CITRUS_WESLEY, 0, S_WELL_DOCK
+S_Bookstore, 45, S_Caf_Street, 225, S_Mocmart
+S_Caf, 305, S_Caf_Street, 120, S_CAF_UNDER
+S_Caf_Street, 35, S_CAF_DELL, 270, S_CAF_MAIL, 315, S_Bookstore, 300, S_Caf
+S_Citrus_Lab, 135, S_SPIVEY_CITRUS, 225, S_GREEN_CITRUS
+S_Green, 22.5, N_FH_2, 292.5, S_SPIVEY_CITRUS, 90, N_FH_to_Band, 225, S_GREEN_CITRUS
+S_Mocmart, 0, S_CAF_UNDER, 190, S_Bookstore
+S_Nic_Wes, 45, S_DOCK, 225, SW_Pres_House
+S_Wellness_1, 325, S_POOL_WELL
+S_Wellness_2, 250, S_POOL_WELL
+SE_CS_ADMNS_1, 270, SE_CS_BB_Lake, 180, SE_CS_ADMNS_2
+SE_CS_ADMNS_2, 112.5, SE_CS_cube_2, 235, SE_Admissions_Lobby, 337.5, SE_CS_parking_2, 157.5, SE_CS_ADMNS_1, 22.5, SE_CS_Food
+SE_CS_BB_parking, 292.5, SE_CS_Food, 67.5, SE_CS_BB_parking_2, 315, SE_CS_parking_3
+SE_CS_parking_2, 0, S_Green, 315, NE_Happy_Place, 80, SE_CS_BB_parking_2, 180, SE_CS_ADMNS_2
+SE_Admissions_Lobby, 215, SE_CS_ADMNS_2
+SE_BB_Corridor, 325, SE_BB_Class, 150, SE_BB_Lobby
+SE_BB_Class, 275, SE_BB_Corridor
+SE_BB_Lake, 202.5, SE_BB_Lobby, 135, SE_CS_BB_Lake
+SE_BB_Lobby, 292.5, SE_BB_Corridor, 225, SE_CS_parking_3, 90,
+SE_CS_BB_Lake
+SE_CS_BB_parking_2, 75, S_GREEN, 270, SE_CS_parking_3, 22.5, SE_CS_parking_2
+SE_CS_Food, 140, SE_CS_parking_3, 337.5, SE_CS_ADMNS_2, 180, SE_CS_club
+SE_CS_club, 40, SE_CS_cube_2, 50, SE_CS_Food
+SE_CS_cube_2, 225, SE_CS_Food, 100, SE_CS_ADMNS_2, 250, SE_CS_club
+SE_CS_parking_3, 225, SE_BB_Lobby, 80, SE_CS_BB_parking_2, 290, SE_CS_Food
+SE_Wellness_Lake, 15, S_WELL_DOCK, 100, S_Caf_Street, 215, SE_CS_ADMNS_1

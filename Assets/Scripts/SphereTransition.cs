@@ -78,9 +78,6 @@ public class SphereTransition : MonoBehaviour
 
         SphereChangeAnimator = tourSkysphere.GetComponent<Animator>();
 
-        // Insert listeners for grab and release of every building
-        //InsertGrabListeners(BuildingContainer);
-
         started = true;
 
     }
