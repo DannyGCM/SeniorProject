@@ -6,6 +6,7 @@ using System;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.VisualScripting;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 
 public class SphereTransition : MonoBehaviour
 {
@@ -190,6 +191,7 @@ public class SphereTransition : MonoBehaviour
             DisableHome(imgName);
             beenInTour = true;
         }
+        buildingVisuals.parent.GetComponent<MeshCollider>().enabled = true;
         
     }
     public async Task DisableHome(string imgName)
@@ -215,13 +217,20 @@ public class SphereTransition : MonoBehaviour
 
         // Place material on skysphere
         _Manager.GetComponent<ImageCycle>().FindAndSetTextureOfSkySphere(imgName);
+
+        buildingVisuals.parent.GetComponent<MeshCollider>().enabled = false;
     }
 
     public void GrabbableHovered(Transform buildingVisuals)
     {
-        Debug.Log("hovering");
+        
         buildingVisuals.GetComponent<Animator>().SetBool("Hover", true);
         Debug.Log(buildingVisuals.Find("Model").GetChild(0).name);
+
+        string name = buildingVisuals.Find("Model").GetChild(0).name;
+        string text = name.Replace("_", " ").Replace("(Clone)", "");
+        Transform textbox = buildingVisuals.Find("TooltipParent").Find("Tooltip").Find("Canvas").Find("Text");
+        textbox.GetComponent<Text>().text = text;
     }
     public void GrabbableUnHovered(Transform buildingVisuals)
     {
