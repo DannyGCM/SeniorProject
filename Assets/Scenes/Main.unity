@@ -180,13 +180,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 92320605}
-  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.23344536, y: 0, z: 0, w: 0.97236997}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1749310254}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 27, y: 0, z: 0}
 --- !u!114 &92320607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2254,17 +2254,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fa4ee77a983524a83400952c4d1f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseH: {fileID: 2403867069564782799, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
-  mouseV: {fileID: -3071425772759088275, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
-  moveFront: {fileID: 836855626066939986, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
-  moveBack: {fileID: 6574555401561245090, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
-  moveLeft: {fileID: -7303958942353741217, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
-  moveRight: {fileID: 9068833868893813346, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
-  panUp: {fileID: 2334796540584592506, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
-  panDown: {fileID: -8793127019169392451, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
+  mouseX: {fileID: 2403867069564782799, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
+  mouseY: {fileID: -3071425772759088275, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
+  press: {fileID: -3997617219887371945, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
+  click: {fileID: -7605119946098582775, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
+  hold: {fileID: 7177039476562588663, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
+  release: {fileID: -4969038790739261534, guid: 786ec5a5bb5a8104cbf2a07b77b7f0db, type: 3}
+  lookSpeed: 10
+  invertedCamera: 0
   cameraTransform: {fileID: 92320606}
-  lookSpeed: 40
-  moveSpeed: 5
 --- !u!54 &1749310256
 Rigidbody:
   m_ObjectHideFlags: 0
