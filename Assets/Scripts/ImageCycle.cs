@@ -38,11 +38,13 @@ public class ImageCycle : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
+        
         // Read txt file to build our button map
         lines = BuildLinesFromText(mapAsset.text);
 
         // Get the renderer component of Transform we want
         rend = skySphere.GetComponent<Renderer>();
+        rend.material.color = new Color(1, 1, 1, 0);
 
         // Load all the skysphere textures
         texSphere = Resources.LoadAll(resourcesSkysphereImageDirectory, typeof(Texture2D));

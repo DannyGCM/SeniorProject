@@ -50,6 +50,8 @@ public class SphereTransition : MonoBehaviour
 
     public bool grip = false;
 
+    Transform highlight;
+
     // Start is called before the first frame update
     public void NewStart()
     { 
@@ -168,6 +170,8 @@ public class SphereTransition : MonoBehaviour
 
         grab.selectEntered.AddListener(delegate { GrabbableGrabbed(imageName, buildingVis); } );
         grab.selectExited.AddListener(delegate { GrabbableReleased(imageName, buildingVis); } );
+        grab.hoverEntered.AddListener(delegate { GrabbableHovered(buildingVis); });
+        grab.hoverExited.AddListener(delegate { GrabbableUnHovered(buildingVis); });
 
     }
    
@@ -212,5 +216,17 @@ public class SphereTransition : MonoBehaviour
         // Place material on skysphere
         _Manager.GetComponent<ImageCycle>().FindAndSetTextureOfSkySphere(imgName);
     }
-    
+
+    public void GrabbableHovered(Transform buildingVisuals)
+    {
+        Debug.Log("hovering");
+        buildingVisuals.GetComponent<Animator>().SetBool("Hover", true);
+        Debug.Log(buildingVisuals.Find("Model").GetChild(0).name);
+    }
+    public void GrabbableUnHovered(Transform buildingVisuals)
+    {
+        Debug.Log("unhovered");
+        buildingVisuals.GetComponent<Animator>().SetBool("Hover", false);
+    }
+
 }
