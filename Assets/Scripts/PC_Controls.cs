@@ -7,55 +7,89 @@ public class PC_Controls : MonoBehaviour
 {
 
     // Mouse actions
-    public InputActionReference mouseH;
-    public InputActionReference mouseV;
+    public InputActionReference mouseX;
+    public InputActionReference mouseY;
+    public InputActionReference press;
+    public InputActionReference click;
+    public InputActionReference hold;
+    public InputActionReference release;
 
-    // Keyboard actions
-    public InputActionReference moveFront;
-    public InputActionReference moveBack;
-    public InputActionReference moveLeft;
-    public InputActionReference moveRight;
-    public InputActionReference panUp;
-    public InputActionReference panDown;
+    // Movement variables
+    public float lookSpeed = 1f;
+    public bool invertedCamera = false;
 
     // Camera
     public Transform cameraTransform;
 
-    // Movement speed
-    public float lookSpeed = 1f;
-    public float moveSpeed = 1f;
-
-    // Status variables
-    private bool movingFront = false;
-    private bool movingBack = false;
-    private bool movingLeft = false;
-    private bool movingRight = false;
-    private bool panningUp = false;
-    private bool panningDown = false;
+    // Movement variables
+    private bool held = false;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        // Locks cursor
-        Cursor.visible = false;
+        // Locks cursor FOR TESTING ONLY /////////////////////////////////////
+        // Cursor.visible = false;
 
-        // Binds mouse actions
-        mouseH.action.performed += HandleMouseH;
-        mouseV.action.performed += HandleMouseV;
-
-        // Binds keyboard actions
-        moveFront.action.performed += HandleMoveFront;
-        moveBack.action.performed += HandleMoveBack;
-        moveLeft.action.performed += HandleMoveLeft;
-        moveRight.action.performed += HandleMoveRight;
-        panUp.action.performed += HandlePanUp;
-        panDown.action.performed += HandlePanDown;
+        // Binds actions
+        mouseX.action.performed += HandleMouseX;
+        mouseY.action.performed += HandleMouseY;
+        press.action.performed += HandlePress;
+        click.action.performed += HandleClick;
+        hold.action.performed += HandleHold;
+        release.action.performed += HandleRelease;
 
     }
 
+    void Update()
+    { }
+
+    // Mouse X movement when held
+    void HandleMouseX(InputAction.CallbackContext obj) {
+
+        if (this.held)
+        {
+            Vector3 CameraRotation = cameraTransform.transform.rotation.eulerAngles;
+            if (!invertedCamera)
+            { CameraRotation.y += obj.ReadValue<float>() * lookSpeed * Time.deltaTime; }
+            else { CameraRotation.y -= obj.ReadValue<float>() * lookSpeed * Time.deltaTime; }
+            cameraTransform.transform.rotation = Quaternion.Euler(CameraRotation);
+        }
+
+    }
+
+    // Mouse Y movement when held
+    void HandleMouseY(InputAction.CallbackContext obj) {
+
+        if (this.held)
+        {
+            Vector3 CameraRotation = cameraTransform.transform.rotation.eulerAngles;
+            if (!invertedCamera)
+            { CameraRotation.x -= obj.ReadValue<float>() * lookSpeed * Time.deltaTime;
+            } else { CameraRotation.x += obj.ReadValue<float>() * lookSpeed * Time.deltaTime; }
+            cameraTransform.transform.rotation = Quaternion.Euler(CameraRotation);
+        }
+
+    }
+
+    // Left click was pressed
+    void HandlePress(InputAction.CallbackContext obj)
+    {
+    }
+
+    // Left click was pressed and released
+    void HandleClick(InputAction.CallbackContext obj)
+    {
+    }
+
+    // Changes held status
+    void HandleHold(InputAction.CallbackContext obj) { this.held = true; }
+    void HandleRelease(InputAction.CallbackContext obj) { this.held = false; }
+
+    /*
+
     // Mouse input handler
-    void HandleMouseH(InputAction.CallbackContext obj)
+    void HandleMouseX(InputAction.CallbackContext obj)
     {
 
         Vector3 CameraRotation = cameraTransform.transform.rotation.eulerAngles;
@@ -64,7 +98,7 @@ public class PC_Controls : MonoBehaviour
     
     }
 
-    void HandleMouseV(InputAction.CallbackContext obj)
+    void HandleMouseY(InputAction.CallbackContext obj)
     {
 
         Vector3 CameraRotation = cameraTransform.transform.rotation.eulerAngles;
@@ -117,6 +151,6 @@ public class PC_Controls : MonoBehaviour
         if (this.panningUp) { PanUp(); }
         if (this.panningDown) { PanDown(); }
 
-    }
+    } */
 
 }
