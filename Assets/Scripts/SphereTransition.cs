@@ -62,11 +62,14 @@ public class SphereTransition : MonoBehaviour
         bool isVR = onAndroid();
 
         // If we are testing, allow for override of device detected
+
         if (!testing)
         {
-            // Sets a camera to be active based on the device detected
-            CameraContainer.GetChild(1).gameObject.SetActive(isVR);
+            // Sets active components based on the device detected
+            CameraContainer.GetChild(1).GetChild(0).GetChild(1).gameObject.SetActive(isVR);
+            CameraContainer.GetChild(1).GetChild(0).GetChild(0).gameObject.SetActive(isVR);
             CameraContainer.GetChild(0).gameObject.SetActive(!isVR);
+
         }
 
         // Set camera to be whichever is detected as active
