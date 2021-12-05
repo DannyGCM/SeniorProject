@@ -386,7 +386,7 @@ public class ImageCycle : MonoBehaviour
     public void OffsetSkysphere(float offset)
     {
         Debug.Log(offset);
-        skySphere.parent.eulerAngles = new Vector3(0, offset, 0);
+        //skySphere.parent.eulerAngles = new Vector3(0, offset, 0);
     }
 
     public void FindAndSetTextureOfSkySphere(string imgName)

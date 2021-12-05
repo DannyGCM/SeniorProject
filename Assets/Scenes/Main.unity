@@ -875,6 +875,7 @@ MonoBehaviour:
   rotationPlane: {fileID: 584419951592796846, guid: 78a41d6dcf8ac6f4e960b3ddb0421f90, type: 3}
   rotationPlaneContainer: {fileID: 385897538}
   resourcesSkysphereImageDirectory: Textures/Sky
+  resourcesAudioDirectory: Audio/mp3Sound
   mapAsset: {fileID: 4900000, guid: 04ecbbe08b78e774191c66367dafe089, type: 3}
   mapAssetImageIndex: 0
   mapAssetOffsetIndex: 1
@@ -3362,7 +3363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1777355599
 Transform:
   m_ObjectHideFlags: 0

@@ -101,6 +101,7 @@ public class SphereTransition : MonoBehaviour
         {
             AnnoyingClickFunction();
         };
+        
         lClick.action.started += delegate {
             AnnoyingClickFunction();
         };
