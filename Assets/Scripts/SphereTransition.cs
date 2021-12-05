@@ -8,6 +8,12 @@ using Unity.VisualScripting;
 using System.Threading.Tasks;
 using UnityEngine.UI;
 
+// Brock Wilson
+// 12/4/21
+// Florida Southern College
+// Senior Project
+
+
 public class SphereTransition : MonoBehaviour
 {
 
@@ -51,14 +57,12 @@ public class SphereTransition : MonoBehaviour
 
     public bool grip = false;
 
-    Transform highlight;
-
     public InputActionReference rClick = null;
     public InputActionReference lClick = null;
 
-    public Transform globalBuildingVisuals;
+    Transform globalBuildingVisuals;
 
-    public string globalImgName;
+    string globalImgName;
 
     // Start is called before the first frame update
     public void NewStart()
@@ -190,16 +194,16 @@ public class SphereTransition : MonoBehaviour
     }
 
     // This adds listeners to every building so that we know what image to put on the sphere
-    public void InsertGrabListener(Transform b)
+    public void InsertGrabListener(Transform grabBuilding)
     {
         XRGrabInteractable grab;
         string imageName;
 
-        grab = b.GetChild(0).GetComponent<XRGrabInteractable>();
+        grab = grabBuilding.GetChild(0).GetComponent<XRGrabInteractable>();
             
-        imageName = (string)Variables.Object(b.GetChild(0).GetChild(0).GetChild(0).gameObject).Get("imageName");
+        imageName = (string)Variables.Object(grabBuilding.gameObject).Get("imgName");
 
-        Transform buildingVis = b.GetChild(0).GetChild(0);
+        Transform buildingVis = grabBuilding.GetChild(0).GetChild(0);
 
         grab.selectEntered.AddListener(delegate { GrabbableGrabbed(imageName, buildingVis); });
         grab.selectExited.AddListener(delegate { GrabbableReleased(imageName, buildingVis); });

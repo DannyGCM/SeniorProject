@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.VisualScripting;
 
+// Brock Wilson
+// 12/4/21
+// Florida Southern College
+// Senior Project
+
 public class InitBuildings : MonoBehaviour
 {
     public Transform _initContainer;

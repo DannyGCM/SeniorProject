@@ -8,6 +8,11 @@ using UnityEngine.XR.Interaction.Toolkit;
 using Unity.VisualScripting;
 using System.Threading.Tasks;
 
+// Brock Wilson
+// 12/4/21
+// Florida Southern College
+// Senior Project
+
 public class ImageCycle : MonoBehaviour
 {
 
@@ -25,13 +30,19 @@ public class ImageCycle : MonoBehaviour
 
     public int mapAssetImageIndex = 0;
 
+    public int mapAssetOffsetIndex = 1;
+
+    public int mapAssetAudioIndex = 2;
+
+    public int mapAssetDescriptionIndex = 3;
+
     public int mapAssetButtonsStartIndex = 1;
 
     public InputActionReference rClick = null;
 
     public InputActionReference lClick = null;
 
-    public int globalClicks = 0;
+    int globalClicks = 0;
 
 
     // Contains all text from mapAsset
@@ -59,6 +70,7 @@ public class ImageCycle : MonoBehaviour
         texSphere = Resources.LoadAll(resourcesSkysphereImageDirectory, typeof(Texture2D));
 
         rClick.action.started += delegate { AnnoyingButtonFunction(globalButton); };
+        lClick.action.started += delegate { AnnoyingButtonFunction(globalButton); };
     }
     // Removes all whitespace from lines
     string[][] BuildLinesFromText(string text)
@@ -88,7 +100,7 @@ public class ImageCycle : MonoBehaviour
     {
         for (int i = 0; i < lines.Length; i++)
         { 
-            if (lines[i][mapAssetImageIndex].Trim() == imgToFind.Trim())
+            if (lines[i][mapAssetImageIndex].Trim().ToUpper() == imgToFind.Trim().ToUpper())
             {
                 return lines[i]; // return line that contains information to build new environment
             }
@@ -106,7 +118,7 @@ public class ImageCycle : MonoBehaviour
         {
             string texName = texSphere[i].name.Trim();
             
-            if (imgName == texName)
+            if (imgName.ToUpper() == texName.ToUpper())
                 return i;
         }
         Debug.LogError("No texture found in files with name: " + imgName);
