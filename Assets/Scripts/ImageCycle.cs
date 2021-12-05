@@ -44,6 +44,8 @@ public class ImageCycle : MonoBehaviour
 
     int globalClicks = 0;
 
+    public Transform DescriptionPanel;
+
 
     // Contains all text from mapAsset
     string[][] lines;
@@ -108,7 +110,19 @@ public class ImageCycle : MonoBehaviour
         Debug.LogError("No entry found in file: " + mapAsset.name + " searching by name: " + imgToFind);
         return null;
     }
-   
+    public string[] FindItemInTxt(string text, int index)
+    {
+        for (int i = 0; i < lines.Length; i++)
+        {
+            if (lines[i][index].Trim().ToUpper() == text.Trim().ToUpper())
+            {
+                return lines[i]; // return line that contains information to build new environment
+            }
+        }
+        Debug.LogError("No entry found in file: " + mapAsset.name + " searching by name: " + text + " at index: "+ index);
+        return null;
+    }
+
     // Returns index of the picture image that is found in our files
     // Function cleaned
     private int FindImgIndex(string imgName, Object[] texSphere)
@@ -131,6 +145,14 @@ public class ImageCycle : MonoBehaviour
     {
         for (int i = 0; i < rotationPlaneContainer.childCount; i++)
             Destroy(rotationPlaneContainer.GetChild(i).gameObject);
+    }
+    public void ResetAudio()
+    {
+
+    }
+    public void DisableDescription()
+    {
+        DescriptionPanel.gameObject.SetActive(false);
     }
 
     // Takes in string arrays from mapAsset that contains angles/imgnames and spawns the buttons associated with the angles.
@@ -218,7 +240,7 @@ public class ImageCycle : MonoBehaviour
 
         // Find the line in the text file that has this imgName as the host image we are currently in
         string[] line = FindImageInTxt(imgName);
-        Debug.Log(line[0] + " shid ");
+        
         // From the line found, find an angle in the text that matches the one of the button that was clicked and return the image associated
         string[] buttonsLine = StringArraySlice(line, mapAssetButtonsStartIndex, line.Length); // Buttonsline only contains the button information
         string nextImg = FindButtonClicked(buttonsLine, rotationPlane.rotation);
@@ -234,23 +256,29 @@ public class ImageCycle : MonoBehaviour
     {
         imgName = imgName.Trim();
         ClearButtons();
-        
-        FindAndSetTextureOfSkySphere(imgName);
-        FindAndSpawnButtons(imgName);
-    }
-
-    public void FindAndSpawnButtons(string imgName)
-    {
-        ClearButtons();
-        imgName = imgName.Trim();
 
         string[] line = FindImageInTxt(imgName);
 
         string[] buttonsLine = StringArraySlice(line, mapAssetButtonsStartIndex, line.Length);
 
+        string audio = StringArraySlice(line, mapAssetAudioIndex, mapAssetAudioIndex+1)[0];
+
+        string description = StringArraySlice(line, mapAssetDescriptionIndex, mapAssetDescriptionIndex+1)[0];
+
+        FindAndSetTextureOfSkySphere(imgName);
         SpawnButtons(buttonsLine);
+        SpawnAudio(audio);
+        SpawnDescription(description);
     }
 
+    public void SpawnAudio(string audio)
+    {
+
+    }
+    public void SpawnDescription(string description)
+    {
+
+    }
 
     public void FindAndSetTextureOfSkySphere(string imgName)
     {

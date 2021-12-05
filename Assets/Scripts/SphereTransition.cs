@@ -235,11 +235,10 @@ public class SphereTransition : MonoBehaviour
 
         beenInTour = true;
 
-        _Manager.GetComponent<ImageCycle>().FindAndSetTextureOfSkySphere(imgName);
+        _Manager.GetComponent<ImageCycle>().LoadSkysphere(imgName);
         // Lock transparency to 1
         //tourSkysphereRenderer.material.color = new Color(1, 1, 1, 1);
         SphereChangeAnimator.SetBool("BuildingNear", true);
-        _Manager.GetComponent<ImageCycle>().FindAndSpawnButtons(imgName);
 
         inTour = true;
         // Do camera fadeout BuildingVisualsAnimatoration
