@@ -26,6 +26,8 @@ public class ImageCycle : MonoBehaviour
 
     public string resourcesSkysphereImageDirectory = "Textures/Sky";
 
+    public string resourcesAudioDirectory = "Audio/mp3Sound";
+
     public TextAsset mapAsset;
 
     public int mapAssetImageIndex = 0;
@@ -46,11 +48,23 @@ public class ImageCycle : MonoBehaviour
 
     public Transform DescriptionPanel;
 
+    public Transform DebuggerPanel;
+
+    public AudioClip tourVoice;
+
+    public AudioSource speaker;
+
+    public AudioListener earpiece;
+
+    public Camera maincam;
+
 
     // Contains all text from mapAsset
     string[][] lines;
 
     private Object[] texSphere;
+
+    private Object[] audioArray;
 
     int rotPlaneIteration = 0;
 
@@ -70,6 +84,8 @@ public class ImageCycle : MonoBehaviour
 
         // Load all the skysphere textures
         texSphere = Resources.LoadAll(resourcesSkysphereImageDirectory, typeof(Texture2D));
+
+        audioArray = Resources.LoadAll(resourcesAudioDirectory, typeof(AudioClip));
 
         rClick.action.started += delegate { AnnoyingButtonFunction(globalButton); };
         lClick.action.started += delegate { AnnoyingButtonFunction(globalButton); };
@@ -107,21 +123,13 @@ public class ImageCycle : MonoBehaviour
                 return lines[i]; // return line that contains information to build new environment
             }
         }
-        Debug.LogError("No entry found in file: " + mapAsset.name + " searching by name: " + imgToFind);
+        string error = "No entry found in file: " + mapAsset.name + " searching by name: " + imgToFind;
+        PanelDebug(error, true);
+        Debug.LogError(error);
+
         return null;
     }
-    public string[] FindItemInTxt(string text, int index)
-    {
-        for (int i = 0; i < lines.Length; i++)
-        {
-            if (lines[i][index].Trim().ToUpper() == text.Trim().ToUpper())
-            {
-                return lines[i]; // return line that contains information to build new environment
-            }
-        }
-        Debug.LogError("No entry found in file: " + mapAsset.name + " searching by name: " + text + " at index: "+ index);
-        return null;
-    }
+
 
     // Returns index of the picture image that is found in our files
     // Function cleaned
@@ -135,7 +143,9 @@ public class ImageCycle : MonoBehaviour
             if (imgName.ToUpper() == texName.ToUpper())
                 return i;
         }
-        Debug.LogError("No texture found in files with name: " + imgName);
+        string error = "No texture found in files with name: " + imgName;
+        PanelDebug(error, true);
+        Debug.LogError(error);
         return -1;
     }
 
@@ -153,6 +163,17 @@ public class ImageCycle : MonoBehaviour
     public void DisableDescription()
     {
         DescriptionPanel.gameObject.SetActive(false);
+    }
+
+    public void PanelDebug(string message, bool isError = false)
+    {
+        Text description = DebuggerPanel.Find("Canvas").Find("Panel").Find("Description").GetComponent<Text>();
+        description.text = "";
+        if (isError)
+        {
+            description.text = "Error";
+        }
+        description.text += message;
     }
 
     // Takes in string arrays from mapAsset that contains angles/imgnames and spawns the buttons associated with the angles.
@@ -200,29 +221,41 @@ public class ImageCycle : MonoBehaviour
 
     // Takes an input rotation (presumably of the button pressed) and tries to find that rotation in the line provided
     // Function cleaned
-    private string FindButtonClicked(string[] buttonsLine, Quaternion rotation)
+    private string FindButtonClicked(string[] buttonsLine, Vector3 rotation)
     {
         for (int i = 0; i < buttonsLine.Length; i += 2)
         {
             // Convert our text file angle to quaternion and compare
-            if (rotation == Quaternion.Euler(0, float.Parse(buttonsLine[i]), 0))
-                // Return the imgname that follows the rotation angle
-                return buttonsLine[i+1];
+            float number;
+            bool success = float.TryParse(buttonsLine[i], out number);
+            if (success)
+            {
+                if (rotation == new Vector3(0, number, 0))
+                {
+                    // Return the imgname that follows the rotation angle
+                    return buttonsLine[i + 1];
+                }
+            }
         }
-        Debug.LogError("Could not find the angle: Quaternion(" + rotation.x + "," + rotation.y + "," + rotation.z + "," + rotation.w + ") in the line provided.");
+        string error = "Could not find the angle: EulerAngles(" + rotation[0] + "," + rotation[1] + "," + rotation[2]  + ") in the line provided.";
+        PanelDebug(error, true);
+        Debug.LogError(error);
         return null;
     }
 
     public string[] StringArraySlice(string[] list, int fromIndex, int toIndex)
     {
         int lengthOfSlicedList = toIndex - fromIndex;
-        string[] slicedList = new string[lengthOfSlicedList];
+        string[] slicedList = new string[lengthOfSlicedList+1];
+        
         for (int i = 0; i < lengthOfSlicedList; i++)
         {
-            slicedList[i] = list[fromIndex + i];
-        }
             
-
+            slicedList[i] = list[fromIndex + i];
+            
+        }
+        slicedList[lengthOfSlicedList] = "null";
+        
         return slicedList;
     }
 
@@ -243,45 +276,122 @@ public class ImageCycle : MonoBehaviour
         
         // From the line found, find an angle in the text that matches the one of the button that was clicked and return the image associated
         string[] buttonsLine = StringArraySlice(line, mapAssetButtonsStartIndex, line.Length); // Buttonsline only contains the button information
-        string nextImg = FindButtonClicked(buttonsLine, rotationPlane.rotation);
+        string nextImg = FindButtonClicked(buttonsLine, rotationPlane.localRotation.eulerAngles);
         Debug.Log(nextImg);
-        // Eliminate whitespace from the string nextImg
-        nextImg = nextImg.Trim();
+        if (nextImg != null)
+        {
+            // Eliminate whitespace from the string nextImg
+            nextImg = nextImg.Trim();
 
-        // Load the skysphere buttons and texture
-        LoadSkysphere(nextImg);
+            // Load the skysphere buttons and texture
+            LoadSkysphere(nextImg);
+        }
+        
     }
 
     public void LoadSkysphere(string imgName)
     {
+        
         imgName = imgName.Trim();
         ClearButtons();
 
         string[] line = FindImageInTxt(imgName);
+        
+
+        string message = "";
+        for (int i = 0; i < line.Length; i++)
+        {
+            message += line[i];
+            if (i < line.Length - 1) message += ", ";
+        }
+        
+        PanelDebug(message);
+       
+        string tempOffset = StringArraySlice(line, mapAssetOffsetIndex, mapAssetOffsetIndex + 1)[0];
+        if (tempOffset == "" || tempOffset == " ") tempOffset = "0";
+        float offset = float.Parse(tempOffset.Trim().Replace(" ", ""));
+ 
+        string audio = StringArraySlice(line, mapAssetAudioIndex, mapAssetAudioIndex+1)[0];
+        Debug.Log(audio);
+        string description = StringArraySlice(line, mapAssetDescriptionIndex, mapAssetDescriptionIndex+1)[0];
 
         string[] buttonsLine = StringArraySlice(line, mapAssetButtonsStartIndex, line.Length);
 
-        string audio = StringArraySlice(line, mapAssetAudioIndex, mapAssetAudioIndex+1)[0];
+        audio = audio.Trim();
 
-        string description = StringArraySlice(line, mapAssetDescriptionIndex, mapAssetDescriptionIndex+1)[0];
+        description = description.Trim();
 
         FindAndSetTextureOfSkySphere(imgName);
         SpawnButtons(buttonsLine);
-        SpawnAudio(audio);
+        OffsetSkysphere(offset);
+        FindAndSpawnAudio(audio);
         SpawnDescription(description);
-    }
-
-    public void SpawnAudio(string audio)
-    {
 
     }
-    public void SpawnDescription(string description)
-    {
 
+    public void FindAndSpawnAudio(string audio)
+    {
+        
+        int audioIndex = FindAudioIndex(audio, audioArray);
+        if (audioIndex != -1)
+        {
+            if (speaker.clip != (AudioClip)audioArray[audioIndex])
+            {
+                speaker.clip = (AudioClip)audioArray[audioIndex];
+                speaker.Play();
+            }
+            
+        }
+        else
+        {
+            speaker.Stop();
+        }
+        // Play audio
+        /*speaker.clip = tourVoice;*/
+
+        
+
+    }
+    private int FindAudioIndex(string audio, Object[] audioArray)
+    {
+        audio = audio.Trim();
+        for (int i = 0; i < audioArray.Length; i++)
+        {
+            string audioName = audioArray[i].name.Trim();
+            //Debug.Log(audio + " " + audioName);
+            if (audio.ToUpper() == audioName.ToUpper())
+                return i;
+        }
+        string error = "No audio found in files with name: " + audio;
+        PanelDebug(error, true);
+        Debug.LogError(error);
+        return -1;
+    }
+    public void SpawnDescription(string newDescription)
+    {
+        if (newDescription.Length > 5)
+        {
+            Text title = DescriptionPanel.Find("Canvas").Find("Panel").Find("Title").GetComponent<Text>();
+            title.text = "FLORIDA SOUTHERN COLLEGE";
+            Text description = DescriptionPanel.Find("Canvas").Find("Panel").Find("Description").GetComponent<Text>();
+            description.text = newDescription;
+            DescriptionPanel.gameObject.SetActive(true);
+        }
+        else
+        {
+            DescriptionPanel.gameObject.SetActive(false);
+        }
+        
+    }
+    public void OffsetSkysphere(float offset)
+    {
+        Debug.Log(offset);
+        skySphere.parent.eulerAngles = new Vector3(0, offset, 0);
     }
 
     public void FindAndSetTextureOfSkySphere(string imgName)
     {
+        
         //Debug.Log(imgName + " idk ");
         imgName = imgName.Trim();
         // Find the index of the image in file
@@ -305,7 +415,7 @@ public class ImageCycle : MonoBehaviour
     void AnnoyingButtonFunction(XRSimpleInteractable button)
     {
         globalClicks += 1;
-        Debug.Log("clicked: " + globalClicks);
+        //Debug.Log("clicked: " + globalClicks);
         button = globalButton;
         if (button)
         {
