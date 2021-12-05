@@ -27,12 +27,21 @@ public class ImageCycle : MonoBehaviour
 
     public int mapAssetButtonsStartIndex = 1;
 
+    public InputActionReference rClick = null;
+
+    public InputActionReference lClick = null;
+
+    public int globalClicks = 0;
+
+
     // Contains all text from mapAsset
     string[][] lines;
 
     private Object[] texSphere;
 
     int rotPlaneIteration = 0;
+
+    XRSimpleInteractable globalButton = null;
 
 
     // Start is called before the first frame update
@@ -48,6 +57,8 @@ public class ImageCycle : MonoBehaviour
 
         // Load all the skysphere textures
         texSphere = Resources.LoadAll(resourcesSkysphereImageDirectory, typeof(Texture2D));
+
+        rClick.action.started += delegate { AnnoyingButtonFunction(globalButton); };
     }
     // Removes all whitespace from lines
     string[][] BuildLinesFromText(string text)
@@ -143,11 +154,12 @@ public class ImageCycle : MonoBehaviour
         for (int i = 0; i < numberOfButtons; i++)
         {
             XRSimpleInteractable identifier = interactables[i];
-            interactables[i].selectEntered.AddListener(delegate { ButtonClicked(identifier); });
+            
+            //interactables[i].selectEntered.AddListener(delegate { ButtonClicked(identifier); });
        
             Animator ArrowAnimator = interactables[i].gameObject.GetComponent<Animator>();
-            interactables[i].hoverEntered.AddListener(delegate { RunArrow(ArrowAnimator, true); } );
-            interactables[i].hoverExited.AddListener(delegate { RunArrow(ArrowAnimator, false); });
+            interactables[i].hoverEntered.AddListener(delegate { RunArrow(ArrowAnimator, true, identifier); } );
+            interactables[i].hoverExited.AddListener(delegate { RunArrow(ArrowAnimator, false, identifier); });
         }
         rotPlaneIteration += numberOfButtons;
     }
@@ -194,11 +206,11 @@ public class ImageCycle : MonoBehaviour
 
         // Find the line in the text file that has this imgName as the host image we are currently in
         string[] line = FindImageInTxt(imgName);
-
+        Debug.Log(line[0] + " shid ");
         // From the line found, find an angle in the text that matches the one of the button that was clicked and return the image associated
         string[] buttonsLine = StringArraySlice(line, mapAssetButtonsStartIndex, line.Length); // Buttonsline only contains the button information
         string nextImg = FindButtonClicked(buttonsLine, rotationPlane.rotation);
-        
+        Debug.Log(nextImg);
         // Eliminate whitespace from the string nextImg
         nextImg = nextImg.Trim();
 
@@ -210,12 +222,14 @@ public class ImageCycle : MonoBehaviour
     {
         imgName = imgName.Trim();
         ClearButtons();
-        FindAndSpawnButtons(imgName);
+        
         FindAndSetTextureOfSkySphere(imgName);
+        FindAndSpawnButtons(imgName);
     }
 
     public void FindAndSpawnButtons(string imgName)
     {
+        ClearButtons();
         imgName = imgName.Trim();
 
         string[] line = FindImageInTxt(imgName);
@@ -228,6 +242,7 @@ public class ImageCycle : MonoBehaviour
 
     public void FindAndSetTextureOfSkySphere(string imgName)
     {
+        //Debug.Log(imgName + " idk ");
         imgName = imgName.Trim();
         // Find the index of the image in file
         int imgIndex = FindImgIndex(imgName, texSphere);
@@ -235,9 +250,30 @@ public class ImageCycle : MonoBehaviour
         rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[imgIndex]);
     }
 
-    void RunArrow(Animator ani, bool animating)
+    void RunArrow(Animator ani, bool animating, XRSimpleInteractable button)
     {
-        if (ani) ani.SetBool("Hover", animating);
+        if (ani)
+        {
+            ani.SetBool("Hover", animating);
+            if (animating == true)
+            {
+                globalButton = button;
+            }
+            
+        } 
+    }
+    void AnnoyingButtonFunction(XRSimpleInteractable button)
+    {
+        globalClicks += 1;
+        Debug.Log("clicked: " + globalClicks);
+        button = globalButton;
+        if (button)
+        {
+            button.transform.Find("Collider").GetComponent<MeshCollider>().enabled = false;
+            //Debug.Log(button.transform.parent.name + " yeet ");
+            ButtonClicked(button);
+        }
+        
     }
 
 

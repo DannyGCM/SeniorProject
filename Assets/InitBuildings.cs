@@ -105,8 +105,6 @@ public class InitBuildings : MonoBehaviour
         buildingPhysics.AddComponent<ArticulationBody>();
         buildingPhysics.GetComponent<ArticulationBody>().useGravity = false;
         buildingPhysics.GetComponent<ArticulationBody>().immovable = true;
-        
-
     }
 
 

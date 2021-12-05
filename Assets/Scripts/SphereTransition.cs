@@ -53,6 +53,13 @@ public class SphereTransition : MonoBehaviour
 
     Transform highlight;
 
+    public InputActionReference rClick = null;
+    public InputActionReference lClick = null;
+
+    public Transform globalBuildingVisuals;
+
+    public string globalImgName;
+
     // Start is called before the first frame update
     public void NewStart()
     { 
@@ -86,6 +93,27 @@ public class SphereTransition : MonoBehaviour
 
         started = true;
 
+        rClick.action.started += delegate
+        {
+            AnnoyingClickFunction();
+        };
+        lClick.action.started += delegate {
+            AnnoyingClickFunction();
+        };
+
+    }
+    void AnnoyingClickFunction()
+    {
+        if (globalImgName != null && globalBuildingVisuals != null)
+        {
+            
+            globalBuildingVisuals.parent.GetComponent<MeshCollider>().enabled = false;
+            DisableHome(globalImgName);
+            globalBuildingVisuals.parent.GetComponent<MeshCollider>().enabled = true;
+            globalImgName = null;
+            globalBuildingVisuals = null;
+        }
+        
     }
     void HomeClicked(InputAction.CallbackContext obj)
     {
@@ -140,6 +168,7 @@ public class SphereTransition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (BuildingModel) {
 
             if (inTour == false)
@@ -172,9 +201,9 @@ public class SphereTransition : MonoBehaviour
 
         Transform buildingVis = b.GetChild(0).GetChild(0);
 
-        grab.selectEntered.AddListener(delegate { GrabbableGrabbed(imageName, buildingVis); } );
-        grab.selectExited.AddListener(delegate { GrabbableReleased(imageName, buildingVis); } );
-        grab.hoverEntered.AddListener(delegate { GrabbableHovered(buildingVis); });
+        grab.selectEntered.AddListener(delegate { GrabbableGrabbed(imageName, buildingVis); });
+        grab.selectExited.AddListener(delegate { GrabbableReleased(imageName, buildingVis); });
+        grab.hoverEntered.AddListener(delegate { GrabbableHovered(imageName, buildingVis); });
         grab.hoverExited.AddListener(delegate { GrabbableUnHovered(buildingVis); });
 
     }
@@ -199,10 +228,13 @@ public class SphereTransition : MonoBehaviour
     }
     public async Task DisableHome(string imgName)
     {
-        
-        // Lock transparency to 1
-        tourSkysphereRenderer.material.color = new Color(1, 1, 1, 1);
 
+        beenInTour = true;
+
+        _Manager.GetComponent<ImageCycle>().FindAndSetTextureOfSkySphere(imgName);
+        // Lock transparency to 1
+        //tourSkysphereRenderer.material.color = new Color(1, 1, 1, 1);
+        SphereChangeAnimator.SetBool("BuildingNear", true);
         _Manager.GetComponent<ImageCycle>().FindAndSpawnButtons(imgName);
 
         inTour = true;
@@ -224,20 +256,29 @@ public class SphereTransition : MonoBehaviour
         buildingVisuals.parent.GetComponent<MeshCollider>().enabled = false;
     }
 
-    public void GrabbableHovered(Transform buildingVisuals)
+    public void GrabbableHovered(string imgName, Transform buildingVisuals)
     {
-        
+        BuildingModel = buildingVisuals.Find("Model");
+        globalImgName = imgName;
+        globalBuildingVisuals = buildingVisuals;
+
         buildingVisuals.GetComponent<Animator>().SetBool("Hover", true);
-        Debug.Log(buildingVisuals.Find("Model").GetChild(0).name);
+        //Debug.Log(buildingVisuals.Find("Model").GetChild(0).name);
 
         string name = buildingVisuals.Find("Model").GetChild(0).name;
         string text = name.Replace("_", " ").Replace("(Clone)", "");
         Transform textbox = buildingVisuals.Find("TooltipParent").Find("Tooltip").Find("Canvas").Find("Text");
         textbox.GetComponent<Text>().text = text;
+
+        // If click occurs, call in new environment
+        
+
     }
     public void GrabbableUnHovered(Transform buildingVisuals)
     {
-        Debug.Log("unhovered");
+        globalImgName = null;
+        globalBuildingVisuals = null;
+        //Debug.Log("unhovered");
         buildingVisuals.GetComponent<Animator>().SetBool("Hover", false);
     }
 

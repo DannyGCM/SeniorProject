@@ -633,6 +633,8 @@ MonoBehaviour:
   mapAsset: {fileID: 4900000, guid: 04ecbbe08b78e774191c66367dafe089, type: 3}
   mapAssetImageIndex: 0
   mapAssetButtonsStartIndex: 1
+  rClick: {fileID: 4203105348295950727, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  lClick: {fileID: -1408139830253947437, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &608097679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,12 +671,14 @@ MonoBehaviour:
   tourEnvironment: {fileID: 12828607}
   BuildingContainer: {fileID: 955993488}
   CameraContainer: {fileID: 1771480042}
-  testing: 0
+  testing: 1
   maxDist: 0.45
   inTour: 0
   _Manager: {fileID: 608097676}
   started: 0
   grip: 0
+  rClick: {fileID: 4203105348295950727, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  lClick: {fileID: -1408139830253947437, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &623133814
 GameObject:
   m_ObjectHideFlags: 0
@@ -2393,7 +2397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1974242047
 MonoBehaviour:
   m_ObjectHideFlags: 0
