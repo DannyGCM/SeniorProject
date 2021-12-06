@@ -66,7 +66,7 @@ public class SphereTransition : MonoBehaviour
 
     // Start is called before the first frame update
     public void NewStart()
-    { 
+    {
         homeButton.action.performed += HomeClicked;
         
         // Selects current rig
@@ -105,7 +105,7 @@ public class SphereTransition : MonoBehaviour
         lClick.action.started += delegate {
             AnnoyingClickFunction();
         };
-
+        
     }
     void AnnoyingClickFunction()
     {
@@ -201,11 +201,18 @@ public class SphereTransition : MonoBehaviour
         string imageName;
 
         grab = grabBuilding.GetChild(0).GetComponent<XRGrabInteractable>();
-            
-        imageName = (string)Variables.Object(grabBuilding.gameObject).Get("imgName");
+        try
+        {
+            imageName = (string)Variables.Object(grabBuilding.gameObject).Get("imgName");
+        }
+        catch
+        {
+            imageName = "S_SPIVEY_JR";
+        }
+        if (imageName == "t") imageName = "S_SPIVEY_JR";
 
         Transform buildingVis = grabBuilding.GetChild(0).GetChild(0);
-
+        
         grab.selectEntered.AddListener(delegate { GrabbableGrabbed(imageName, buildingVis); });
         grab.selectExited.AddListener(delegate { GrabbableReleased(imageName, buildingVis); });
         grab.hoverEntered.AddListener(delegate { GrabbableHovered(imageName, buildingVis); });
@@ -251,6 +258,7 @@ public class SphereTransition : MonoBehaviour
     }
     public void GrabbableGrabbed(string imgName, Transform buildingVisuals)
     {
+        
         BuildingModel = buildingVisuals.Find("Model");
         buildingVisuals.GetComponent<Animator>().SetBool("InHand", true);
 

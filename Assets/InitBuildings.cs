@@ -20,6 +20,12 @@ public class InitBuildings : MonoBehaviour
 
     public Material _ghost;
 
+    Transform globalBuildingPhysics;
+
+    public Transform DebuggerPanel = null;
+
+    public string resourcesMeshesDirectory = "Meshes/BUILDINGS/Meshes";
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +43,6 @@ public class InitBuildings : MonoBehaviour
         }
 
         _Manager.GetComponent<SphereTransition>().NewStart();
-        
     }
 
     // Places instance of the prefab interactable as child of a transform
@@ -60,6 +65,7 @@ public class InitBuildings : MonoBehaviour
     }
     void BuildPrefab(Transform interactableClone, Transform building, Transform buildingClone)
     {
+        
         ChangeMeshCollider(interactableClone, building);
         // Add prefab to building
         interactableClone.parent = building;
@@ -69,7 +75,7 @@ public class InitBuildings : MonoBehaviour
         _Manager.GetComponent<SphereTransition>().InsertGrabListener(building);
         Transform highlightParent = interactableClone.Find("BuildingVisuals/Highlight");
         InsertHighlightModel(highlightParent, buildingClone, _ghost);
-
+        
     }
     void ChangeModel(Transform building, Transform buildingClone)
     {
@@ -112,12 +118,4 @@ public class InitBuildings : MonoBehaviour
         buildingPhysics.GetComponent<ArticulationBody>().immovable = true;
     }
 
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
