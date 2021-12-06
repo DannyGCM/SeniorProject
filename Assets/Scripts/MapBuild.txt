@@ -1,135 +1,114 @@
 // Img Name convention: (BuildingCode/PathName)(index)
-//| IMGNAME | offset | audio | description | name | BUTTONY1 | NEXTIMGNAME1 | BUTTONY2 | NEXTIMGNAME2 | BUTTONY3 | NEXTIMGNAME3
+// tooltip(optional) | IMGNAME | BUTTONY1 | NEXTIMGNAME1 | BUTTONY2 | NEXTIMGNAME2 | BUTTONY3 | NEXTIMGNAME3
 
-N_BASKETBALL, 67.5, , , , 260, N_FH
-N_FH, 112.5, JENKINS, Home_to_men's_and_women's_basketball_teams_and_also_women's_volleyball._FSC_is_a_member_of_the_Sunshine_State_Conference_in_NCAA_Division_II._We_hold_30_national_championships_which_is_the_6th_most_Division_II_championships_in_the_country., George_W._Jenkins_Field_House, 127.5, N_BASKETBALL, 217.5, N_FH_TO_BAND, 322.5, S_SPIVEY_CITRUS, 258.75, S_GREEN, 45, N_FANNIN
-N_FH_TO_BAND, 307.5, , , ,236.25, N_FH, 142.5, S_GREEN, 65, N_CAF_RINK
-S_GREEN, 67.5, GREEN, Mr._George's_Green_is_used_for_campus_events,_concerts,_and_other_student_life_activities_such_as_Winter_Wonderland,_Southern_Takeover,_Meet_the_Greeks,_etc., Mr._George's_Green, 292.5, S_SPIVEY_CITRUS, 90, N_FH_TO_BAND, 225, S_GREEN_CITRUS
-S_SPIVEY_CITRUS, 123.75, , , , 247.5, S_CITRUS_LAB, 127.5, N_FH, 0, S_SPIVEY_EDGE, 180, S_GREEN, 213.75, S_GREEN_CITRUS
-S_CITRUS_LAB, 172.5, BERRY_CITRUS, Recently_renovated_to_accommodate_our_growing_number_of_students_in_the_Biology_program_and_to_modernize_the_laboratory_facilities_for_research_and_laboratory_work_in_Molecular_Biology,_Microbiology,_and_Cell_Biology._Funding_for_these_labs_was_a_generous_gift_from_Dr._Keith_Berend,_a_Florida_Southern_alumni_who_graduated_with_a_Biology_degree_and_went_on_to_medical_school._He_is_an_orthopedic_surgeon_in_Ohio_who_offers_annual_summer_internships_for_two_to_three_Florida_Southern_students_interested_in_pursuing_a_medical_career._These_labs_include_state-of-the_art_equipment_for_analysis_of_cells,_proteins_and_DNA._(a_96-well_plate_reader,_a_nanodrop,_a_real_time_PCR_machine,_a_regular_PCR_machine,_a_gel_imaging_system_and_microscopes_for_imaging_human_and_animal_cells_grown_in_tissue_culture.)_These_labs_offer_us_the_opportunity_to_do_a_wide_range_of_sophisticated_authentic_research_from_microbiology_research_with_bacteria_to_genetics_research_with_cloning_and_tissue_culture_research., Jack._M._Berry_Science_Building, 135, S_SPIVEY_CITRUS, 225, S_GREEN_CITRUS
-S_GREEN_CITRUS, 7.5, , , , 90, S_CAF_UNDER, 0, S_GREEN, 185, S_CITRUS_WESLEY, 270, S_SPIVEY_CITRUS
-S_CAF_UNDER, 157.5, UNDER_CAFE, Premium_deli_meats_make_better_sandwiches_and_our_students_demand_the_best._Florida_Southern's_Healthy_Blend_Deli_is_proud_to_partner_with_Boar's_Head_brand_meats_to_meet_this_challenge._Paninis,_subs,_clubs,_and_more. Fresh_food_prepared_with_fresh_ingredients_–_Freshens_offers_the_best_smoothies_and_frozen_yogurt;_no_artificial_preservatives,_sweeteners_or_flavors,_real_fruits_and_vegetables,_vegan_raw_sugar_and_plant-based_protein! Moc_Mart_provides_a_wide_variety_of_grab_'n_go_convenience_items_just_for_you._We_stock_everything_from_your_drinks,_chips,_and_nuts_to_candy_bars_and_energy_bars., Under_Cafe_Dining_Options, 145, N_CAF_RINK, 50, S_GREEN_CITRUS, 350, S_POOL_CITRUS, 325, S_CAF_MAIL, 230, S_CAF, 260, S_MOCMART
-S_POOL_CITRUS, 67.5, , , , 337.5, S_CITRUS_WESLEY, 67.5, S_CAF_UNDER, 157.5, S_POOL_DECK, 247.5, S_WELLNESS_CITRUS_LAKE
-S_WELLNESS_CITRUS_LAKE, 235, , , , 67.5, S_WELL_DOCK, 337.5, S_POOL_WELL, 245, S_CAF_UNDER
-N_CAF_RINK, 180, , , , 157.5, N_SAFE, 80, N_FH_TO_BAND, 247.5, N_RINK
-S_CAF_WALK, 303.75, , , , 225, N_RINK, 125, S_CAF, 22, S_CAF_DELL
-S_CAF, 217.5, WYNEES, Wynee's_Bistro_is_the_main_dining_hall_on_campus._Use_your_meal_plan_at_Wynee's_Bistro_for_an_affordable_variety_of_nutritious_cuisine_options_including_a_salad_bar_with_over_40_items,_sushi,_pizza,_pasta,_and_home_cooked_favorites._It_is_open_7_am_to_8_pm_seven_days_a_week_with_a_small_break_between_lunch_and_dinner._There_is_also_a_Steak_n_Shake_located_inside._Wynee's_Bistro_has_accommodations_for_various_dietary_restrictions,_such_as_vegan,_vegetarian,_gluten-free,_etc., Wynees_Bistro, 305, S_CAF_STREET, 120, S_CAF_UNDER
-S_CAF_STREET, 37.5, , , , 35, S_CAF_DELL, 270, S_CAF_MAIL, 315, S_BOOKSTORE, 300, S_CAF, 220, S_WELLNESS_LAKE
-S_CAF_DELL, 300, , , , 40, NE_DELL_VOLLEY, 292.5, N_HOL, 120, S_CAF_STREET, 220, S_CAF_WALK
-NE_DELL_VOLLEY, 270, SAND_VOLLEYBALL, , , 40, NE_DELL_PARKING, 215, S_CAF_DELL
-NE_HAPPY_PLACE, 112.5, , , , 22.5, NE_DELL_PARKING, 180, NE_IM, 112.5, NE_TENNIS_PAVILION, 292.5, SE_CS_ADMNS_2, 270, SE_CS_PARKING_2
-NE_TENNIS_PAVILION, 0, , , , 142.5, NE_IM, 56.25, NE_TENNIS_COURTS, 266.25, NE_TENNIS_FENCES
-SE_CS_BB_PARKING, 75, WEINSTEIN, The_Carole_and_Marcus_Weinstein_Computer_Science_Center_was_built_in_2021_and_holds_multiple_different_features_such_as_an_artificial_intelligence_and_robotics_lab,_a_workshop_for_autonomous-vehicle_research,_an_Esports_competition_arena_room,_a_3,000-square-foot_auditorium,_a_food_venue_called_“Fresh_Twists''_and_many_more._As_for_the_computer_science_program,_it_presently_holds_3_concentrations_such_as_Artificial_Intelligence_and_Machine_Learning,_Cybersecurity,_and_Web_and_Cloud_Computing., Carol_and_Marcus_Weinstein_Computer_Science_Center, 292.5, SE_CS_FOOD, 67.5, SE_CS_BB_PARKING_2, 245, SE_BB_LOBBY
-SE_CS_BB_PARKING_2, 90, , , , 0, SE_CS_PARKING_2, 90, NE_IM, 260, SE_CS_BB_PARKING
-NE_TENNIS_BLEACHERS, 120, , , , 215, NE_TENNIS_COURTS, 300, NE_TENNIS_PAVILION, 0, NE_TENNIS_FENCES
-NE_TENNIS_ROAD, 135, , , , 300, NE_DELL_PARKING, 22.5, NE_HOL, 215, NE_TENNIS_FENCES, 135, NE_EDUCATION
-NE_EDUCATION, 90, , , , 0, NE_VOLLEYBALL_STREET, 225, NE_TENNIS_ROAD
-NE_VOLLEYBALL_STREET, 180, , , , 255, NE_EDUCATION, 22.5, N_VBALL, 80, N_GREEK_SOCCER
-N_GREEK_SOCCER, 315, , , , 135, N_SAFE, 22.5, NE_VOLLEYBALL_STREET, 215, N_SOCCER_SOFTBALL_STREET
-N_SOCCER_SOFTBALL_STREET, 280, , , , 22.5 N_GREEK_SOCCER, 50, N_SOCCER, 125, N_SOFTBALL, 195, N_ORDWAY_STREET
-N_BUCK, 251.25, BUCKSTOP, Florida's_first_outdoor_stone-oven_pizza_restaurant,_the_Buckstop_is_a_hit_with_students._Located_in_the_center_of_campus_under_the_great_oak_tree._It_is_a_one-of-a-kind_outdoor_eatery_creating_memorable_lunchtime_get-togethers._The_Buck_Stop_serves_breakfast_sandwiches,_grill_items_and_pizza!, Buck_Stop_Outdoor_Pizza_Oven_and_Grill, 340, N_BUCK_TO_JR, 157.5, NW_MEM, 220, N_ORD_TO_BUCK, 125, S_JR_BUCK
-S_JR_BUCK, 0, , , , 80, N_BUCK, 0, NW_MEM, 202.5, S_JR_POLK, 260, SW_PS_3
-N_BUCK_TO_JR, 251.25, , , , 247.5, N_PLAZA, 71.25, S_SPIVEY_JR, 340, N_FH, 160, N_BUCK, 300, N_FANNIN
-N_ORD_PASS_1, 315, , , , 35, N_ORD_TO_BUCK, 0, N_ROSE_1, 305, NW_ROGERS, 120, NW_AP_TO_BUCK, 215, NW_WATER_1
-N_ORD_TO_BUCK, 33.75, , , , 270, NW_AP_TO_BUCK, 30, N_ORD_7, 180, N_BUCK, 230, NW_MEM
-N_PLAZA, 270, , , , 315, N_SOFTBALL, 95, N_BUCK_TO_JR, 280, N_ORDWAY_STREET, 180, N_ORDWAY_PLAZA
-N_ORDWAY_STREET, 45, , , , 135, N_SOCCER_SOFTBALL_STREET, 315, N_ORD_1, 225, N_PLAZA
-N_ORDWAY_PLAZA, 175, , , , 255, N_PLAZA, 90, N_ORD_7, 165, N_ORD_4
-N_SOCCER, 225, , , , 112.5, N_SOFTBALL, 350, N_SAFE, 80, N_BASKETBALL, 180, N_SOCCER_SOFTBALL_STREET, 250, N_GREEK_SOCCER
-N_SOFTBALL, 243.75, , , , 300, N_SOCCER, 22.5, N_BASKETBALL, 90, N_PLAZA, 195, N_ORDWAY_STREET, 250, N_SOCCER_SOFTBALL_STREET
-N_HOL, 251.25, DELL_MILLER_HOLLIS, Dell_Hall_is_a_traditional_residence_hall_housing_both_male_and_female_students_consisting_of_double-occupancy_rooms_with_furnishings_built_into_the_design_of_the_facility._Dell_is_home_to_many_first-year_students_as_well_as_sophomore_students_who_elect_to_participate_in_The_Second-Year_Experience_(SYE)_program._Completed_in_January_2004,_Miller_Hall_connects_Hollis_Hall_and_Dell_Hall_to_form_a_larger_living_community._You_can_choose_between_single-_and_double-occupancy_rooms_with_a_shared_bath._Miller_Hall_houses_male_and_female_students_on_separate_floors._Hollis_Hall_is_located_on_the_east_side_of_campus_across_the_street_from_the_Publix_Commons._Hollis_is_part_of_a_three-building_upper_class_student_residential_community_that_includes_Miller_Hall_and_Dell_Hall._It_is_a_traditional_style_residence_hall_offering_spacious_single_and_double_rooms_for_residents., Dell_Hall_Miller_Residence_Hall_Hollis_Hall, 320, NE_HOL, 255, N_VBALL, 176.25, N_SAFE, 67.5, S_CAF_DELL
-N_ORD_1, 315, , , , 135, N_ORD_2, 230, NW_LIB_PARKING, 50, N_ORDWAY_STREET
-N_ORD_2, 180, ESPLANADES, , , 185, N_ORD_1, 0, N_ORD_6, 270, N_ORD_3
-N_ORD_3, 258.75, , , , 165, N_ORD_2, 80, N_ORD_4
-N_ORD_4, 55, ORDWAY, The_Lucius_Pond_Ordway_Building_is_one_of_the_thirteen_structures_designed_by_famed_architect_Frank_Lloyd_Wright._It_is_home_to_Wright's_only_theatre-in-the-round._It_houses_the_College's_Testing_office_as_well_as_our_Psychology,_History,_and_Political_Science_programs., Lucius_Pond_Ordway_Building, 64, N_ORD_3, 330, N_ORD_5, 157.5, N_SOFTBALL
-N_ORD_5, 0, , , , 85, N_ORD_4, 235, N_ORD_6
-N_ORD_6, 288.75, , , , 20, N_ORD_5, 112, N_ORD_7, 292.5, N_ORD_2
-N_ORD_7, 318.75, , , , 315, N_ORD_6, 230, N_ROSE_1, 135, N_ORD_TO_BUCK, 30, N_ORDWAY_PLAZA
-N_RINK, 78.75, RINKER, Having_trouble_logging_on_to_the_network?_The_Marshall_and_Vera_Lea_Rinker_Technology_Center_is_home_to_the_campus_Information_Technology_Help_Desk., Marshall_and_Vera_Lea_Rinker_Technology_Center, 350, N_CAF_RINK, 159, S_CAF_WALK
-N_ROSE_1, 285, , , , 280, N_ROSE_2, 45, N_ORD_7, 157.5, N_ORD_PASS_1
-N_ROSE_2, 116.25, ROSE_GARDEN, Designed_in_2013_by_Stephen_Scanniello,_the_garden_mimics_the_FLW_Water_Dome,_with_the_outer_circular_having_exactly_the_same_diameter,_and_the_roses_building_height_toward_to_center,_to_form_a_“dome”_of_roses._The_garden_contains_almost_300_rose_bushes_of_nearly_200_varieties,_many_of_which_are_well_over_100_years_old., Jane_Jenkins_Rose_Garden, 292.5, N_ROSE_1, 67.5, NW_ROGERS
-N_SAFE, 22.5, SAFETY, , , 202.5, N_CAF_RINK, 112.5, N_HOL, 292.5, N_SOCCER, 22.5, N_GREEK_SOCCER
-N_VBALL, 112.5, , , , 270, N_HOL, 157.5, NE_VOLLEYBALL_STREET
-NW_CHATLOS, 348.75, COMM, The_William_F._Chatlos_Communication_Building_houses_all_communication_majors_such_as_Advertising_and_Public_Relations,_Digital_Media,_Interpersonal_and_Organizational_Communication,_and_Multimedia_Journalism,_the_offices_of_The_Southern,_a_recently_redone,_state-of-the-art_broadcast_studio,_FSCTV,_the_offices_of_The_Hiss,_and_there_are_also_two_Mac_Labs_located_in_this_building_for_Communication_students'_use., William_F._Chatlos_Communication_Building, 350, NW_SIMMONS, 75, NW_PRES_OFF_PASS, 170, NW_NURSE
-NW_LIB_SIGN, 130, , , , 292.5, NW_SIMMONS, 190, NW_LIB_PARKING
-NW_LIB_PARKING, 307.5, MCKAY_ARCHIVES, , , 215, NW_LIB_SIGN, 35, N_ORD_1, 112.5, NW_ROUX_ARCHIVES
-NW_NURSE, 7.5, NURSING, The_Joe_K._and_Alberta_Blanton_Nursing_Building_is_home_to_the_College's_School_of_Nursing._Undergraduate_and_graduate_students_learn_in_the_building's_state-of-the-art_patient_simulation_labs_which_contain_10_simulation_mannequins_that_can_hear,_speak,_and_react_physiologically_and_classrooms_equipped_with_the_latest_in_nursing_instructional_technology._These_equipment_allow_students_to_practice_complex_medical_procedures_in_a_controlled_environment._This_is_a_commission_on_Collegiate_Nursing_Education_accredited_program._In_fact,_this_is_a_direct_entry_nursing_program_meaning_they_all_begin_taking_nursing_classes_as_a_first_year_student_and_they_start_clinicals_during_their_sophomore_year._Also,_we_have_a_96%_first-time_National_Council_Licensure_Examination_(NCLEX)_pass_rate_and_100%_of_our_nursing_majors_are_offered_a_job_or_are_accepted_into_graduate_school, Joe_K._And_Alberta_Blanton_Nursing_Building, 5, NW_CHATLOS, 185, SW_BRAN_PARKING, 135, SW_HOLLIS
-NW_SIMMONS, 108.75, SIMMONS_CENTER, The_Simmons_Multicultural_Center_provides_a_variety_of_quality_support_services,_educational_and_entertaining_cultural_awareness_programs,_and_leadership_opportunities_through_student_involvement_and_service._It_hosts_Hispanic_Awareness_Celebrations,_International_and_Cultural_Awareness_events,_Dr._Martin_Luther_King,_J._Day_programs,_Black_History_Month_programs_and_other_diversity_events._Not_only_that,_but_it_also_hosts_different_diversity_and_inclusion_student_organizations_like_the_Multicultural_Student_Council,_Black_Student_Union,_Asian_Pacific_Islander_Student_Association,_etc._Diversity,_equity_and_inclusion_council_meet_on_a_monthly_basis_and_represents_a_collaboration_between_students,_faculty,_and_staff_to_provide_a_comprehensive_approach_to_diversity,_inclusivity,_access,_and_equity,_which_will_embrace_all_FSC_students_who_identify_as_Black,_Indigenous_or_People_of_Color,_and_this_is_all_overseen_by_Wilhelmina_Tribble_who_is_the_chief_diversity_officer_and_senior_advisor_to_the_president._Moreover,_the_Simmons_Center_manages_affairs_for_international_students_which_include_securing_proper_documentation,_cultural_adjustments,_and_other_concerns., Evett_L._Simmons_Center_for_Multicultural_Awareness, 292.5, NW_CHATLOS, 110, NW_LIB_SIGN
-NW_ROUX_ARCHIVES, 260, , , , 67.5, NW_ROUX_ENTRANCE, 247.5, NW_LIB_PARKING
-NW_ROUX_ENTRANCE, 22.5, , , , 22.5, NW_ROUX, 112.5, NW_WATER_2, 315, NW_ROUX_ARCHIVES, 270, NW_WATER_3
-NW_AP_TO_BUCK, 60, , , , 295, SW_AP_PASS_1, 55, N_ORD_PASS_1, 112.5, N_ORD_TO_BUCK, 155, NW_MEM, 235, SW_PS_2
-NW_MEM, 90, , , , 350, AP_TO_BUCK, 157.5, N_BUCK, 202.5, S_JR_BUCK, 90, N_ORD_TO_BUCK
-NW_PRES_OFF_PASS, 108.75, , , , 345, NW_CHATLOS, 240, NW_WATER_3, 275, NW_REG_OFF
-NW_REG_OFF, 262.5, , , , 250, NW_PRES_OFF_PASS, 5, NW_REG_R
-NW_REG_R, 71.25, , , , 290, SW_HOLLIS, 345, NW_REG_OFF, 105, NW_WATER_1
-NW_ROGERS, 157.5, ROGERS, The_office_of_Career_services_offers_multiple_resources_such_as_resume_building,_“Moc”_interviewing,_individual_career_counseling,_networking_opportunities,_etc._Specialists_are_also_available_to_help_students_who_are_interested_in_a_career_in_Business_or_STEM._Most_majors_require_an_internship._You_have_the_help_of_your_advisor_in_your_department_as_well_as_the_career_center_in_finding_the_best_internship_opportunity_for_you._We_have_an_online_platform,_Handshake,_that_matches_students_looking_for_internships_and_employment_post-graduation_with_employers_looking_for_students_to_intern_and_hire._Each_year_they_host_a_Career_and_Internship_Expo_as_well_as_a_Law_School_Caravan._Resources_are_available_to_all_alumni_of_FSC._Partnership_with_SGA_led_to_the_creation_of_a_virtual_interview_room_for_students._There_is_also_a_writing_center_which_is_open_year-round_for_all_students_and_its_goal_is_to_work_with_you_in_any_stage_of_the_writing_process_like_brainstorming,_rough_drafts,_editing_or_finalizing._They_can_also_help_with_any_written_work_like_essayes,_research_boards,_lab_reports,_etc., Carlisle_Rogers_Building_Student_Center, 330, N_ORD_PASS_1, 292.5, N_ROSE_2, 67.5, NW_ROGERS_TUTUS, 90, NW_SNAKEPIT
-NW_ROGERS_TUTUS, 251.25, , , , 337.5, NW_ROGERS, 90, NW_WATER_2
-NW_ROUX, 90, LIBRARY, Roux_library_is_the_main_library_on_campus_which_has_study_areas_for_group_and_individual_study._We_have_over_half_a_million_resources_both_in_print_and_digital._Students_have_free_access_to_online_journals_and_databases._There_is_also_an_inter-library_loan_system,_which_allows_us_to_borrow_books_from_other_Libraries._And_if_we_don't_have_a_resource_you_need,_the_library_will_obtain_it_for_you._Moreover,_all_librarians_have_their_Masters_in_Library_Science_and_are_there_as_a_great_resource_for_students_and_are_eager_to_help._They_will_meet_with_students_for_help_with_resources_and_class_projects._Also,_an_interesting_thing_about_this_library_is_that_during_finals,_they_bring_in_pizza,_massage_therapists,_coloring_books,_etc._The_library_is_also_open_Sunday_through_Thursday_until_1:00_AM., Roux_Library, 265, NW_ROUX_ENTRANCE, 225, NW_TUTUS
-NW_SNAKEPIT, 0, SNAKE_PIT, , , 112.2, NW_ROGERS
-NW_TUTUS, 90, TUTUS, Tutu's_Cyber_Cafe,_featuring_Starbucks_Coffee_products_and_Uncle_Nick's_bagels,_is_located_inside_the_Roux_Library._With_great_views_of_the_Frank_Lloyd_Wright_Water_Dome,_students_can_lounge_in_the_large_chairs_or_on_the_couches,_watch_TV_on_the_flat_screen_or_surf_the_internet_on_the_computers_and_enjoy_the_freshly_baked_goodies,_salads,_soups_or_sandwiches._In_fact,_this_space_was_created_to_give_students_additional_space_to_relax,_socialize,_or_study._There_are_printers_located_in_the_library,_tutu's_and_Rinker_and_each_semester,_every_student_gets_a_$20_printing_stipend._On_campus,_we_have_a_7:1_Student_to_Computer_Ratio._Tutu's_also_have_monitors_that_allow_students_to_link_up_to_four_computers_onto_one_screen_and_two_semi-soundproof_study_rooms._Also,_as_a_reminder,_all_dining_options_on_campus_are_included_in_the_meal_plan., Tutu's_Cyber_Cafe, 337.5, NW_ROUX, 235, NW_WATER_2
-NW_WATER_1, 266.25, WATER_DOME, The_Water_Dome_is_the_largest_water_feature_ever_designed_by_famed_architect_Frank_Lloyd_Wright_in_1948._In_2007,_with_new_technology_and_a_full_restoration,_FLW's_vision_was_realized._When_it's_on_at_full_strength,_the_jets_reach_the_height_of_Roux_Library._We_also_have_a_unique_tradition_for_students:_Senior_Splash!_So,_right_before_graduation,_the_senior_class_gets_to_swim_in_the_Water_Dome._And_to_prove_how_important_this_water_feature_is,_if_you_swim_or_go_into_the_Water_Dome,_you_will_get_a_$5000_fine_as_it_is_a_national_historic_landmark., Water_Dome, 0, N_ORD_PASS_1, 115, NW_REG_R, 260, NW_WATER_2
-NW_WATER_2, 270, GRILL_MASTER_BETWEEN_TUTUS_AND_ROGERS, Grill_Master,_located_next_to_the_entrance_to_TUTU's_by_the_Roux_Library,_offers_a_quick_and_easy_way_to_grab_a_hot_bite_to_eat_while_at_the_library._The_Grill_Master_serves_freshly_grilled_hamburgers,_hot_dogs,_grilled_chicken_sandwiches,_beans_&_rice,_mahi_mahi,_and_more., Grill_Master, 55, NW_WATER_1, 270, NW_TUTUS, 195, NW_ROUX_ENTRANCE, 300, NW_ROGERS_TUTUS
-NW_WATER_3, 135, , , , 90, NW_PRES_OFF_PASS, 180, NW_ROUX_ENTRANCE
-SW_BRAN_1, 270, , , , 198.75, SW_BRAN_2, 157.5, SW_AUDITORIUM_LOBBY, 45, SW_POLK_BRAN, 270, SW_BRANSCOMB_PS
-SW_BRAN_2, 315, BRANSCOMB_AUDITORIUM, The_Spivey_Fine_Arts_Center_included_different_art_majors_such_as_Art_Education,_Art_History_and_Museum_Studies,_Film,_Graphic_Design,_Interactive_and_Game_Design,_Studio_Art,_Music,_Theatre,_and_Musical_Theatre._All_FSC_students_can_support_the_fine_arts_department_by_visiting_the_Melvin_Art_Gallery_which_displays_work_from_internationally-recognized_artists_and_FSC_students_throughout_the_year,_by_attending_plays_put_on_by_the_theatre_department,_or_attending_concerts_put_on_by_the_music_department._In_fact,_the_theatre_department_puts_on_two_mainstage_plays_and_two_musicals_each_school_year_and_even_non-majors_can_participate_in_certain_performances._Moreover,_Branscomb_auditorium_is_where_semesterly_convocation_is_held_and_can_hold_the_entire_student_body_of_approximately_2, 600_undergrad_students._An_interesting_fact_is_that_we_have_had_many_known_speakers_come_to_FSC_such_as_the_founder_of_Tom's_Shoes,_Guy_Harvey,_Nicholas_Spark,_Sarah_Thomas,_etc., Ludd_M._Spivey_Fine_Arts_Center_and_Branscomb_Memorial_Auditorium, 45, SW_BRAN_1, 67.5, SW_AUDITORIUM_LOBBY, 300, SW_AP_HOLLIS, 225, SW_DANCE_1, 180, SW_THEA
-SW_AP_HOLLIS, 290, , , , 292.5, SW_HOLLIS, 112.5, SW_BRAN_2, 180, SW_BRAN_PARKING
-SW_BRAN_PARKING, 176.25, , , , 355, SW_DANCE_1, 175, NW_NURSE, 235, SW_AP_HOLLIS
-SW_CHRIST_1, 105, , , , 100, SW_DANCE_1, 280, SW_CHRIST_WATER, 345, SW_CHRISTOVERSON
-SW_CHRIST_WATER, 18.75, CHRISTOVERSON, The_Christoverson_Humanities_building_holds_multiple_humanities_classes_such_as_English,_Foreigh_Languages,_Art_History,_etc._Most_incoming_students_will_have_at_least_one_class_here_during_their_time_at_FSC_either_for_their_major,_General_Education_requirements_or_for_their_Bachelors., Dr._Marcene_H._And_Robert_E._Christoverson_Humanities_Building, 20, SW_CHRIST_1, 90, SW_PRES_HOUSE
-SW_DANCE_1, 232.5, DANCE_STUDIO, The_beautiful_Wynee_Warden_Dance_Studio_houses_the_College's_bachelor's_degree_programs_in_dance._In_fact,_it_offers_majors_in_Dance_Performance_and_Choreography_and_Dance_Studies_as_well_as_a_dance_minor._Dancers_put_on_performances_every_semester_which_are_free_for_FSC_students_to_attend._Also,_it's_soaring_glass_half-rotunda_offers_our_dancers_a_stunning_lake_view_as_they_rehearse._Moreover,_students_have_the_opportunity_to_work_with_Florida_Dance_Theatre,_a_professional_company_located_right_here_in_Lakeland., Wynee_Warden_Dance_Studio, 41.25, SW_CHRIST_1, 320, SW_BRAN_2, 225, SW_BRAN_PARKING
-SW_POLK_1, 292.5, , , , 157.5, SW_POLK_2, 247.5, SW_PS_3, 315, S_JR_POLK
-SW_POLK_2, 22.5, , , , 67.5, SW_POLK_1, 247.5, SW_POLK_BRAN, 337.5, SW_PS_1
-SW_POLK_BRAN, 292.5, , , , 45, SW_POLK_2, 330, SW_BRANSCOMB_PS, 240, SW_BRAN_1
-SW_BRANSCOMB_PS, 0, , , , 350, SW_APP_PASS_1, 35, SW_PS_1, 180, SW_POLK_BRAN, 235, SW_BRAN_1
-SW_THEA, 202.5, , , , 225, SW_BRAN_2
-SW_AP, 90, ANNIE_PFEIFFER, Frank_Lloyd_Wright's_first_and_most_iconic_building_designed_for_Florida_Southern_College,_the_Annie_Pfeiffer_Chapel_was_dedicated_in_1941._Despite_being_nearly_75_years_old,_the_Annie_Pfeiffer_Chapel_remains_a_bold,_vibrant_space_and_still_stands_out_as_one_of_the_most_beautiful_college_chapels_in_the_nation._It_is_also_the_largest_single-site_collection_of_Frank_Lloyd_Wright_architecture_in_the_world._Florida_Southern_College_campus_has_13_structures_designed_by_Frank_Lloyd_Wright_and_includes_chapel_service_and_Catholic_Mass_held_every_Sunday._Frank_Lloyd_Wright_tours_are_conducted_daily_out_of_the_Sharp_Tourism_Center_and_are_free_to_FSC_students_and_staff._Moreover,_around_25, 000_to_30, 000_people_come_to_FSC_each_year_for_the_Frank_Lloyd_Wright_tours., Annie_Pfeiffer_Chapel_and_Frank_Lloyd_Wright_Architecture, 100, SW_AP_PASS_1
-SW_AP_PASS_1, 210, , , , 22.5, SW_BRANSCOMB_PS, 140, SW_HOLLIS, 270, NW_AP_TO_BUCK, 330, SW_AP_PASS_2
-SW_AP_PASS_2, 255, , , , 90, SW_PS_1, 250, SW_AP_PASS_1
-SW_AUDITORIUM_LOBBY, 270, , , , 315, SW_POLK_1, 220, SW_POLK_2
-SW_CHRISTOVERSON, 225, , , , 290, SW_CHRIST_1
-SW_HOLLIS, 270, HOLLIS_ROOM, The_Hollis_Room_was_originally_the_E.T._Roux_Library._As_the_College_outgrew_the_space,_it_served_as_a_museum_and_gift_shop_for_visitors_interested_in_the_College's_Frank_Lloyd_Wright_architecture._It_is_now_used_for_Student_Government_Associations_(SGA)_meetings,_lectures,_and_special_events,_though_it_is_still_a_showplace_of_Wright's_furnishings,_sketches,_models,_and_other_works., The_Hollis_Room, 225, NW_NURSE, 110, SW_AP_HOLLIS, 0, SW_AP_PASS_1, 315, NW_REG_R
-SW_PS_1, 243.75, , , , 247.5, SW_AP_PASS_2, 50, SW_POLK_2, 325, SW_PS_3, 170, SW_BRANSCOMB_PS
-SW_PS_2, 232.5, , , , 22.5, SW_PS_3, 230, NW_AP_TO_BUCK
-SW_PS_3, 225, , , , 10, SW_POLK_1, 95, SW_PS_1, 185, SW_PS_2, 270, S_JR_BUCK
-SW_PRES_HOUSE, 112.5, PRESIDENTS_HOUSE, This_is_the_house_of_FSC_president,_Anne_Kerr._She_has_been_our_president_since_2004_and_has_given_a_lot_for_Florida_Southern_College._She_attends_various_school_events,_invests_herself_in_campus_life_and_has_helped_bring_numerous_new_buildings_to_campus._Also,_speaking_of_the_new_buildings,_none_of_the_funding_for_new_buildings_or_campus_improvements_is_taken_from_student_tuition_dollars_and_is_rather_given_from_generous_communities,_our_supportive_alumni,_and_valuable_family_contributors._These_new_buildings_or_campus_improvements_include_the_Climbing_Wall_in_Wellness,_Outdoor_Classroom_by_Rogers,_new_Education_and_Computer_Science_building,_and_many_others., President's_Residence, 20, SW_CHRIST_WATER, 190, S_NIC_WES
-S_CAF_MAIL, 200, MAIL_ROOM, , , 270, S_CAF_STREET, 67.5, S_POOL_1, 157.5, S_CAF_UNDER
-S_CITRUS_WESLEY, 225, , , , 22.5, S_WESLEY_DECK, 315, S_POOL_CITRUS, 230, S_GREEN_CITRUS
-S_DOCK, 315, GENERAL_INFO_LAKELAND_MOCK_DOCKS, , , 315, S_WELLNESS_CITRUS_LAKE, 247.5, S_NIC_WES, 45, SE_WELLNESS_LAKE
-S_JR_MED, 22.5, , , , 292.5, S_JR_POLK, 112.5, S_SPIVEY_EDGE, 202.5, S_MED
-S_JR_POLK, 292.5, , , , 325, S_JR_BUCK, 67.5, S_JR_MED, 150, SW_POLK_1, 247.5, SW_PS_3
-S_MED, 303.75, , , , 305, S_JR_MED
-S_POOL_1, 225, , , , 245, S_CAF_MAIL, 30, S_POOL_2
-S_POOL_2, 270, , , , 135, S_POOL_WELL, 270, S_POOL_1, 0, SE_WELLNESS_LAKE
-S_POOL_DECK, 258.75, SWIMMING_POOL, The_swimming_pool_at_Florida_Southern_College_is_open_to_all_FSC_students_and_is_also_where_our_FSC_swim_team_practices_and_competes., Swimming_Pool, 70, S_POOL_WELL, 180, S_POOL_CITRUS
-S_POOL_WELL, 270, , , , 315, S_POOL_2, 75, S_WELLNESS_2, 135, S_WELLNESS_CITRUS_LAKE, 247.5, S_POOL_DECK
-S_SPIVEY_JR, 67.5, JR_AND_SPIVEY, Joseph_Reynolds_and_Allan_Spivey_Halls_are_two_of_our_first_year_residence_hall_options._Spivey_is_an_all-male_residence_hall_and_JR_is_an_all-female_residence_hall., Allan_Spivey_Hall_and_Joseph_Reynolds_Hall, 225, S_SPIVEY_EDGE, 67.5, N_BUCK_TO_JR
-S_WELL_DOCK, 0, , , , 0, S_WELLNESS_CITRUS_LAKE, 180, S_DOCK
-S_WESLEY_DECK, 135, , , , 180, S_CITRUS_WESLEY
-S_BOOKSTORE, 315, BOOKSTORE, The_FSC_bookstore_is_Barnes_and_Noble_affiliated_and_is_where_you_can_purchase_all_of_your_FSC_gear_as_well_as_textbooks_for_classes._We_have_a_price_match_program:_for_the_first_week_of_classes,_we_will_match_the_price_of_any_in_stock_text_book_on_Amazon/Barnes_and_Noble._For_the_rest_of_the_year,_the_bookstore_will_refund_you_the_difference_if_you_find_a_lower_price_on_those_sites., Barnes_and_Noble_Bookstore, 45, S_CAF_STREET, 225, S_MOCMART
-S_MOCMART, 90, , , , 0, S_CAF_UNDER, 190, S_BOOKSTORE
-S_NIC_WES, 315, NICOLAS_AND_WESLEY, These_2_buildings_are_Nicholas_and_Wesley_Hall_and_they_are_the_2_of_our_newest_on_campus_residence_halls_which_opened_in_2009._These_dorms_are_for_first-year_students,_is_co-ed_by_floor_and_both_residence_halls_share_a_laundry_facility_located_at_the_bottom_of_Wesley._Both_contain_single_and_double_rooms._There_is_a_lounge_at_the_end_of_each_floor,_with_a_kitchenette_in_the_fourth_floor_lounge._And_finally,_76%_of_all_the_rooms_have_a_view_of_the_lake.,
-Nicholas_Hall_and_Wesley_Hall, 45, S_DOCK, 225, SW_PRES_HOUSE
-S_WELLNESS_1, 315, WELLNESS_CENTER, The_fitness_center_consists_of_a_weighted_machinery_and_equipment_room,_free_weight_and_cardio_room,_and_a_group_exercise_studio._All_equipment_is_kept_up_to_date_and_constantly_replaced_for_students._The_Wellness_Center_offers_group_exercise_classes_throughout_the_year,_as_well_as_outdoor_recreation_trips_such_as_paddleboarding,_hiking,_snorkeling,_paintballing,_and_horseback_riding._Wanting_to_find_work_on_campus?_The_Wellness_Center_is_the_largest_student_employer_on_campus._Students_can_find_work_as_lifeguards,_fitness_attendants,_personal_trainers,_and_group_exercise_instructors._There_is_also_the_Discover_Florida_Program_in_the_Center_for_Student_Involvement._This_program_offers_reduced_price_trips_to_Magic_Kingdom,_Halloween_Horror_Nights,_Busch_Gardens,_and_the_Kennedy_Space_Center., Nina_B._Hollis_Wellness_Center, 325, S_WELLNESS_2
-S_WELLNESS_2, 270, , , , 250, S_POOL_WELL, 90, S_WELLNESS_1
-SE_CS_ADMNS_1, 180, , , , 270, SE_CS_BB_LAKE, 180, SE_CS_ADMNS_2, 75, SE_DELL_LAKE
-SE_CS_ADMNS_2, 337.5, , , , 112.5, SE_CS_CUBE_2, 235, SE_ADMISSIONS_LOBBY, 337.5, SE_CS_PARKING_2, 157.5, SE_CS_ADMNS_1, 22.5, SE_CS_FOOD
-SE_CS_PARKING_2, 337.5, , , , 0, NE_IM, 315, NE_HAPPY_PLACE, 80, SE_CS_BB_PARKING_2, 180, SE_CS_ADMNS_2
-SE_ADMISSIONS_LOBBY, 180, , , , 215, SE_CS_ADMNS_2
-SE_BB_CORRIDOR, 247.5, BECKER, The_Becker_Business_Building_represents_the_Barney_Barnett_School_of_Business_and_Free_Enterprise._This_building_opened_in_Fall_2015_and_was_designed_by_the_head_of_architecture_at_Yale,_who_studied_Frank_Lloyd_Wright_designs_and_incorporated_many_of_his_elements_in_the_design._This_program_is_AACSB_(Association_to_Advance_Collegiate_Schools_of_Business)_accredited_which_is_only_given_to_the_top_5%_of_business_schools_in_the_world._It_offers_5_different_majors:_Accounting,_Business_Administration,_Economics_and_Finance,_and_Sport_Business_Management._It_is_also_home_to_our_MBA_program_of_4_+_1_MBA_option_for_FSC_students_and_the_FSC's_online_MBA_program_is_ranked_among_the_top_100_in_the_nation._Our_program_also_has_12_Bloomberg_terminals_that_are_free_for_students_to_use_and_we_are_one_of_few_schools_to_have_the_same_technology_as_the_New_York_Stock_Exchange., Bill_and_Mary_Ann_Becker_Business_Building, 325, SE_BB_CLASS, 150, SE_BB_LOBBY
-SE_BB_CLASS, 225, BECKER_CLASSROOM, This_is_a_typical_Florida_Southern_classroom._The_way_the_room_is_oriented_is_conducive_to_engaged_learning_and_discussion-based_classes._We_try_to_stay_away_from_lecture-based_teaching_at_FSC._At_Florida_Southern_College,_we_have_54_different_academic_majors_including_a_self-design_major,_41_minors,_and_13_pre-professional_programs._Between_all_of_our_programs_over_3,500_students_attend_Florida_Southern_and_the_average_class_size_is_20_students_with_14:1_student_to_faculty_ratio._There_are_no_teaching_assistants_or_graduate_assistants_so_each_student_has_the_opportunity_to_build_a_much_stronger_relationship_with_their_professors._You_can_easily_contact_the_professors_by_emailing,_calling_or_attending_to_their_office_hours._Also,_each_student_has_an_academic_advisor_who_will_check_up_with_you_a_few_times_during_the_semester_to_see_how_you_are_doing_and_to_answer_any_questions_you_may_have_concerning_academics., Becker_Classroom, 275, SE_BB_CORRIDOR
-SE_BB_LAKE, 225, , , , 202.5, SE_BB_LOBBY, 135, SE_CS_BB_LAKE
-SE_BB_LOBBY, 247.5, , , , 292.5, SE_BB_CORRIDOR, 225, SE_CS_BB_PARKING, 90, SE_CS_BB_LAKE
-SE_CS_FOOD, 67.5, , , , 140, SE_CS_BB_PARKING, 337.5, SE_CS_ADMNS_2, 180, SE_CS_CUBE
-SE_CS_CLUB, 135, , , , 40, SE_CS_CUBE_2, 50, SE_CS_FOOD
-SE_CS_CUBE_2, 200, , , , 225, SE_CS_FOOD, 100, SE_CS_ADMNS_2, 250, SE_CS_CLUB
-SE_WELLNESS_LAKE, 112.5, , , , 15, S_DOCK, 100, S_CAF_STREET, 215, SE_DELL_LAKE
-NE_DELL_PARKING, 165, , , , 90, NE_DELL_VOLLEY, 251.25, NE_HAPPY_PLACE, 165, NE_TENNIS_ROAD, 345, SE_DELL_LAKE
-NE_HOL, 213.75, , , , 300, NE_TENNIS_ROAD, 120, N_HOL
-NE_IM, 0, , , , 225, NE_HAPPY_PLACE, 330, NE_TENNIS_PAVILION
-NE_TENNIS_COURTS, 30, , , , 300, NE_TENNIS_BLEACHERS, 281.25, NE_TENNIS_PAVILION
-NE_TENNIS_FENCES, 45, , , , 135, NE_TENNIS_PAVILION, 315, NE_TENNIS_ROAD
-SE_CS_BB_LAKE, 112.5, , , , 30, SE_CS_ADMNS, 135, SE_BB_LOBBY
-S_SPIVEY_EDGE, 63.75, , , , 315, S_SPIVEY_CITRUS, 198.75, S_SPIVEY_JR, 157.5, S_JR_MED
-S_WESLEY_DECK, 180, , , , 180, S_CITRUS_WESLEY, 315, S_DOCK
-N_FANNIN, 80, , , , 225, N_FH, 280, N_BUCK_TO_JR
-SE_DELL_LAKE, 90, , , , 0, SE_WELLNESS_LAKE, 180, SE_CS_ADMNS_1, 90, NE_DELL_PARKING
+N_BASKETBALL, 67.5, , , 260, N_FH_2
+N_FH, 112.5, JENKINS, , 127.5, N_BASKETBALL, 217.5, N_FH_TO_BAND, 288.75, N_FH_2, 322.5, S_SPIVEY_CITRUS, 258.75, S_GREEN, 270, S_GREEN_CITRUS
+N_FH_TO_BAND, 307.5, , , 236.25, N_FH, 180, N_FH_2, 142.5, S_GREEN, 65, N_CAF_RINK
+S_GREEN, 67.5, GREEN, , 22.5, N_FH_2, 292.5, S_SPIVEY_CITRUS, 90, N_FH_TO_BAND, 225, S_GREEN_CITRUS
+S_SPIVEY_CITRUS, 123.75, , , 247.5, S_CITRUS_LAB, 127.5, N_FH, 0, S_SPIVEY_EDGE, 180, S_GREEN, 213.75, S_GREEN_CITRUS
+S_CITRUS_LAB, 172.5, BERRY_CITRUS, , 135, S_SPIVEY_CITRUS, 225, S_GREEN_CITRUS
+S_GREEN_CITRUS, 7.5, , , 90, S_CAF_UNDER, 0, S_GREEN, 185, S_CITRUS_WESLEY, 270, S_SPIVEY_CITRUS
+S_CAF_UNDER, 157.5, UNDER_CAFE, , 145, N_CAF_RINK, 50, S_GREEN_CITRUS, 350, S_WELL_DOCK, 325, S_CAF_MAIL, 230, S_CAF, 260, S_MOCMART
+N_CAF_RINK, 180, , , 157.5, N_SAFE, 80, N_FH_TO_BAND, 247.5, N_RINK, 258.75, S_CAF_WALK
+S_CAF_WALK, 303.75, , , 225, N_RINK, 125, S_CAF, 22, S_CAF_DELL
+S_CAF, 217.5, WYNEES, , 305, S_CAF_STREET, 120, S_CAF_UNDER
+S_CAF_STREET, 37.5, , , 35, S_CAF_DELL, 270, S_CAF_MAIL, 315, S_BOOKSTORE, 300, S_CAF
+S_CAF_DELL, 300, , , 40, NE_DELL_VOLLEY, 290, N_HOL, 120, S_CAF_STREET, 220, S_CAF_WALK
+NE_DELL_VOLLEY, 270, SAND_VOLLEYBALL, , 45, NE_DELL_PARKING, 225, S_CAF_DELL
+NE_HAPPY_PLACE, 112.5, , , 22.5, NE_DELL_PARKING, 180, NE_IM, 112.5, NE_TENNIS_PAVILION, 292.5, SE_CS_ADMNS_2, 270, SE_CS_PARKING_2
+NE_TENNIS_PAVILION, 0, , , 142.5, NE_IM, 56.25, NE_TENNIS_COURTS, 266.25, NE_TENNIS_FENCES
+SE_CS_BB_PARKING, 75, WEINSTEIN, , 292.5, SE_CS_FOOD, 67.5, SE_CS_BB_PARKING_2, 315, SE_CS_PARKING_3
+SE_CS_BB_PARKING_2, 90, , , 26.25, NE_HAPPY_PLACE, 0, SE_CS_PARKING_2
+NE_TENNIS_BLEACHERS, 307.5, , , 215, NE_TENNIS_COURTS, 300, NE_TENNIS_PAVILION, 7.5, NE_TENNIS_FENCES
+NE_TENNIS_ROAD, 292.5, , , 300, NE_DELL_PARKING, 22.5, NE_HOL, 215, NE_TENNIS_FENCES
+N_BUCK, 251.25, BUCKSTOP, , 340, N_BUCK_TO_JR, 157.5, NW_MEM, 220, N_ORD_TO_BUCK, 125, SW_PS_3
+N_BUCK_TO_JR, 251.25, , , 247.5, N_PLAZA, 71.25, S_SPIVEY_JR, 340, N_FH, 160, N_BUCK
+N_ORD_PASS_1, 33.75, , , 35, N_ORD_TO_BUCK, 0, N_ROSE_1, 305, NW_ROGERS, 120, NW_AP_TO_BUCK, 215, NW_WATER_1
+N_ORD_TO_BUCK, 33.75, , , 270, NW_AP_TO_BUCK, 30, N_ORD_7, 180, N_BUCK, 90, N_PLAZA, 230, NW_MEM
+N_PLAZA, 270, , , 315, N_SOFTBALL, 95, N_BUCK_TO_JR, 270, N_ORD_4, 180, N_ORD_7
+N_SOCCER, 225, , , 112.5, N_SOFTBALL, 350, N_SAFE, 80, N_BASKETBALL
+N_SOFTBALL, 243.75, , , 300, N_SOCCER, 22.5, N_BASKETBALL, 90, N_PLAZA, 135, N_ORD_4
+N_HOL, 251.25, DELL_MILLER_HOLLIS, , 320, NE_HOL, 255, N_VBALL, 176.25, N_SAFE, 67.5, S_CAF_DELL
+N_ORD_1, 315, , , 135, N_ORD_2, 230, NW_LIB_PARKING
+N_ORD_2, 180.0, ESPLANADES, , 185, N_ORD_1, 0, N_ORD_6, 170, N_ORD_3
+N_ORD_3, 258.75, , , 165, N_ORD_2, 80, N_ORD_4
+N_ORD_4, 0, ORDWAY, , 64, N_ORD_3, 330, N_ORD_5, 157.5, N_SOFTBALL
+N_ORD_5, 0, , , 85, N_ORD_4, 235, N_ORD_6
+N_ORD_6, 288.75, , , 20, N_ORD_5, 112, N_ORD_7, 292.5, N_ORD_2, 180, N_ROSE_2
+N_ORD_7, 318.75, , , 315, N_ORD_6, 230, N_ROSE_1, 135, N_ORD_TO_BUCK, 202.5, N_ORD_PASS_1
+N_RINK, 78.75, RINKER, , 350, N_CAF_RINK, 159, S_CAF_DELL
+N_ROSE_1, 285, , , 280, N_ROSE_2, 45, N_ORD_7, 157.5, N_ORD_PASS_1
+N_ROSE_2, 116.25, ROSE_GARDEN, , 292.5, N_ROSE_1, 67.5, NW_ROGERS
+N_SAFE, 22.5, SAFETY, , 202.5, N_CAF_RINK, 112.5, N_HOL, 292.5, N_SOCCER
+N_VBALL, 112.5, , , 270, N_HOL
+NW_CHATLOS, 348.75, COMM, , 350, NW_SIMMONS, 75, NW_PRES_OFF_PASS, 170, NW_NURSE
+NW_LIB_SIGN, 18.75, , , 292.5, NW_SIMMONS, 190, NW_LIB_PARKING
+NW_LIB_PARKING, 307.5, MCKAY_ARCHIVES, , 215, NW_LIB_SIGN, 35, N_ORD_1, 112.5, NW_ROUX
+NW_NURSE, 7.5, NURSING, , 5, NW_CHATLOS, 185, SW_BRAN_PARKING, 135, SW_HOLLIS
+NW_SIMMONS, 108.75, SIMMONS_CENTER, , 292.5, NW_CHATLOS, 110, NW_LIB_SIGN
+NW_AP_TO_BUCK, 60, , , 295, SW_AP_PASS_1, 55, N_ORD_PASS_1, 112.5, N_ORD_TO_BUCK, , , 155, NW_MEM, 235, SW_PS_2
+NW_MEM, 90, , , 5, AP_TO_BUCK, 157.5, N_BUCK
+NW_PRES_OFF_PASS, 108.75, , , 360, NW_CHATLOS, 240, NW_WATER_3, 270, NW_REG_OFF
+NW_REG_OFF, 262.5, , , 250, NW_PRES_OFF_PASS, 5, NW_REG_R
+NW_REG_R, 71.25, , , 290, SW_HOLLIS, 360, NW_REG_OFF, 105, NW_WATER_1
+NW_ROGERS, 157.5, ROGERS, , 330, N_ORD_PASS_1, 292.5, N_ROSE_2, 67.5, NW_ROGERS_TUTUS, 90, NW_SNAKEPIT
+NW_ROGERS_TUTUS, 251.25, , , 337.5, NW_ROGERS, 90, NW_WATER_2, 135, NW_TUTUS
+NW_ROUX, 90, LIBRARY, , 270, NW_WATER_2, 225, NW_TUTUS
+NW_SNAKEPIT, 0, SNAKE_PIT, , 112.2, NW_ROGERS
+NW_TUTUS, 90, TUTUS, , 11.25, NW_ROUX, 235, NW_WATER_2
+NW_WATER_1, 266.25, WATER_DOME, , 0, N_ORD_PASS_1, 115, NW_REG_R, 260, NW_WATER_2, 270, NW_ROGERS_TUTUS
+NW_WATER_2, 270, GRILL_MASTER_BETWEEN_TUTUS_AND_ROGERS, , 55, NW_WATER_1, 270, NW_TUTUS, 135, NW_WATER_3, 195, NW_ROUX, 300, NW_ROGERS_TUTUS
+NW_WATER_3, 135, , , 251.25, NW_WATER_1, 90, NW_PRES_OFF_PASS, 45, NW_CHATLOS, , , 180, NW_ROUX, 202.5, NW_WATER_2
+SW_BRAN_1, 270, , , 198.75, SW_BRAN_2, 157.5, SW_AUDITORIUM_LOBBY, 45, SW_POLK_BRAN, 270, SW_AP_PASS_1
+SW_BRAN_2, 315, BRANSCOMB_AUDITORIUM, , 25, SW_BRAN_1, 67.5, SW_AUDITORIUM_LOBBY, 300, SW_HOLLIS, 225, SW_DANCE_1, 180, SW_THEA
+SW_BRAN_PARKING, 176.25, , , 355, SW_DANCE_1, 175, NW_NURSE
+SW_CHRIST_1, 105, , , 100, SW_DANCE_1, 280, SW_CHRIST_WATER
+SW_CHRIST_WATER, 18.75, CHRISTOVERSON, , 20, SW_CHRIST_1, 90, SW_PRES_HOUSE
+SW_DANCE_1, 232.5, DANCE_STUDIO, , 41.25, SW_CHRIST_1, 320, SW_BRAN_2, 225, SW_BRAN_PARKING
+SW_POLK_1, 251, , , 157.5, SW_POLK_2, 247.5, SW_PS_3
+SW_POLK_2, , , , 67.5, SW_POLK_1, 247.5, SW_POLK_BRAN, 337.5, SW_PS_1
+SW_POLK_BRAN, , , , 45, SW_POLK_2, 330, SW_AP_PASS_1, 240, SW_BRAN_1
+SW_THEA, , , , 225, SW_BRAN_2
+SW_AP, , ANNIE_PFEIFFER, , 100, SW_AP_PASS_1
+SW_AP_PASS_1, , , , 22.5, SW_POLK_BRAN, 140, SW_HOLLIS, 270, NW_AP_TO_BUCK, 330, SW_AP_PASS_2
+SW_AP_PASS_2, , , , 90, SW_PS_1, 250, SW_AP_PASS_1
+SW_AUDITORIUM_LOBBY, , , , 315, SW_POLK_1, 220, SW_POLK_2
+SW_CHRISTOVERSON, , , , 290, SW_CHRIST_1
+SW_HOLLIS, , HOLLIS_ROOM, , 225, NW_NURSE, 110, SW_BRAN_2
+SW_PS_1, , , , 247.5, SW_AP_PASS_2, 50, SW_POLK_2, 325, SW_PS_3, 170, SW_POLK_BRAN
+SW_PS_2, , , , 22.5, SW_PS_3, 230, NW_AP_TO_BUCK
+SW_PS_3, , , , 10, SW_POLK_1, 95, SW_PS_1, 185, SW_PS_2
+SW_PRES_HOUSE, , PRESIDENTS_HOUSE, , 20, SW_CHRIST_WATER, 190, S_NIC_WES
+S_CAF_MAIL, , MAIL_ROOM, , 270, S_CAF_STREET, 67.5, S_POOL_1, 157.5, S_CAF_UNDER
+S_CAF_WALK, , , , 225, N_RINK, 125, S_CAF, 22, S_CAF_DELL
+S_CITRUS_WESLEY, , , , 22.5, S_WESLEY_DECK, 315, S_CAF_UNDER, 230, S_GREEN_CITRUS
+S_DOCK, , GENERAL_INFO_LAKELAND_MOCK_DOCKS, , 315, S_WELL_DOCK, 247.5, S_NIC_WES
+S_JR_MED, , , , 292.5, S_JR_POLK, 112.5, S_SPIVEY_EDGE, 202.5, S_MED
+S_JR_POLK, , , , 325, N_BUCK, 67.5, S_JR_MED, 150, SW_POLK_1, 247.5, SW_PS_3
+S_MED, , , , 305, S_JR_MED
+S_POOL_1, , , , 245, S_CAF_MAIL, 30, S_POOL_2
+S_POOL_2, , , , 135, S_POOL_WELL, 270, S_POOL_1
+S_POOL_DECK, , SWIMMING_POOL, , 70, S_POOL_WELL
+S_POOL_WELL, , , , 315, S_POOL_2, 75, S_WELLNESS_2, 115, S_WELL_DOCK, 247.5, S_POOL_DECK
+S_SPIVEY_JR, , JR_AND_SPIVEY, , 225, S_SPIVEY_EDGE, 67.5, N_BUCK_TO_JR
+S_WELL_DOCK, , , , 0, S_CAF_UNDER, 45, S_POOL_WELL, 180, S_DOCK, 225, S_NIC_WES
+S_WESLEY_DECK, , , , 180, S_CITRUS_WESLEY, 0, S_WELL_DOCK
+S_BOOKSTORE, , BOOKSTORE, , 45, S_CAF_STREET, 225, S_MOCMART
+S_MOCMART, , , , 0, S_CAF_UNDER, 190, S_BOOKSTORE
+S_NIC_WES, , NICOLAS AND WESLEY, , 45, S_DOCK, 225, SW_PRES_HOUSE
+S_WELLNESS_1, , WELLNES_CENTER, , 325, S_POOL_WELL
+S_WELLNESS_2, , , , 250, S_POOL_WELL
+SE_CS_ADMNS_1, , , , 270, SE_CS_BB_LAKE, 180, SE_CS_ADMNS_2
+SE_CS_ADMNS_2, , , , 112.5, SE_CS_CUBE_2, 235, SE_ADMISSIONS_LOBBY, 337.5, SE_CS_PARKING_2, 157.5, SE_CS_ADMNS_1, 22.5, SE_CS_FOOD
+SE_CS_PARKING_2, , , , 0, S_GREEN, 315, NE_HAPPY_PLACE, 80, SE_CS_BB_PARKING_2, 180, SE_CS_ADMNS_2
+SE_ADMISSIONS_LOBBY, , , , 215, SE_CS_ADMNS_2
+SE_BB_CORRIDOR, , BECKER, , 325, SE_BB_CLASS, 150, SE_BB_LOBBY
+SE_BB_CLASS, , BECKER_CLASSROOM, , 275, SE_BB_CORRIDOR
+SE_BB_LAKE, , , , 202.5, SE_BB_LOBBY, 135, SE_CS_BB_LAKE
+SE_BB_LOBBY, , , , 292.5, SE_BB_CORRIDOR, 225, SE_CS_PARKING_3, 90, SE_CS_BB_LAKE
+SE_CS_FOOD, , , , 140, SE_CS_PARKING_3, 337.5, SE_CS_ADMNS_2, 180, SE_CS_CLUB
+SE_CS_CLUB, , , , 40, SE_CS_CUBE_2, 50, SE_CS_FOOD
+SE_CS_CUBE_2, , , , 225, SE_CS_FOOD, 100, SE_CS_ADMNS_2, 250, SE_CS_CLUB
+SE_CS_PARKING_3, , , , 225, SE_BB_LOBBY, 80, SE_CS_BB_PARKING_2, 290, SE_CS_FOOD
+SE_WELLNESS_LAKE, , , , 15, S_WELL_DOCK, 100, S_CAF_STREET, 215, SE_CS_ADMNS_1
+

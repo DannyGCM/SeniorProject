@@ -17,8 +17,7 @@ using UnityEngine.UI;
 public class SphereTransition : MonoBehaviour
 {
 
-    public InputActionReference lHomeButton;
-    public InputActionReference rHomeButton;
+    public InputActionReference homeButton;
 
     public InputActionReference gripButton;
 
@@ -65,14 +64,11 @@ public class SphereTransition : MonoBehaviour
 
     string globalImgName;
 
-    public Transform TourInteractables;
-
     // Start is called before the first frame update
     public void NewStart()
     {
-        lHomeButton.action.performed += HomeClicked;
-        rHomeButton.action.performed += HomeClicked;
-
+        homeButton.action.performed += HomeClicked;
+        
         // Selects current rig
         bool isVR = onAndroid();
 
@@ -126,13 +122,11 @@ public class SphereTransition : MonoBehaviour
     }
     void HomeClicked(InputAction.CallbackContext obj)
     {
-        
         // If home clicked when in tour, go home
         if (inTour == true) {
             inTour = false;
             homeEnvironment.GetChild(1).gameObject.SetActive(true);
             _Manager.GetComponent<ImageCycle>().ClearButtons();
-            TourInteractables.GetComponent<Animator>().SetBool("NewImage", false);
         }
         else
         {
