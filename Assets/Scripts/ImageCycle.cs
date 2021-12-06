@@ -38,13 +38,13 @@ public class ImageCycle : MonoBehaviour
 
     public int mapAssetDescriptionIndex = 3;
 
-    public int mapAssetButtonsStartIndex = 1;
+    public int mapAssetTitleIndex = 4;
+
+    public int mapAssetButtonsStartIndex = 1; // 5
 
     public InputActionReference rClick = null;
 
     public InputActionReference lClick = null;
-
-    int globalClicks = 0;
 
     public Transform DescriptionPanel;
 
@@ -70,6 +70,10 @@ public class ImageCycle : MonoBehaviour
 
     XRSimpleInteractable globalButton = null;
 
+    string globalImageName;
+
+    int globalClicks = 0;
+
 
     // Start is called before the first frame update
     public void Start()
@@ -89,6 +93,7 @@ public class ImageCycle : MonoBehaviour
 
         rClick.action.started += delegate { AnnoyingButtonFunction(globalButton); };
         lClick.action.started += delegate { AnnoyingButtonFunction(globalButton); };
+        
     }
     // Removes all whitespace from lines
     string[][] BuildLinesFromText(string text)
@@ -167,13 +172,14 @@ public class ImageCycle : MonoBehaviour
 
     public void PanelDebug(string message, bool isError = false)
     {
-        Text description = DebuggerPanel.Find("Canvas").Find("Panel").Find("Description").GetComponent<Text>();
-        description.text = "";
+        
+        Text description = DebuggerPanel.Find("Canvas").Find("Description").GetComponent<Text>();
         if (isError)
         {
-            description.text = "Error";
+            message = "Error: " + message;
         }
-        description.text += message;
+        description.text = "\n:{" + Time.frameCount + "|: " + message + " [CurrentImage:"+globalImageName+"] }:" + description.text ;
+        
     }
 
     // Takes in string arrays from mapAsset that contains angles/imgnames and spawns the buttons associated with the angles.
@@ -291,10 +297,10 @@ public class ImageCycle : MonoBehaviour
 
     public void LoadSkysphere(string imgName)
     {
-        
-        imgName = imgName.Trim();
-        ClearButtons();
 
+        imgName = imgName.Trim();
+
+        ClearButtons();
         string[] line = FindImageInTxt(imgName);
         
 
@@ -305,27 +311,24 @@ public class ImageCycle : MonoBehaviour
             if (i < line.Length - 1) message += ", ";
         }
         
-        PanelDebug(message);
        
         string tempOffset = StringArraySlice(line, mapAssetOffsetIndex, mapAssetOffsetIndex + 1)[0];
         if (tempOffset == "" || tempOffset == " ") tempOffset = "0";
         float offset = float.Parse(tempOffset.Trim().Replace(" ", ""));
  
         string audio = StringArraySlice(line, mapAssetAudioIndex, mapAssetAudioIndex+1)[0];
-        Debug.Log(audio);
-        string description = StringArraySlice(line, mapAssetDescriptionIndex, mapAssetDescriptionIndex+1)[0];
+        
+        string[] descriptionAndTitle = new string[] { StringArraySlice(line, mapAssetDescriptionIndex, mapAssetDescriptionIndex + 1)[0], StringArraySlice(line, mapAssetTitleIndex, mapAssetTitleIndex + 1)[0] };
 
         string[] buttonsLine = StringArraySlice(line, mapAssetButtonsStartIndex, line.Length);
 
         audio = audio.Trim();
 
-        description = description.Trim();
-
         FindAndSetTextureOfSkySphere(imgName);
         SpawnButtons(buttonsLine);
         OffsetSkysphere(offset);
         FindAndSpawnAudio(audio);
-        SpawnDescription(description);
+        SpawnDescriptionAndTitle(descriptionAndTitle);
 
     }
 
@@ -363,17 +366,22 @@ public class ImageCycle : MonoBehaviour
                 return i;
         }
         string error = "No audio found in files with name: " + audio;
-        PanelDebug(error, true);
-        Debug.LogError(error);
+        if (audio != "")
+        {
+            PanelDebug(error, true);
+        }
         return -1;
     }
-    public void SpawnDescription(string newDescription)
+    public void SpawnDescriptionAndTitle(string[] descriptionAndTitle)
     {
-        if (newDescription.Length > 5)
+        string newDescription = descriptionAndTitle[0];
+        string newTitle = descriptionAndTitle[1];
+        if (newDescription != "" && newDescription != " ")
         {
-            Text title = DescriptionPanel.Find("Canvas").Find("Panel").Find("Title").GetComponent<Text>();
-            title.text = "FLORIDA SOUTHERN COLLEGE";
-            Text description = DescriptionPanel.Find("Canvas").Find("Panel").Find("Description").GetComponent<Text>();
+            Text title = DescriptionPanel.Find("Canvas").Find("Title").GetComponent<Text>();
+            Text description = DescriptionPanel.Find("Canvas").Find("Description").GetComponent<Text>();
+
+            title.text = newTitle;
             description.text = newDescription;
             DescriptionPanel.gameObject.SetActive(true);
         }
@@ -398,6 +406,9 @@ public class ImageCycle : MonoBehaviour
         int imgIndex = FindImgIndex(imgName, texSphere);
         // Set skysphere to texture found with index
         rend.material.SetTexture("_BaseMap", (Texture2D)texSphere[imgIndex]);
+
+        globalImageName = imgName;
+        PanelDebug("");
     }
 
     void RunArrow(Animator ani, bool animating, XRSimpleInteractable button)
