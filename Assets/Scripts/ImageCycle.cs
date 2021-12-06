@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.VisualScripting;
 using System.Threading.Tasks;
+using TMPro;
 
 // Brock Wilson
 // 12/4/21
@@ -30,23 +31,23 @@ public class ImageCycle : MonoBehaviour
 
     public TextAsset mapAsset;
 
-    public int mapAssetImageIndex = 0;
+    int mapAssetImageIndex = 0;
 
-    public int mapAssetOffsetIndex = 1;
+    int mapAssetOffsetIndex = 1;
 
-    public int mapAssetAudioIndex = 2;
+    int mapAssetAudioIndex = 2;
 
-    public int mapAssetDescriptionIndex = 3;
+    int mapAssetDescriptionIndex = 3;
 
-    public int mapAssetTitleIndex = 4;
+    int mapAssetTitleIndex = 4;
 
-    public int mapAssetButtonsStartIndex = 1; // 5
+    int mapAssetButtonsStartIndex = 5;
 
     public InputActionReference rClick = null;
 
     public InputActionReference lClick = null;
 
-    public Transform DescriptionPanel;
+    public Transform TourInteractables;
 
     public Transform DebuggerPanel;
 
@@ -74,6 +75,7 @@ public class ImageCycle : MonoBehaviour
 
     int globalClicks = 0;
 
+    int descriptionBoxIteration = 1;
 
     // Start is called before the first frame update
     public void Start()
@@ -93,8 +95,27 @@ public class ImageCycle : MonoBehaviour
 
         rClick.action.started += delegate { AnnoyingButtonFunction(globalButton); };
         lClick.action.started += delegate { AnnoyingButtonFunction(globalButton); };
-        
+
+        Transform canvas = TourInteractables.Find("TopBar");
+        canvas.Find("Close").GetComponent<Button>().onClick.AddListener(delegate { CloseDescBox(TourInteractables); } );
+        canvas.Find("Expand").GetComponent<Button>().onClick.AddListener(delegate { ResizeDescBox(TourInteractables); });
+        canvas.Find("Minimize").GetComponent<Button>().onClick.AddListener(delegate { MinimizeDescBox(TourInteractables); });
+
     }
+    void CloseDescBox(Transform TourInteractables)
+    {
+        TourInteractables.GetComponent<Animator>().SetBool("NewImage", false);
+    }
+    void ResizeDescBox(Transform TourInteractables)
+    {
+        descriptionBoxIteration = (descriptionBoxIteration + 1) % 3;
+        TourInteractables.GetComponent<Animator>().SetInteger("Expand", descriptionBoxIteration);
+    }
+    void MinimizeDescBox(Transform TourInteractables)
+    {
+        TourInteractables.GetComponent<Animator>().SetTrigger("Minimize");
+    }
+
     // Removes all whitespace from lines
     string[][] BuildLinesFromText(string text)
     {
@@ -102,10 +123,13 @@ public class ImageCycle : MonoBehaviour
         string[][] final = new string[rows.Length][];
         for (int i = 0; i < rows.Length; i++)
         {
-            rows[i] = rows[i].Replace(" ", string.Empty);
-            var temp = rows[i].Trim().Split(","[0]);
-            if (temp[0] == "") temp[0] = "/";
-            final[i] = temp;
+            //rows[i] = rows[i].Replace(" ", string.Empty);
+            string[] result = rows[i].Trim().Split(new string[] { ", " }, System.StringSplitOptions.None);
+            //var temp = rows[i].Trim().Split(", "[]);
+            /*if (temp[0] == "") temp[0] = "/";
+            final[i] = temp;*/
+            if (result[0] == "") result[0] = "/";
+            final[i] = result;
         }
         /*for (int i = 0; i < final.Length; i++)
         {
@@ -167,7 +191,7 @@ public class ImageCycle : MonoBehaviour
     }
     public void DisableDescription()
     {
-        DescriptionPanel.gameObject.SetActive(false);
+        TourInteractables.gameObject.SetActive(false);
     }
 
     public void PanelDebug(string message, bool isError = false)
@@ -186,6 +210,7 @@ public class ImageCycle : MonoBehaviour
     // Function cleaned
     void SpawnButtons(string[] buttonsLine)
     {
+        Debug.Log("Spawning buttons" + buttonsLine[0]);
         int numberOfButtons = buttonsLine.Length / 2;
         XRSimpleInteractable[] interactables = new XRSimpleInteractable[numberOfButtons];
 
@@ -252,6 +277,7 @@ public class ImageCycle : MonoBehaviour
     public string[] StringArraySlice(string[] list, int fromIndex, int toIndex)
     {
         int lengthOfSlicedList = toIndex - fromIndex;
+        
         string[] slicedList = new string[lengthOfSlicedList+1];
         
         for (int i = 0; i < lengthOfSlicedList; i++)
@@ -283,11 +309,11 @@ public class ImageCycle : MonoBehaviour
         // From the line found, find an angle in the text that matches the one of the button that was clicked and return the image associated
         string[] buttonsLine = StringArraySlice(line, mapAssetButtonsStartIndex, line.Length); // Buttonsline only contains the button information
         string nextImg = FindButtonClicked(buttonsLine, rotationPlane.localRotation.eulerAngles);
-        Debug.Log(nextImg);
+        Debug.Log("Image: " + nextImg);
         if (nextImg != null)
         {
             // Eliminate whitespace from the string nextImg
-            nextImg = nextImg.Trim();
+            nextImg = nextImg.Trim().Replace(" ", "");
 
             // Load the skysphere buttons and texture
             LoadSkysphere(nextImg);
@@ -302,15 +328,7 @@ public class ImageCycle : MonoBehaviour
 
         ClearButtons();
         string[] line = FindImageInTxt(imgName);
-        
 
-        string message = "";
-        for (int i = 0; i < line.Length; i++)
-        {
-            message += line[i];
-            if (i < line.Length - 1) message += ", ";
-        }
-        
        
         string tempOffset = StringArraySlice(line, mapAssetOffsetIndex, mapAssetOffsetIndex + 1)[0];
         if (tempOffset == "" || tempOffset == " ") tempOffset = "0";
@@ -321,14 +339,19 @@ public class ImageCycle : MonoBehaviour
         string[] descriptionAndTitle = new string[] { StringArraySlice(line, mapAssetDescriptionIndex, mapAssetDescriptionIndex + 1)[0], StringArraySlice(line, mapAssetTitleIndex, mapAssetTitleIndex + 1)[0] };
 
         string[] buttonsLine = StringArraySlice(line, mapAssetButtonsStartIndex, line.Length);
+        
 
         audio = audio.Trim();
 
         FindAndSetTextureOfSkySphere(imgName);
         SpawnButtons(buttonsLine);
+        
         OffsetSkysphere(offset);
+        Debug.Log("a");
         FindAndSpawnAudio(audio);
+        Debug.Log("b");
         SpawnDescriptionAndTitle(descriptionAndTitle);
+        Debug.Log("done");
 
     }
 
@@ -374,26 +397,29 @@ public class ImageCycle : MonoBehaviour
     }
     public void SpawnDescriptionAndTitle(string[] descriptionAndTitle)
     {
-        string newDescription = descriptionAndTitle[0];
-        string newTitle = descriptionAndTitle[1];
+        Debug.Log(descriptionAndTitle[0] + " " + descriptionAndTitle[1]);
+        string newDescription = descriptionAndTitle[0].Replace("_", " ");
+        string newTitle = descriptionAndTitle[1].Replace("_", " ");
         if (newDescription != "" && newDescription != " ")
         {
-            Text title = DescriptionPanel.Find("Canvas").Find("Title").GetComponent<Text>();
-            Text description = DescriptionPanel.Find("Canvas").Find("Description").GetComponent<Text>();
-
+            TextMeshProUGUI title = TourInteractables.Find("DescriptionPanel").Find("Canvas").Find("Title").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI description = TourInteractables.Find("DescriptionPanel").Find("Canvas").Find("Description").GetComponent<TextMeshProUGUI>();
+            
             title.text = newTitle;
             description.text = newDescription;
-            DescriptionPanel.gameObject.SetActive(true);
+            
+            TourInteractables.GetComponent<Animator>().SetBool("NewImage", true);
+            
         }
         else
         {
-            DescriptionPanel.gameObject.SetActive(false);
+            TourInteractables.GetComponent<Animator>().SetBool("NewImage", false);
         }
         
     }
     public void OffsetSkysphere(float offset)
     {
-        Debug.Log(offset);
+        //Debug.Log(offset);
         //skySphere.parent.eulerAngles = new Vector3(0, offset, 0);
     }
 
