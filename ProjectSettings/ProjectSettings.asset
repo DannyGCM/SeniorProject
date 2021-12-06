@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: CompanyNCo
-  productName: WithTrees
+  companyName: DefaultCompany
+  productName: DownloadTest15
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -142,14 +142,6 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 11400000, guid: 625d57434c02ab548aeceaeb5bdbc2da, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -168,7 +160,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.CompanyNCo.WithTrees
+    Android: com.DefaultCompany.DownloadTest15
     Standalone: com.DefaultCompany.DownloadTest15
   buildNumber:
     Standalone: 0
