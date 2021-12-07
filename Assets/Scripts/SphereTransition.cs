@@ -17,7 +17,8 @@ using UnityEngine.UI;
 public class SphereTransition : MonoBehaviour
 {
 
-    public InputActionReference homeButton;
+    public InputActionReference lHomeButton;
+    public InputActionReference rHomeButton;
 
     public InputActionReference gripButton;
 
@@ -64,11 +65,14 @@ public class SphereTransition : MonoBehaviour
 
     string globalImgName;
 
+    public Transform TourInteractables;
+
     // Start is called before the first frame update
     public void NewStart()
     {
-        homeButton.action.performed += HomeClicked;
-        
+        lHomeButton.action.performed += HomeClicked;
+        rHomeButton.action.performed += HomeClicked;
+
         // Selects current rig
         bool isVR = onAndroid();
 
@@ -85,7 +89,7 @@ public class SphereTransition : MonoBehaviour
 
         // Set camera to be whichever is detected as active
         Camera = FindActiveCamera(CameraContainer);
-        
+
         tourSkysphere = tourEnvironment.GetChild(0).GetChild(0);
 
         // Initialize renderer component of the skysphere
@@ -101,32 +105,35 @@ public class SphereTransition : MonoBehaviour
         {
             AnnoyingClickFunction();
         };
-        
+
         lClick.action.started += delegate {
             AnnoyingClickFunction();
         };
-        
+
     }
     void AnnoyingClickFunction()
     {
         if (globalImgName != null && globalBuildingVisuals != null)
         {
-            
+
             globalBuildingVisuals.parent.GetComponent<MeshCollider>().enabled = false;
             DisableHome(globalImgName);
             globalBuildingVisuals.parent.GetComponent<MeshCollider>().enabled = true;
             globalImgName = null;
             globalBuildingVisuals = null;
         }
-        
+
     }
     void HomeClicked(InputAction.CallbackContext obj)
     {
+
         // If home clicked when in tour, go home
-        if (inTour == true) {
+        if (inTour == true)
+        {
             inTour = false;
             homeEnvironment.GetChild(1).gameObject.SetActive(true);
             _Manager.GetComponent<ImageCycle>().ClearButtons();
+            TourInteractables.GetComponent<Animator>().SetBool("NewImage", false);
         }
         else
         {
@@ -173,8 +180,9 @@ public class SphereTransition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (BuildingModel) {
+
+        if (BuildingModel)
+        {
 
             if (inTour == false)
             {
@@ -188,8 +196,8 @@ public class SphereTransition : MonoBehaviour
                     SphereChangeAnimator.SetBool("BuildingNear", false);
                 }
             }
-            
-            
+
+
 
         }
     }
@@ -212,31 +220,31 @@ public class SphereTransition : MonoBehaviour
         if (imageName == "t") imageName = "S_SPIVEY_JR";
 
         Transform buildingVis = grabBuilding.GetChild(0).GetChild(0);
-        
+
         grab.selectEntered.AddListener(delegate { GrabbableGrabbed(imageName, buildingVis); });
         grab.selectExited.AddListener(delegate { GrabbableReleased(imageName, buildingVis); });
         grab.hoverEntered.AddListener(delegate { GrabbableHovered(imageName, buildingVis); });
         grab.hoverExited.AddListener(delegate { GrabbableUnHovered(buildingVis); });
 
     }
-   
+
 
     public void GrabbableReleased(string imgName, Transform buildingVisuals)
     {
-        
+
         if (imgName == "")
         {
             imgName = tourSkysphereRenderer.material.GetTexture("_BaseMap").name;
         }
         buildingVisuals.GetComponent<Animator>().SetBool("InHand", false);
-        
+
         if (dist < maxDist)
         {
             DisableHome(imgName);
             beenInTour = true;
         }
         buildingVisuals.parent.GetComponent<MeshCollider>().enabled = true;
-        
+
     }
     public async Task DisableHome(string imgName)
     {
@@ -252,13 +260,13 @@ public class SphereTransition : MonoBehaviour
         // Do camera fadeout BuildingVisualsAnimatoration
         //SphereChangeAnimator.SetBool("BuildingNear", true);
         await Task.Delay(1000);
-        
+
         // Disable map
         homeEnvironment.Find("Map").gameObject.SetActive(false);
     }
     public void GrabbableGrabbed(string imgName, Transform buildingVisuals)
     {
-        
+
         BuildingModel = buildingVisuals.Find("Model");
         buildingVisuals.GetComponent<Animator>().SetBool("InHand", true);
 
@@ -283,7 +291,7 @@ public class SphereTransition : MonoBehaviour
         textbox.GetComponent<Text>().text = text;
 
         // If click occurs, call in new environment
-        
+
 
     }
     public void GrabbableUnHovered(Transform buildingVisuals)
