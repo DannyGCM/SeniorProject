@@ -34,7 +34,7 @@ public class InitBuildings : MonoBehaviour
         for (int i = 0; i < initialCount; i++)
         {
             Transform model = _initContainer.GetChild(0);
-
+            
             PlacePrefab(model, _finalInteractableContainer);
 
             Transform interactableBuilding = _finalInteractableContainer.GetChild(i);
@@ -65,7 +65,7 @@ public class InitBuildings : MonoBehaviour
     }
     void BuildPrefab(Transform interactableClone, Transform building, Transform buildingClone)
     {
-
+        
         ChangeMeshCollider(interactableClone, building);
         // Add prefab to building
         interactableClone.parent = building;
@@ -75,7 +75,7 @@ public class InitBuildings : MonoBehaviour
         _Manager.GetComponent<SphereTransition>().InsertGrabListener(building);
         Transform highlightParent = interactableClone.Find("BuildingVisuals/Highlight");
         InsertHighlightModel(highlightParent, buildingClone, _ghost);
-
+        
     }
     void ChangeModel(Transform building, Transform buildingClone)
     {
@@ -83,7 +83,7 @@ public class InitBuildings : MonoBehaviour
         Destroy(building.GetComponent<MeshRenderer>());
         buildingClone.localScale = new Vector3(1, 1, 1);
         buildingClone.localPosition = new Vector3(0, 0, 0);
-        buildingClone.localRotation = Quaternion.Euler(0, 0, 0);
+        buildingClone.localRotation = Quaternion.Euler(0,0,0);
     }
     void InsertHighlightModel(Transform parent, Transform model, Material material)
     {
@@ -91,7 +91,7 @@ public class InitBuildings : MonoBehaviour
         Transform Highlight = parent.GetChild(0);
         Highlight.GetComponent<MeshFilter>().mesh = mesh;
         //Highlight.GetComponent<MeshRenderer>().materials = new Material[] { material };
-        Highlight.localScale = new Vector3(1, 1, 1);
+        Highlight.localScale = new Vector3(1,1,1);
         parent.localScale = new Vector3((float).9, (float).9, (float).9);
         Highlight.localPosition = new Vector3(0, 0, 0);
         Highlight.localRotation = Quaternion.Euler(0, 0, 0);
