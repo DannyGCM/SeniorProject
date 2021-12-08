@@ -76,9 +76,9 @@ public class PC_Controls : MonoBehaviour
         {
             Vector3 CameraRotation = cameraTransform.transform.rotation.eulerAngles;
             if (!invertedCamera)
-            { CameraRotation.y += Mathf.Clamp(obj.ReadValue<float>() * lookSpeed
+            { CameraRotation.y += Mathf.Clamp(obj.ReadValue<float>() * lookSpeed 
               * Time.deltaTime,-lookSpeed, lookSpeed); }
-            else { CameraRotation.y -= Mathf.Clamp(obj.ReadValue<float>() * lookSpeed
+            else { CameraRotation.y -= Mathf.Clamp(obj.ReadValue<float>() * lookSpeed 
               * Time.deltaTime, -lookSpeed, lookSpeed); }
             cameraTransform.transform.rotation = Quaternion.Euler(CameraRotation);
         }
@@ -94,7 +94,7 @@ public class PC_Controls : MonoBehaviour
         {
             Vector3 CameraRotation = cameraTransform.transform.rotation.eulerAngles;
             if (!invertedCamera)
-            { CameraRotation.x -= Mathf.Clamp(obj.ReadValue<float>() * lookSpeed
+            { CameraRotation.x -= Mathf.Clamp(obj.ReadValue<float>() * lookSpeed 
               * Time.deltaTime, -lookSpeed, lookSpeed);
             } else { CameraRotation.x += Mathf.Clamp(obj.ReadValue<float>() * lookSpeed
               * Time.deltaTime, -lookSpeed, lookSpeed); }

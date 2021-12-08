@@ -84,6 +84,7 @@ public class SphereTransition : MonoBehaviour
             CameraContainer.GetChild(1).GetChild(0).GetChild(1).gameObject.SetActive(isVR);
             CameraContainer.GetChild(1).GetChild(0).GetChild(0).gameObject.SetActive(isVR);
             CameraContainer.GetChild(0).gameObject.SetActive(!isVR);
+	    CameraContainer.GetChild(2).gameObject.SetActive(!isVR);
 
         }
 
