@@ -45,6 +45,8 @@ public class ImageCycle : MonoBehaviour
 
     public InputActionReference rClick = null;
 
+    public InputActionReference keyboardClick = null;
+
     public InputActionReference lClick = null;
 
     public Transform TourInteractables;

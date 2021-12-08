@@ -12774,6 +12774,7 @@ MonoBehaviour:
   resourcesAudioDirectory: Audio/mp3Sound
   mapAsset: {fileID: 4900000, guid: 9d193f8c0a4c43d4397b64854c50b0b2, type: 3}
   rClick: {fileID: 4203105348295950727, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  keyboardClick: {fileID: 0}
   lClick: {fileID: -1408139830253947437, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   TourInteractables: {fileID: 2106530437056065826}
   DebuggerPanel: {fileID: 1472987604}
@@ -12820,7 +12821,7 @@ MonoBehaviour:
   tourEnvironment: {fileID: 12828607}
   BuildingContainer: {fileID: 955993488}
   CameraContainer: {fileID: 1771480042}
-  testing: 0
+  testing: 1
   maxDist: 0.45
   inTour: 0
   _Manager: {fileID: 608097676}
@@ -36679,7 +36680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1777355599
 Transform:
   m_ObjectHideFlags: 0
@@ -40165,7 +40166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1974242047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54460,7 +54461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &5961416193850820378
 MeshFilter:
   m_ObjectHideFlags: 0

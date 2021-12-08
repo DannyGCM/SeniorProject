@@ -627,6 +627,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "6183c3f4-08c8-40fb-a9a5-7295102d5806",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Activate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "Quaternion Fallback",
                     "id": "84e51e1c-1b95-4f3e-a61f-29da6c1f0816",
                     "path": "QuaternionFallback",
