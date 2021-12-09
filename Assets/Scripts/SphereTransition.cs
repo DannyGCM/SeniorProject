@@ -67,6 +67,12 @@ public class SphereTransition : MonoBehaviour
 
     public Transform TourInteractables;
 
+    public Transform rVisuals = null;
+
+    public Transform lVisuals = null;
+
+    public Transform keyboardTutorial = null;
+
     // Start is called before the first frame update
     public void NewStart()
     {
@@ -77,22 +83,25 @@ public class SphereTransition : MonoBehaviour
         bool isVR = onAndroid();
 
         // If we are testing, allow for override of device detected
-
+        
         if (!testing)
         {
             // Sets active components based on the device detected
             CameraContainer.GetChild(1).GetChild(0).GetChild(1).gameObject.SetActive(isVR);
             CameraContainer.GetChild(1).GetChild(0).GetChild(0).gameObject.SetActive(isVR);
             CameraContainer.GetChild(0).gameObject.SetActive(!isVR);
-	    CameraContainer.GetChild(2).gameObject.SetActive(!isVR);
+	        CameraContainer.GetChild(2).gameObject.SetActive(!isVR);
+            lVisuals.gameObject.SetActive(isVR);
+            rVisuals.gameObject.SetActive(isVR);
+            keyboardTutorial.gameObject.SetActive(!isVR);
 
         }
 
         // Set camera to be whichever is detected as active
         Camera = FindActiveCamera(CameraContainer);
-
+        _Manager.GetComponent<ImageCycle>().playerCamera = Camera;
         tourSkysphere = tourEnvironment.GetChild(0).GetChild(0);
-
+        
         // Initialize renderer component of the skysphere
         tourSkysphereRenderer = tourSkysphere.GetComponent<Renderer>();
 

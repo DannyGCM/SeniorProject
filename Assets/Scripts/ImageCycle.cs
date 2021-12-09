@@ -61,6 +61,9 @@ public class ImageCycle : MonoBehaviour
 
     public Camera maincam;
 
+    public Transform rVisuals = null;
+
+    public Transform lVisuals = null;
 
     // Contains all text from mapAsset
     string[][] lines;
@@ -78,6 +81,8 @@ public class ImageCycle : MonoBehaviour
     int globalClicks = 0;
 
     int descriptionBoxIteration = 1;
+
+    public Transform playerCamera;
 
     // Start is called before the first frame update
     public void Start()
@@ -212,7 +217,7 @@ public class ImageCycle : MonoBehaviour
     // Function cleaned
     void SpawnButtons(string[] buttonsLine)
     {
-        Debug.Log("Spawning buttons" + buttonsLine[0]);
+        
         int numberOfButtons = buttonsLine.Length / 2;
         XRSimpleInteractable[] interactables = new XRSimpleInteractable[numberOfButtons];
 
@@ -220,6 +225,7 @@ public class ImageCycle : MonoBehaviour
         for (int i = 0; i < numberOfButtons; i++)
         {
             // Get the angle at even indexes of line and assign it to roty
+            Debug.Log(buttonsLine[i*2]);
             float rotationy = float.Parse(buttonsLine[i * 2]);
 
             // Create instance of our rotationPlane prefab
@@ -230,7 +236,7 @@ public class ImageCycle : MonoBehaviour
             // Set position of rotation plane to be bound to parent
             rotationPlaneClone.position = rotationPlaneContainer.position;
             // With this instance, rotate it to degree specified from txt file
-            rotationPlaneClone.transform.Rotate(0, rotationy, 0);
+            rotationPlaneClone.transform.localRotation = Quaternion.Euler(0, rotationy, 0);
             // Set this instance's name to be 'rotationPlane[integer]'.
             rotationPlaneClone.name = rotationPlane.name + (i + rotPlaneIteration); // rotPlaneIteration is used to ensure that no old names can be reused once a button is deleted. This is primarily used for debugging
 
@@ -254,23 +260,27 @@ public class ImageCycle : MonoBehaviour
 
     // Takes an input rotation (presumably of the button pressed) and tries to find that rotation in the line provided
     // Function cleaned
-    private string FindButtonClicked(string[] buttonsLine, Vector3 rotation)
+    private string FindButtonClicked(string[] buttonsLine, float rotation)
     {
         for (int i = 0; i < buttonsLine.Length; i += 2)
         {
+            
             // Convert our text file angle to quaternion and compare
-            float number;
-            bool success = float.TryParse(buttonsLine[i], out number);
+            int number;
+            bool success = int.TryParse(buttonsLine[i], out number);
             if (success)
             {
-                if (rotation == new Vector3(0, number, 0))
+                Vector3 buttonInText = new Vector3(0,number,0);
+                Debug.Log(number);
+                if (Vector3.Distance(new Vector3(0,number,0), new Vector3(0, rotation, 0)) < 1)
                 {
                     // Return the imgname that follows the rotation angle
                     return buttonsLine[i + 1];
                 }
+                
             }
         }
-        string error = "Could not find the angle: EulerAngles(" + rotation[0] + "," + rotation[1] + "," + rotation[2] + ") in the line provided.";
+        string error = "Could not find the angle: EulerAngles(" + 0 + "," + rotation + "," + 0 + ") in the line provided.";
         PanelDebug(error, true);
         Debug.LogError(error);
         return null;
@@ -310,7 +320,7 @@ public class ImageCycle : MonoBehaviour
 
         // From the line found, find an angle in the text that matches the one of the button that was clicked and return the image associated
         string[] buttonsLine = StringArraySlice(line, mapAssetButtonsStartIndex, line.Length); // Buttonsline only contains the button information
-        string nextImg = FindButtonClicked(buttonsLine, rotationPlane.localRotation.eulerAngles);
+        string nextImg = FindButtonClicked(buttonsLine, rotationPlane.localRotation.eulerAngles.y);
         Debug.Log("Image: " + nextImg);
         if (nextImg != null)
         {
@@ -349,11 +359,11 @@ public class ImageCycle : MonoBehaviour
         SpawnButtons(buttonsLine);
 
         OffsetSkysphere(offset);
-        Debug.Log("a");
+        
         FindAndSpawnAudio(audio);
-        Debug.Log("b");
+        
         SpawnDescriptionAndTitle(descriptionAndTitle);
-        Debug.Log("done");
+        
 
     }
 
@@ -363,12 +373,8 @@ public class ImageCycle : MonoBehaviour
         int audioIndex = FindAudioIndex(audio, audioArray);
         if (audioIndex != -1)
         {
-            if (speaker.clip != (AudioClip)audioArray[audioIndex])
-            {
-                speaker.clip = (AudioClip)audioArray[audioIndex];
-                speaker.Play();
-            }
-
+            speaker.clip = (AudioClip)audioArray[audioIndex]; 
+            speaker.Play();
         }
         else
         {
@@ -399,7 +405,7 @@ public class ImageCycle : MonoBehaviour
     }
     public void SpawnDescriptionAndTitle(string[] descriptionAndTitle)
     {
-        Debug.Log(descriptionAndTitle[0] + " " + descriptionAndTitle[1]);
+        
         string newDescription = descriptionAndTitle[0].Replace("_", " ");
         string newTitle = descriptionAndTitle[1].Replace("_", " ");
         if (newDescription != "" && newDescription != " ")
@@ -421,8 +427,11 @@ public class ImageCycle : MonoBehaviour
     }
     public void OffsetSkysphere(float offset)
     {
-        //Debug.Log(offset);
-        //skySphere.parent.eulerAngles = new Vector3(0, offset, 0);
+        Debug.Log("offset" + offset + " "+ skySphere.parent.name);
+        //skySphere.parent.rotation = Quaternion.Euler(new Vector3(0, offset, 0));
+        skySphere.parent.localRotation = Quaternion.Euler(0, 360-offset, 0);
+        Debug.Log(skySphere.parent.localEulerAngles.y);
+        //skySphere.parent.Rotate(new Vector3(0, offset, 0), Space.World);
     }
 
     public void FindAndSetTextureOfSkySphere(string imgName)
@@ -463,6 +472,12 @@ public class ImageCycle : MonoBehaviour
             ButtonClicked(button);
         }
 
+    }
+
+    public void AdjustCamera()
+    {
+        playerCamera.parent.localPosition = new Vector3(0, (float)-(playerCamera.localPosition.y - 1.4), 0);
+        Debug.Log(playerCamera.parent.name + " " + skySphere.parent.parent.name);
     }
 
 
